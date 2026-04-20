@@ -17,33 +17,32 @@
   .head p{color:#555;font-size:15px;line-height:1.5}
 
   .hero-split{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#fff;border-radius:14px;overflow:hidden;margin-bottom:24px;box-shadow:0 3px 16px rgba(0,0,0,.05)}
-  .hero-split .side{padding:20px;display:flex;align-items:center;justify-content:center;text-align:center;color:#999;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;min-height:180px;background:#f4efe6}
+  .hero-split .side{padding:0;display:flex;align-items:center;justify-content:center;text-align:center;color:#999;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;min-height:180px;background:#f4efe6;overflow:hidden;position:relative}
   .hero-split .side img{width:100%;height:100%;object-fit:cover}
-  .hero-split .ba-label{position:absolute;background:#000;color:#fff;padding:4px 10px;font-size:10px;letter-spacing:2px}
 
   .trust-row{display:flex;justify-content:center;gap:16px;margin-bottom:18px;flex-wrap:wrap;font-size:12px;color:#555}
   .trust-row span{display:inline-flex;align-items:center;gap:4px}
 
-  .packs{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:22px}
-  @media(min-width:720px){.packs{grid-template-columns:1fr 1fr 1fr}}
+  .packs{display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:22px}
+  @media(min-width:680px){.packs{grid-template-columns:1fr 1fr}}
 
-  .pack{background:#fff;border:2px solid #eaeaea;border-radius:14px;padding:22px 18px;text-align:center;position:relative;transition:all .2s ease;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+  .pack{background:#fff;border:2px solid #eaeaea;border-radius:16px;padding:28px 22px;text-align:center;position:relative;transition:all .2s ease;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.04)}
   .pack:hover{border-color:#cc5500;transform:translateY(-3px);box-shadow:0 8px 28px rgba(204,85,0,.12)}
   .pack.best{border-color:#2e7d32;transform:scale(1.02)}
   .pack.best::before{content:'MOST POPULAR';position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#2e7d32;color:#fff;padding:5px 14px;font-size:10px;letter-spacing:1.5px;font-weight:700;border-radius:20px}
 
-  .pack .jar{width:80px;height:80px;margin:0 auto 10px;background:#f4efe6;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999;letter-spacing:1px;text-align:center;padding:6px}
-  .pack .jar img{width:100%;height:100%;object-fit:cover;border-radius:12px}
-  .pack .qty{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:2px}
-  .pack .sub{font-size:12px;color:#666;margin-bottom:12px;letter-spacing:.5px;text-transform:uppercase}
+  .pack .jar{width:150px;height:150px;margin:0 auto 14px;background:#f4efe6;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999;letter-spacing:1px;text-align:center;padding:6px;overflow:hidden}
+  .pack .jar img{width:100%;height:100%;object-fit:contain}
+  .pack .qty{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-bottom:2px}
+  .pack .sub{font-size:12px;color:#666;margin-bottom:14px;letter-spacing:.5px;text-transform:uppercase}
 
   .price-row{margin-bottom:8px}
-  .price-row .old{text-decoration:line-through;color:#999;font-size:14px;margin-right:6px}
-  .price-row .now{font-family:'Playfair Display',serif;font-size:28px;color:#a33c00;font-weight:900}
-  .per{font-size:11px;color:#666;margin-bottom:12px}
-  .save{display:inline-block;background:#fff0e6;color:#a33c00;padding:3px 10px;font-size:10px;font-weight:700;border-radius:10px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px}
+  .price-row .old{text-decoration:line-through;color:#999;font-size:15px;margin-right:6px}
+  .price-row .now{font-family:'Playfair Display',serif;font-size:32px;color:#a33c00;font-weight:900}
+  .per{font-size:12px;color:#666;margin-bottom:14px}
+  .save{display:inline-block;background:#fff0e6;color:#a33c00;padding:4px 12px;font-size:11px;font-weight:700;border-radius:12px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:14px}
 
-  .buy-btn{display:block;background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;padding:14px 16px;border-radius:50px;font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;margin-top:10px;box-shadow:0 4px 14px rgba(46,125,50,.3);animation:btnPulse 1.6s infinite}
+  .buy-btn{display:block;background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;padding:16px 18px;border-radius:50px;font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;margin-top:12px;box-shadow:0 4px 14px rgba(46,125,50,.3);animation:btnPulse 1.6s infinite}
   @keyframes btnPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
   .buy-btn:hover{filter:brightness(1.1)}
 
@@ -56,7 +55,7 @@
   .bump-price{font-size:12px;color:#a33c00;font-weight:700;margin-top:4px}
 
   .guarantee{background:#fff;border-radius:12px;padding:18px;text-align:center;margin-bottom:16px}
-  .guarantee .seal{display:inline-block;width:60px;height:60px;border-radius:50%;background:#2e7d32;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:20px;margin-bottom:8px}
+  .guarantee .seal{display:inline-flex;width:60px;height:60px;border-radius:50%;background:#2e7d32;color:#fff;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:20px;margin-bottom:8px}
   .guarantee h4{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:4px}
   .guarantee p{font-size:13px;color:#555;line-height:1.5}
 
@@ -72,13 +71,13 @@
 
   <div class="head">
     <h1>Your recommended <span>Crave-Off</span> pack</h1>
-    <p>Based on your 94% match score, here are the kit options available today.</p>
+    <p>Based on your 94% match score, here are the two kit options available today.</p>
   </div>
 
-  <!-- Before/After split (real images placeholders) -->
+  <!-- Before/After split -->
   <div class="hero-split">
-    <div class="side"><img src="img/before_1.jpg" alt="Before" onerror="this.replaceWith(document.createTextNode('BEFORE'))"></div>
-    <div class="side"><img src="img/after_1.jpg" alt="After 60 days" onerror="this.replaceWith(document.createTextNode('AFTER 60 DAYS'))"></div>
+    <div class="side"><img src="img/before_after_1.jpg" alt="Before" onerror="this.replaceWith(document.createTextNode('BEFORE'))"></div>
+    <div class="side"><img src="img/before_after_2.jpg" alt="After 90 days" onerror="this.replaceWith(document.createTextNode('AFTER 90 DAYS'))"></div>
   </div>
 
   <div class="trust-row">
@@ -87,40 +86,27 @@
     <span>✓ Secure checkout</span>
   </div>
 
-  <!-- 3 PACKS -->
+  <!-- 2 PACKS ONLY -->
   <div class="packs">
 
     <div class="pack">
-      <div class="jar"><img src="img/product_jar.jpg" alt="1 bottle" onerror="this.replaceWith(document.createTextNode('1 BOTTLE'))"></div>
-      <div class="qty">1 Bottle</div>
-      <div class="sub">Starter · 30 days</div>
-      <div class="price-row"><span class="old">$39.99</span><span class="now" data-price="1">$29.99</span></div>
-      <div class="per">$29.99 per bottle</div>
-      <span class="save">Save 25%</span>
-      <!-- STRIPE LINK: replace href with your Stripe Payment Link for 1 bottle -->
-      <a href="https://buy.stripe.com/REPLACE_STRIPE_LINK_1PACK" class="buy-btn" data-pack="1">Get 1 Bottle →</a>
+      <div class="jar"><img src="img/product_jar.jpg" alt="2 bottles of Crave-Off" onerror="this.replaceWith(document.createTextNode('2 BOTTLES'))"></div>
+      <div class="qty">2 Bottles</div>
+      <div class="sub">Starter Kit · 60 days</div>
+      <div class="price-row"><span class="old">$79.98</span><span class="now">$49.99</span></div>
+      <div class="per">$24.99 per bottle</div>
+      <span class="save">Save 37%</span>
+      <a href="https://buy.stripe.com/bJe6oH1Tx6aF8Ht48dfMA0j" class="buy-btn" data-pack="2">Get 2 Bottles →</a>
     </div>
 
     <div class="pack best">
-      <div class="jar"><img src="img/product_jar.jpg" alt="2 bottles" onerror="this.replaceWith(document.createTextNode('2 BOTTLES'))"></div>
-      <div class="qty">2 Bottles</div>
-      <div class="sub">Best Value · 60 days</div>
-      <div class="price-row"><span class="old">$79.98</span><span class="now" data-price="2">$49.99</span></div>
-      <div class="per">$24.99 per bottle</div>
-      <span class="save">Save 37%</span>
-      <!-- STRIPE LINK: replace href with your Stripe Payment Link for 2 bottles -->
-      <a href="https://buy.stripe.com/REPLACE_STRIPE_LINK_2PACK" class="buy-btn" data-pack="2">Get 2 Bottles →</a>
-    </div>
-
-    <div class="pack">
-      <div class="jar"><img src="img/product_jar.jpg" alt="3 bottles" onerror="this.replaceWith(document.createTextNode('3 BOTTLES'))"></div>
+      <div class="jar"><img src="img/product_jar.jpg" alt="3 bottles of Crave-Off" onerror="this.replaceWith(document.createTextNode('3 BOTTLES'))"></div>
       <div class="qty">3 Bottles</div>
       <div class="sub">Transformation · 90 days</div>
-      <div class="price-row"><span class="old">$119.97</span><span class="now" data-price="3">$59.99</span></div>
+      <div class="price-row"><span class="old">$119.97</span><span class="now">$59.99</span></div>
       <div class="per">$19.99 per bottle</div>
       <span class="save">Save 50%</span>
-      <!-- STRIPE LINK: replace href with your Stripe Payment Link for 3 bottles -->
-      <a href="https://buy.stripe.com/REPLACE_STRIPE_LINK_3PACK" class="buy-btn" data-pack="3">Get 3 Bottles →</a>
+      <a href="https://buy.stripe.com/eVqeVdbu7fLfg9V349fMA0q" class="buy-btn" data-pack="3">Get 3 Bottles →</a>
     </div>
 
   </div>
@@ -153,13 +139,12 @@
 </div>
 
 <script>
-  // Preserve quiz answers if you later want to attach them to Stripe as metadata
+  // Attach quiz answers to Stripe links as client_reference_id
   const qs = window.location.search;
   if(qs){
     document.querySelectorAll('.buy-btn').forEach(a => {
-      // append quiz data as Stripe client_reference_id-friendly query if needed later
       const u = new URL(a.href);
-      u.searchParams.set('ref', qs.substring(1));
+      u.searchParams.set('client_reference_id', qs.substring(1).slice(0, 200));
       a.href = u.toString();
     });
   }
