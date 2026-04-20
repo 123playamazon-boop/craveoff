@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Personalized Result — Crave-Off</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Roboto,sans-serif;background:#faf7f2;min-height:100vh;color:#111;overflow-x:hidden}
+  .wrap{max-width:640px;margin:0 auto;padding:30px 20px 60px}
+  .match-badge{background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;padding:8px 18px;border-radius:30px;font-size:12px;letter-spacing:1px;text-transform:uppercase;font-weight:700;display:inline-block;margin-bottom:16px}
+  h1{font-family:'Playfair Display',serif;font-size:34px;line-height:1.2;font-weight:900;text-align:center;margin-bottom:12px}
+  h1 span{color:#a33c00}
+  .sub{text-align:center;color:#555;font-size:16px;line-height:1.5;margin-bottom:28px}
+
+  .score-card{background:#fff;border-radius:16px;padding:28px 24px;box-shadow:0 4px 24px rgba(0,0,0,.06);text-align:center;margin-bottom:28px;border:2px solid #c9e6cb}
+  .score-label{font-size:13px;color:#666;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+  .score{font-family:'Playfair Display',serif;font-size:74px;font-weight:900;color:#2e7d32;line-height:1}
+  .score small{font-size:26px;color:#888}
+  .match-copy{margin-top:12px;font-size:15px;color:#333;line-height:1.5}
+
+  .product-card{background:#fff;border-radius:16px;padding:24px;box-shadow:0 4px 24px rgba(0,0,0,.08);display:flex;gap:18px;align-items:center;margin-bottom:24px}
+  .product-img{width:120px;height:120px;background:#f4efe6;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#999;font-size:11px;text-align:center;line-height:1.3}
+  .product-img img{width:100%;height:100%;object-fit:cover;border-radius:12px}
+  .product-info h3{font-family:'Playfair Display',serif;font-size:19px;line-height:1.2;margin-bottom:6px}
+  .product-info .ing{font-size:12px;color:#666;line-height:1.4;margin-bottom:6px}
+  .product-info .bdg{display:inline-block;background:#fff0e6;color:#a33c00;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-top:4px}
+
+  .cta-wrap{text-align:center;margin:18px 0 30px}
+  .cta{display:inline-block;background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;padding:20px 42px;font-weight:700;font-size:17px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:50px;box-shadow:0 6px 20px rgba(46,125,50,.35);animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{transform:scale(1);box-shadow:0 6px 20px rgba(46,125,50,.35)}50%{transform:scale(1.04);box-shadow:0 8px 26px rgba(46,125,50,.5)}}
+
+  .why{background:#fff;border-radius:12px;padding:18px 20px;margin-bottom:16px}
+  .why h4{font-family:'Playfair Display',serif;font-size:17px;margin-bottom:8px;color:#a33c00}
+  .why p{font-size:14px;color:#333;line-height:1.55}
+
+  .footer-note{text-align:center;font-size:11px;color:#888;line-height:1.5;margin-top:24px}
+</style>
+</head>
+<body>
+
+<canvas id="confetti" style="position:fixed;inset:0;pointer-events:none;z-index:9999"></canvas>
+
+<div class="wrap">
+
+  <div style="text-align:center"><div class="match-badge">✓ 94% Match — Strong Responder</div></div>
+  <h1>Your profile matches the <span>responder group</span></h1>
+  <p class="sub">Based on your 6 answers, your metabolic pattern closely matches the U.S. women who reported the strongest results with the Amazonian açaí formula.</p>
+
+  <div class="score-card">
+    <div class="score-label">Your Match Score</div>
+    <div class="score">94<small>/100</small></div>
+    <p class="match-copy">You showed strong signals in <strong>appetite regulation</strong>, <strong>metabolic slowdown</strong>, and <strong>afternoon energy crash</strong> — the three markers the formula specifically targets.</p>
+  </div>
+
+  <div class="product-card">
+    <div class="product-img"><img src="img/product_jar.jpg" alt="Crave-Off bottle" onerror="this.replaceWith(document.createTextNode('CRAVE-OFF BOTTLE'))"></div>
+    <div class="product-info">
+      <h3>Crave-Off <br>Metabolism &amp; Appetite Support</h3>
+      <div class="ing">Amazonian Açaí · Green Tea · Garcinia Cambogia · Apple Cider Vinegar</div>
+      <div class="bdg">Made in USA · Non-GMO</div>
+    </div>
+  </div>
+
+  <div class="why">
+    <h4>Why this formula matches you</h4>
+    <p>Wild Amazonian <strong>açaí</strong> targets cravings and leptin signaling. <strong>Green tea</strong> boosts resting metabolism. <strong>Garcinia</strong> reduces fat storage. <strong>Apple cider vinegar</strong> stabilizes blood sugar to end the 3 p.m. crash.</p>
+  </div>
+
+  <div class="cta-wrap">
+    <a href="checkout.html" class="cta">See My Recommended Pack →</a>
+  </div>
+
+  <p class="footer-note">Results shown are based on responder-group data from the Brazilian field study. Individual results vary. This statement has not been evaluated by the FDA.</p>
+
+</div>
+
+<script>
+  // Confetti
+  (function(){
+    const c = document.getElementById('confetti');
+    const ctx = c.getContext('2d');
+    function resize(){ c.width = innerWidth; c.height = innerHeight; }
+    resize(); addEventListener('resize', resize);
+    const colors = ['#a33c00','#cc5500','#2e7d32','#4caf50','#e5b700','#fff'];
+    const parts = [];
+    for(let i=0;i<140;i++){
+      parts.push({x:Math.random()*c.width,y:-20-Math.random()*c.height,vx:(Math.random()-.5)*3,vy:2+Math.random()*4,s:4+Math.random()*6,c:colors[Math.floor(Math.random()*colors.length)],r:Math.random()*Math.PI,vr:(Math.random()-.5)*.2});
+    }
+    let stop = false;
+    setTimeout(()=>{stop = true},6000);
+    function loop(){
+      ctx.clearRect(0,0,c.width,c.height);
+      parts.forEach(p=>{
+        p.x += p.vx; p.y += p.vy; p.r += p.vr;
+        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.r);
+        ctx.fillStyle = p.c; ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);
+        ctx.restore();
+      });
+      if(!stop || parts.some(p=>p.y < c.height+40)) requestAnimationFrame(loop);
+    }
+    loop();
+  })();
+
+  // Carry quiz answers to checkout
+  const qs = window.location.search;
+  const cta = document.querySelector('.cta');
+  if(cta && qs) cta.href = 'checkout.html' + qs;;
+</script>
+</body>
+</html>
