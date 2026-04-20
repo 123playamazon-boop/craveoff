@@ -3,142 +3,285 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Choose Your Pack — Crave-Off</title>
+<title>Claim Your Crave-Off — Limited Availability</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:Roboto,sans-serif;background:#faf7f2;min-height:100vh;color:#111}
-  .wrap{max-width:760px;margin:0 auto;padding:26px 18px 70px}
+  .wrap{max-width:780px;margin:0 auto;padding:0 18px 70px}
 
-  .head{text-align:center;margin-bottom:22px}
-  .head h1{font-family:'Playfair Display',serif;font-size:30px;line-height:1.2;font-weight:900;margin-bottom:8px}
+  /* URGENCY BAR */
+  .urgency{background:linear-gradient(90deg,#cc0000,#a00000);color:#fff;padding:10px 16px;text-align:center;font-weight:700;font-size:14px;letter-spacing:.5px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(204,0,0,.3)}
+  .urgency .dot{display:inline-block;width:8px;height:8px;background:#fff;border-radius:50%;margin:0 8px;vertical-align:middle;animation:blinkDot 1s infinite}
+  @keyframes blinkDot{0%,100%{opacity:1}50%{opacity:.3}}
+  .urgency .countdown{display:inline-block;font-family:'Roboto',monospace;font-weight:900;background:rgba(0,0,0,.25);padding:3px 10px;border-radius:4px;margin-left:6px}
+
+  /* SCARCITY BAR */
+  .stock-bar{background:#fffaf0;border-bottom:1px solid #f5c9ac;padding:10px 16px;text-align:center;font-size:13px;color:#7a3a1a}
+  .stock-bar strong{color:#cc0000;font-weight:900}
+  .stock-progress{display:inline-block;width:120px;height:8px;background:#eee;border-radius:4px;overflow:hidden;vertical-align:middle;margin:0 6px}
+  .stock-fill{height:100%;background:linear-gradient(90deg,#cc0000,#ff6b00);width:17%;transition:width .4s ease}
+
+  .live-viewers{background:#f0f7f0;padding:6px 16px;text-align:center;font-size:12px;color:#2e7d32;border-bottom:1px solid #c9e6cb}
+  .live-viewers .dot{display:inline-block;width:8px;height:8px;background:#2e7d32;border-radius:50%;margin-right:6px;vertical-align:middle;animation:blinkDot 1.5s infinite}
+
+  .head{text-align:center;padding:26px 0 18px}
+  .head .match-badge{display:inline-block;background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;padding:6px 16px;border-radius:20px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;margin-bottom:14px}
+  .head h1{font-family:'Playfair Display',serif;font-size:32px;line-height:1.15;font-weight:900;margin-bottom:10px}
   .head h1 span{color:#a33c00}
-  .head p{color:#555;font-size:15px;line-height:1.5}
+  .head p{color:#555;font-size:16px;line-height:1.5;max-width:560px;margin:0 auto}
 
-  .hero-split{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#fff;border-radius:14px;overflow:hidden;margin-bottom:24px;box-shadow:0 3px 16px rgba(0,0,0,.05)}
-  .hero-split .side{padding:0;display:flex;align-items:center;justify-content:center;text-align:center;color:#999;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;min-height:180px;background:#f4efe6;overflow:hidden;position:relative}
+  .hero-split{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#fff;border-radius:14px;overflow:hidden;margin-bottom:20px;box-shadow:0 3px 16px rgba(0,0,0,.05)}
+  .hero-split .side{padding:0;display:flex;align-items:center;justify-content:center;min-height:200px;background:#f4efe6;overflow:hidden;position:relative}
   .hero-split .side img{width:100%;height:100%;object-fit:cover}
+  .hero-split .label{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,.75);color:#fff;padding:3px 10px;font-size:10px;letter-spacing:2px;font-weight:700;border-radius:3px}
 
-  .trust-row{display:flex;justify-content:center;gap:16px;margin-bottom:18px;flex-wrap:wrap;font-size:12px;color:#555}
-  .trust-row span{display:inline-flex;align-items:center;gap:4px}
+  .trust-row{display:flex;justify-content:center;gap:18px;margin-bottom:24px;flex-wrap:wrap;font-size:13px;color:#2e7d32;font-weight:500}
+  .trust-row span{display:inline-flex;align-items:center;gap:5px}
 
-  .packs{display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:22px}
-  @media(min-width:680px){.packs{grid-template-columns:1fr 1fr}}
+  .packs{display:grid;grid-template-columns:1fr;gap:22px;margin-bottom:28px}
+  @media(min-width:720px){.packs{grid-template-columns:1fr 1fr;gap:20px;align-items:start}}
 
-  .pack{background:#fff;border:2px solid #eaeaea;border-radius:16px;padding:28px 22px;text-align:center;position:relative;transition:all .2s ease;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.04)}
-  .pack:hover{border-color:#cc5500;transform:translateY(-3px);box-shadow:0 8px 28px rgba(204,85,0,.12)}
-  .pack.best{border-color:#2e7d32;transform:scale(1.02)}
-  .pack.best::before{content:'MOST POPULAR';position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#2e7d32;color:#fff;padding:5px 14px;font-size:10px;letter-spacing:1.5px;font-weight:700;border-radius:20px}
+  .pack{background:#fff;border:3px solid #eaeaea;border-radius:20px;padding:0;text-align:center;position:relative;transition:all .2s ease;box-shadow:0 4px 18px rgba(0,0,0,.06);overflow:hidden}
+  .pack:hover{border-color:#cc5500;transform:translateY(-4px);box-shadow:0 12px 32px rgba(204,85,0,.15)}
+  .pack.best{border-color:#2e7d32;border-width:4px}
+  .pack.best::before{content:'⭐ MOST POPULAR — BEST VALUE';position:absolute;top:-1px;left:-1px;right:-1px;background:linear-gradient(90deg,#2e7d32,#4caf50);color:#fff;padding:8px 14px;font-size:11px;letter-spacing:2px;font-weight:900;text-align:center}
+  .pack.best .pack-inner{padding-top:48px}
 
-  .pack .jar{width:150px;height:150px;margin:0 auto 14px;background:#f4efe6;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999;letter-spacing:1px;text-align:center;padding:6px;overflow:hidden}
+  .pack-inner{padding:26px 24px 28px}
+  .pack .jar{width:180px;height:180px;margin:0 auto 14px;background:#fafafa;border-radius:14px;display:flex;align-items:center;justify-content:center;padding:8px;overflow:hidden;border:1px solid #f0e8dc}
   .pack .jar img{width:100%;height:100%;object-fit:contain}
-  .pack .qty{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-bottom:2px}
-  .pack .sub{font-size:12px;color:#666;margin-bottom:14px;letter-spacing:.5px;text-transform:uppercase}
+  .pack .qty{font-family:'Playfair Display',serif;font-size:30px;font-weight:900;margin-bottom:2px;color:#111}
+  .pack .sub{font-size:12px;color:#666;margin-bottom:14px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
 
-  .price-row{margin-bottom:8px}
-  .price-row .old{text-decoration:line-through;color:#999;font-size:15px;margin-right:6px}
-  .price-row .now{font-family:'Playfair Display',serif;font-size:32px;color:#a33c00;font-weight:900}
-  .per{font-size:12px;color:#666;margin-bottom:14px}
-  .save{display:inline-block;background:#fff0e6;color:#a33c00;padding:4px 12px;font-size:11px;font-weight:700;border-radius:12px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:14px}
+  .price-row{margin-bottom:6px;display:flex;justify-content:center;align-items:baseline;gap:10px}
+  .price-row .old{text-decoration:line-through;color:#999;font-size:18px;font-weight:500}
+  .price-row .now{font-family:'Playfair Display',serif;font-size:46px;color:#a33c00;font-weight:900;line-height:1}
+  .per{font-size:13px;color:#666;margin-bottom:10px;font-weight:500}
+  .save{display:inline-block;background:#cc0000;color:#fff;padding:5px 14px;font-size:12px;font-weight:900;border-radius:14px;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px}
 
-  .buy-btn{display:block;background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;padding:16px 18px;border-radius:50px;font-weight:700;font-size:15px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;margin-top:12px;box-shadow:0 4px 14px rgba(46,125,50,.3);animation:btnPulse 1.6s infinite}
-  @keyframes btnPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
-  .buy-btn:hover{filter:brightness(1.1)}
+  /* BONUSES BOX */
+  .bonuses{background:#fffaf0;border:2px dashed #e5b700;border-radius:12px;padding:16px 14px;margin-bottom:18px;text-align:left}
+  .bonuses-title{font-family:'Roboto',sans-serif;font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#cc0000;margin-bottom:10px;text-align:center}
+  .bonus-item{display:flex;align-items:center;gap:8px;font-size:13px;color:#333;margin-bottom:6px;line-height:1.3}
+  .bonus-item:last-child{margin-bottom:0}
+  .bonus-item .check{color:#2e7d32;font-weight:900;flex-shrink:0}
+  .bonus-item .val{color:#a33c00;font-weight:700;margin-left:auto}
+  .bonus-total{font-size:12px;text-align:center;color:#2e7d32;font-weight:900;margin-top:10px;padding-top:10px;border-top:1px dashed #e5b700;letter-spacing:.5px}
 
-  /* ORDER BUMP */
-  .bump{background:#fffaf0;border:2px dashed #e5b700;border-radius:14px;padding:18px 20px;margin-bottom:22px;display:flex;gap:14px;align-items:center}
-  .bump input{width:20px;height:20px;accent-color:#cc5500;flex-shrink:0}
-  .bump-content{flex:1}
-  .bump-title{font-weight:700;font-size:14px;margin-bottom:4px;color:#7a3a1a}
-  .bump-desc{font-size:13px;color:#555;line-height:1.4}
-  .bump-price{font-size:12px;color:#a33c00;font-weight:700;margin-top:4px}
+  .buy-btn{display:block;background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;padding:18px 16px;border-radius:50px;font-weight:900;font-size:16px;letter-spacing:1.2px;text-transform:uppercase;text-decoration:none;box-shadow:0 6px 20px rgba(46,125,50,.35);animation:btnPulse 1.4s infinite;position:relative}
+  @keyframes btnPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03);box-shadow:0 8px 26px rgba(46,125,50,.5)}}
+  .buy-btn:hover{filter:brightness(1.08)}
+  .pack.best .buy-btn{font-size:17px;padding:20px 16px}
 
-  .guarantee{background:#fff;border-radius:12px;padding:18px;text-align:center;margin-bottom:16px}
-  .guarantee .seal{display:inline-flex;width:60px;height:60px;border-radius:50%;background:#2e7d32;color:#fff;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:20px;margin-bottom:8px}
-  .guarantee h4{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:4px}
-  .guarantee p{font-size:13px;color:#555;line-height:1.5}
+  .pack-after-btn{font-size:11px;color:#666;margin-top:10px;letter-spacing:.5px}
+  .pack-after-btn strong{color:#cc0000}
 
-  .badges{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:18px;font-size:11px;color:#666;letter-spacing:.5px}
-  .badges span{display:inline-flex;align-items:center;gap:4px}
+  /* TESTIMONIALS */
+  .testi-section{margin:36px 0 30px}
+  .testi-title{font-family:'Playfair Display',serif;font-size:24px;text-align:center;margin-bottom:20px;font-weight:900}
+  .testimonials{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:720px){.testimonials{grid-template-columns:1fr 1fr 1fr}}
+  .testi{background:#fff;border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+  .testi .stars{color:#ffa500;font-size:14px;margin-bottom:6px;letter-spacing:2px}
+  .testi .verified{display:inline-block;background:#e7f5e7;color:#2e7d32;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;letter-spacing:.5px;margin-bottom:8px}
+  .testi-quote{font-family:Georgia,serif;font-size:14px;line-height:1.5;color:#333;font-style:italic;margin-bottom:10px}
+  .testi-author{font-size:12px;color:#666;font-weight:700}
+  .testi-author span{color:#999;font-weight:400}
 
-  .disclaimer{font-size:11px;color:#888;text-align:center;line-height:1.5;margin-top:28px}
+  /* GUARANTEE */
+  .guarantee{background:linear-gradient(135deg,#fff 0%,#fafafa 100%);border:2px solid #2e7d32;border-radius:16px;padding:26px 24px;text-align:center;margin-bottom:22px;display:flex;gap:18px;align-items:center}
+  @media(max-width:560px){.guarantee{flex-direction:column;text-align:center}}
+  .guarantee .seal{flex-shrink:0;width:80px;height:80px;border-radius:50%;background:#2e7d32;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;line-height:1;border:4px solid #fff;box-shadow:0 0 0 2px #2e7d32}
+  .guarantee .seal .num{font-size:28px}
+  .guarantee .seal .txt{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+  .guarantee-content{text-align:left;flex:1}
+  @media(max-width:560px){.guarantee-content{text-align:center}}
+  .guarantee h4{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:6px;color:#2e7d32}
+  .guarantee p{font-size:14px;color:#555;line-height:1.5}
+
+  .badges{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:20px;font-size:11px;color:#666;letter-spacing:.5px}
+  .badges span{display:inline-flex;align-items:center;gap:5px;background:#fff;padding:8px 12px;border-radius:20px;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+
+  .disclaimer{font-size:11px;color:#888;text-align:center;line-height:1.5;margin-top:24px;padding:0 10px}
 </style>
 </head>
 <body>
 
+<!-- TOP URGENCY COUNTDOWN -->
+<div class="urgency">
+  <span class="dot"></span>THIS OFFER EXPIRES IN <span class="countdown" id="countdown">14:59</span><span class="dot"></span>
+</div>
+
+<!-- STOCK BAR -->
+<div class="stock-bar">
+  <strong>⚠ LIMITED BATCH</strong> &nbsp; Only <strong id="stockCount">17</strong> kits left at this price
+  <span class="stock-progress"><span class="stock-fill"></span></span>
+</div>
+
+<!-- LIVE VIEWERS -->
+<div class="live-viewers"><span class="dot"></span><strong id="liveViewers">247</strong> women viewing this page right now</div>
+
 <div class="wrap">
 
   <div class="head">
-    <h1>Your recommended <span>Crave-Off</span> pack</h1>
-    <p>Based on your 94% match score, here are the two kit options available today.</p>
+    <div class="match-badge">✓ 94% Match — Strong Responder</div>
+    <h1>Claim your <span>Crave-Off</span> kit before your price resets</h1>
+    <p>Your 94% match score unlocked today's pricing. Stock is limited to the current U.S. batch.</p>
   </div>
 
   <!-- Before/After split -->
   <div class="hero-split">
-    <div class="side"><img src="img/before_after_1.jpg" alt="Before" onerror="this.replaceWith(document.createTextNode('BEFORE'))"></div>
-    <div class="side"><img src="img/before_after_2.jpg" alt="After 90 days" onerror="this.replaceWith(document.createTextNode('AFTER 90 DAYS'))"></div>
+    <div class="side"><img src="img/before_after_1.jpg" alt="Before"><span class="label">BEFORE</span></div>
+    <div class="side"><img src="img/before_after_2.jpg" alt="After 90 days"><span class="label">AFTER 90 DAYS</span></div>
   </div>
 
   <div class="trust-row">
-    <span>✓ Free U.S. shipping over $75</span>
-    <span>✓ 60-day money-back</span>
-    <span>✓ Secure checkout</span>
+    <span>✓ FREE U.S. Shipping</span>
+    <span>✓ 60-Day Money-Back</span>
+    <span>✓ Secure Checkout</span>
+    <span>✓ Ships Today</span>
   </div>
 
-  <!-- 2 PACKS ONLY -->
+  <!-- 2 PACKS -->
   <div class="packs">
 
+    <!-- 2 BOTTLES -->
     <div class="pack">
-      <div class="jar"><img src="img/product_jar.jpg" alt="2 bottles of Crave-Off" onerror="this.replaceWith(document.createTextNode('2 BOTTLES'))"></div>
-      <div class="qty">2 Bottles</div>
-      <div class="sub">Starter Kit · 60 days</div>
-      <div class="price-row"><span class="old">$79.98</span><span class="now">$49.99</span></div>
-      <div class="per">$24.99 per bottle</div>
-      <span class="save">Save 37%</span>
-      <a href="https://buy.stripe.com/bJe6oH1Tx6aF8Ht48dfMA0j" class="buy-btn" data-pack="2">Get 2 Bottles →</a>
+      <div class="pack-inner">
+        <div class="jar"><img src="img/product_jar.jpg" alt="2 bottles of Crave-Off"></div>
+        <div class="qty">2 Bottles</div>
+        <div class="sub">Starter Kit · 60 Days</div>
+        <div class="price-row"><span class="old">$198</span><span class="now">$79</span></div>
+        <div class="per">Only $39.50 per bottle</div>
+        <span class="save">You Save 60% — $119 OFF</span>
+
+        <div class="bonuses">
+          <div class="bonuses-title">🎁 Free Bonus Included</div>
+          <div class="bonus-item"><span class="check">✓</span><span>7-Day Appetite Reset Guide (PDF)</span><span class="val">$37</span></div>
+          <div class="bonus-total">Total bonus value: <strong>$37 FREE</strong></div>
+        </div>
+
+        <a href="https://buy.stripe.com/bJe6oH1Tx6aF8Ht48dfMA0j" class="buy-btn" data-pack="2">Get 2 Bottles Now →</a>
+        <div class="pack-after-btn"><strong>+ Free U.S. shipping</strong> · Ships in 24h</div>
+      </div>
     </div>
 
+    <!-- 3 BOTTLES -->
     <div class="pack best">
-      <div class="jar"><img src="img/product_jar.jpg" alt="3 bottles of Crave-Off" onerror="this.replaceWith(document.createTextNode('3 BOTTLES'))"></div>
-      <div class="qty">3 Bottles</div>
-      <div class="sub">Transformation · 90 days</div>
-      <div class="price-row"><span class="old">$119.97</span><span class="now">$59.99</span></div>
-      <div class="per">$19.99 per bottle</div>
-      <span class="save">Save 50%</span>
-      <a href="https://buy.stripe.com/eVqeVdbu7fLfg9V349fMA0q" class="buy-btn" data-pack="3">Get 3 Bottles →</a>
+      <div class="pack-inner">
+        <div class="jar"><img src="img/product_jar.jpg" alt="3 bottles of Crave-Off"></div>
+        <div class="qty">3 Bottles</div>
+        <div class="sub">Transformation Kit · 90 Days</div>
+        <div class="price-row"><span class="old">$297</span><span class="now">$99</span></div>
+        <div class="per">Only $33 per bottle</div>
+        <span class="save">You Save 67% — $198 OFF</span>
+
+        <div class="bonuses">
+          <div class="bonuses-title">🎁 4 Free Bonuses Included</div>
+          <div class="bonus-item"><span class="check">✓</span><span>7-Day Appetite Reset Guide</span><span class="val">$37</span></div>
+          <div class="bonus-item"><span class="check">✓</span><span>50 Amazonian Superfood Recipes</span><span class="val">$27</span></div>
+          <div class="bonus-item"><span class="check">✓</span><span>Fast Priority Shipping</span><span class="val">$15</span></div>
+          <div class="bonus-item"><span class="check">✓</span><span>30-Day Home Workout Plan</span><span class="val">$47</span></div>
+          <div class="bonus-total">Total bonus value: <strong>$126 FREE</strong></div>
+        </div>
+
+        <a href="https://buy.stripe.com/eVqeVdbu7fLfg9V349fMA0q" class="buy-btn" data-pack="3">Yes! Get 3 Bottles →</a>
+        <div class="pack-after-btn"><strong>+ Free Priority Shipping</strong> · Reserved for next 15 min</div>
+      </div>
     </div>
 
   </div>
 
-  <!-- ORDER BUMP -->
-  <div class="bump">
-    <input type="checkbox" id="bump" checked>
-    <div class="bump-content">
-      <div class="bump-title">⚡ Add Brazilian Energy Boost Drops — 50% off</div>
-      <div class="bump-desc">Liquid guaraná + B-complex. 2-minute afternoon energy fix — used alongside Crave-Off by 63% of our top responders.</div>
-      <div class="bump-price">Normally $34.99 — add today for $17.49</div>
+  <!-- TESTIMONIALS -->
+  <div class="testi-section">
+    <h2 class="testi-title">What real women are saying</h2>
+    <div class="testimonials">
+
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <span class="verified">✓ Verified Purchase</span>
+        <p class="testi-quote">"I lost 14 lbs in the first 3 weeks. The cravings just… stopped. I'm not battling my brain at 4 PM anymore."</p>
+        <div class="testi-author">Maria S. <span>· 42, Orlando FL</span></div>
+      </div>
+
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <span class="verified">✓ Verified Purchase</span>
+        <p class="testi-quote">"19 pounds down in 6 weeks. Even my doctor was shocked — she's asking what I'm doing. My jeans are 2 sizes smaller."</p>
+        <div class="testi-author">Jennifer L. <span>· 38, San Diego CA</span></div>
+      </div>
+
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <span class="verified">✓ Verified Purchase</span>
+        <p class="testi-quote">"Finally something that works without making me feel nauseous. Lost 22 lbs and the 3 PM crash is gone. I actually have energy now."</p>
+        <div class="testi-author">Amanda K. <span>· 45, Austin TX</span></div>
+      </div>
+
     </div>
   </div>
 
+  <!-- GUARANTEE -->
   <div class="guarantee">
-    <div class="seal">60</div>
-    <h4>60-Day Results Guarantee</h4>
-    <p>Try Crave-Off risk-free. If you're not satisfied within 60 days, we refund every cent — no questions, no return required.</p>
+    <div class="seal"><div class="num">60</div><div class="txt">Day Guarantee</div></div>
+    <div class="guarantee-content">
+      <h4>Zero-Risk Results Guarantee</h4>
+      <p>Try Crave-Off for a full 60 days. If you're not 100% satisfied with your results, send it back — even empty — and we refund every penny. No questions. No return hassle. You risk nothing.</p>
+    </div>
   </div>
 
   <div class="badges">
-    <span>🔒 SSL Secure</span>
+    <span>🔒 SSL Encrypted</span>
     <span>💳 Visa · Mastercard · Amex</span>
     <span>📦 Ships from USA</span>
     <span>🌿 Non-GMO · Gluten-Free</span>
+    <span>🏭 GMP-Certified Facility</span>
   </div>
 
-  <p class="disclaimer">These statements have not been evaluated by the U.S. Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease. Individual results vary.</p>
+  <p class="disclaimer">These statements have not been evaluated by the U.S. Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease. Individual results vary. Testimonials represent real customer experiences but are not typical results. Always consult your healthcare provider before starting any new supplement.</p>
 
 </div>
 
 <script>
+  // COUNTDOWN TIMER (15 min, resets at 0)
+  (function(){
+    let secs = 15 * 60 - 1;
+    const el = document.getElementById('countdown');
+    setInterval(() => {
+      const m = Math.floor(secs/60), s = secs%60;
+      el.textContent = String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+      secs = secs > 0 ? secs - 1 : 15*60;
+    }, 1000);
+  })();
+
+  // STOCK COUNTER (drops slowly to create urgency)
+  (function(){
+    const el = document.getElementById('stockCount');
+    const fill = document.querySelector('.stock-fill');
+    let stock = 17;
+    setInterval(() => {
+      if(Math.random() < 0.3 && stock > 4){
+        stock--;
+        el.textContent = stock;
+        fill.style.width = (stock * 2.5) + '%';
+      }
+    }, 18000);
+  })();
+
+  // LIVE VIEWERS
+  (function(){
+    const el = document.getElementById('liveViewers');
+    let n = 247;
+    setInterval(() => {
+      n += Math.floor(Math.random()*11) - 5;
+      if(n < 180) n = 182;
+      if(n > 380) n = 378;
+      el.textContent = n;
+    }, 2500);
+  })();
+
   // Attach quiz answers to Stripe links as client_reference_id
   const qs = window.location.search;
   if(qs){
