@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metabolism & Appetite Assessment — 30-Second Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Roboto,sans-serif;background:linear-gradient(180deg,#faf7f2 0%,#fff 100%);min-height:100vh;color:#111;padding:0}
+  .wrap{max-width:620px;margin:0 auto;padding:28px 20px 80px}
+  .header{text-align:center;margin-bottom:28px}
+  .badge{display:inline-block;background:#fff0e6;color:#a33c00;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;border:1px solid #f5c9ac}
+  h1{font-family:'Playfair Display',serif;font-size:32px;line-height:1.2;margin-bottom:10px;color:#111;font-weight:700}
+  .sub{color:#555;font-size:15px;line-height:1.5}
+  .progress-bar{height:6px;background:#e8e8e8;border-radius:3px;overflow:hidden;margin:20px 0 4px}
+  .progress-fill{height:100%;background:linear-gradient(90deg,#7a3a1a,#cc5500);border-radius:3px;transition:width .4s ease;width:0%}
+  .step-counter{font-size:12px;color:#666;text-align:right;letter-spacing:.5px}
+
+  .card{background:#fff;border-radius:14px;padding:28px 24px;box-shadow:0 4px 24px rgba(0,0,0,.06);margin-top:20px}
+  .question{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;line-height:1.3;margin-bottom:22px;color:#111}
+  .options{display:flex;flex-direction:column;gap:12px}
+  .option{background:#fafafa;border:2px solid #eaeaea;border-radius:10px;padding:16px 18px;cursor:pointer;font-size:16px;text-align:left;transition:all .15s ease;color:#222}
+  .option:hover{border-color:#cc5500;background:#fff7ef;transform:translateY(-1px)}
+  .option:active{transform:scale(.98)}
+
+  .result{display:none;text-align:center}
+  .result.show{display:block}
+  .spinner{width:46px;height:46px;border:4px solid #f0f0f0;border-top-color:#cc5500;border-radius:50%;animation:spin 1s linear infinite;margin:18px auto}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .loading-text{color:#666;font-size:14px;margin-top:12px}
+
+  .hidden{display:none}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="header">
+    <div class="badge">⏱ Takes under 30 seconds</div>
+    <h1>Find Your Metabolism & Appetite Profile</h1>
+    <p class="sub">Answer 6 quick questions to see if your profile matches the women who respond best to the Amazonian açaí formula.</p>
+  </div>
+
+  <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
+  <div class="step-counter"><span id="stepNow">1</span> of <span id="stepTotal">6</span></div>
+
+  <!-- QUIZ -->
+  <div id="quiz">
+
+    <div class="card q" data-q="1">
+      <div class="question">1. How old are you?</div>
+      <div class="options">
+        <button class="option" data-v="under35">Under 35</button>
+        <button class="option" data-v="35_44">35 to 44</button>
+        <button class="option" data-v="45_54">45 to 54</button>
+        <button class="option" data-v="55plus">55 or older</button>
+      </div>
+    </div>
+
+    <div class="card q hidden" data-q="2">
+      <div class="question">2. When are your cravings strongest?</div>
+      <div class="options">
+        <button class="option" data-v="morning">In the morning</button>
+        <button class="option" data-v="afternoon">Mid-afternoon (2–5 p.m.)</button>
+        <button class="option" data-v="evening">After dinner / late night</button>
+        <button class="option" data-v="allday">All day — it never stops</button>
+      </div>
+    </div>
+
+    <div class="card q hidden" data-q="3">
+      <div class="question">3. Which feels most stuck on your body?</div>
+      <div class="options">
+        <button class="option" data-v="belly">Belly / midsection</button>
+        <button class="option" data-v="hipsthighs">Hips &amp; thighs</button>
+        <button class="option" data-v="arms">Arms &amp; back</button>
+        <button class="option" data-v="overall">Overall — every area</button>
+      </div>
+    </div>
+
+    <div class="card q hidden" data-q="4">
+      <div class="question">4. How's your energy by 3 p.m.?</div>
+      <div class="options">
+        <button class="option" data-v="good">Still good</button>
+        <button class="option" data-v="slow">Slowing down</button>
+        <button class="option" data-v="crash">Full crash — need coffee or sugar</button>
+        <button class="option" data-v="exhausted">Exhausted all day</button>
+      </div>
+    </div>
+
+    <div class="card q hidden" data-q="5">
+      <div class="question">5. Have you tried weight loss approaches before?</div>
+      <div class="options">
+        <button class="option" data-v="diets">Yes — multiple diets</button>
+        <button class="option" data-v="meds">Yes — including injectables / medications</button>
+        <button class="option" data-v="few">Tried a few, nothing stuck</button>
+        <button class="option" data-v="first">This would be my first real attempt</button>
+      </div>
+    </div>
+
+    <div class="card q hidden" data-q="6">
+      <div class="question">6. How much weight would you like to lose?</div>
+      <div class="options">
+        <button class="option" data-v="under15">Under 15 lbs</button>
+        <button class="option" data-v="15_30">15 to 30 lbs</button>
+        <button class="option" data-v="30_50">30 to 50 lbs</button>
+        <button class="option" data-v="over50">More than 50 lbs</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LOADING / REDIRECT -->
+  <div id="loading" class="card result">
+    <div class="question" style="margin-bottom:8px">Analyzing your metabolism profile…</div>
+    <div class="spinner"></div>
+    <div class="loading-text" id="loadText">Matching your answers to the Brazilian field-study dataset…</div>
+  </div>
+
+</div>
+
+<!-- Click sound -->
+<audio id="clickSfx" preload="auto">
+  <source src="data:audio/wav;base64,UklGRhgCAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YfQBAAABAAEAAwACAAYAAwAJAAUADAAHAA8ACQATAAsAFgANABgADwAbABEAHgATACAAFAAhABUAIgAVACAAFQAfABQAGwATABYAEQARAA4ACwALAAUABgD//wAA+v/5//T/8//s/+3/5P/m/9z/3//V/9n/z//T/8n/zv/F/8n/wP/F/7//w/+9/8L/vv/C/77/wf/A/8L/wv/D/8X/xf/J/8f/zf/L/9D/zv/V/9L/2f/W/93/2f/h/93/5P/g/+j/4//r/+X/8P/o//L/6f/1/+z/+P/t//v/7v/8/+//AADv/wIA7/8DAO//BQDu/wgA7v8LAO7/DQDt/xAA7v8TAO//FgDw/xcA8v8ZAPT/GwD2/xwA+f8eAPv/HwD9/x8A//8eAAAAHQACABwABAAYAAUAFQAGABEABwANAAcACAAIAAMABwD+/wcA+f8GAPT/BQDv/wQA6v8DAOb/AgDh/wEA3f8AANn///8AAAMAEwA1AE0AcAB/AJAAmACbAJgAlwCMAIgAegB2AGgAZABVAFMARwBGADoAPAAwADMAKAAsACAAJgAbACEAGQAcABkAHAAYABoAGgAaABsAGAAcABgAHAAVABsAEQAYAA0AEwAGAAwAAQADAPj//f/w//D/6P/l/9v/2v/T/87/yP/E/8D/uv+4/7T/sP+t/6z/q/+q/6v/rP+u/7L/uP+9/8b/zf/X/97/5//t//f//f8GAA0AFwAeACkAMQA9AEQAUQBaAGgAcQB/AIcAlACdAKkAsQC9AMQAzgDUAN0A4gDoAOwA8QDxAPQA8gDyAO4A7gDmAOMA2gDXAMsAxQC5ALIApACbAI0AhAB1AGsAXABSAEQA" type="audio/wav">
+</audio>
+
+<script>
+  const total = 6;
+  let current = 1;
+  const answers = {};
+  const sfx = document.getElementById('clickSfx');
+
+  function setStep(n){
+    current = n;
+    document.querySelectorAll('.q').forEach(el => el.classList.add('hidden'));
+    const node = document.querySelector('.q[data-q="'+n+'"]');
+    if(node) node.classList.remove('hidden');
+    document.getElementById('stepNow').textContent = n;
+    document.getElementById('fill').style.width = (((n-1)/total)*100)+'%';
+  }
+
+  document.querySelectorAll('.option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      try { sfx.currentTime = 0; sfx.play().catch(()=>{}); } catch(e){}
+      const q = btn.closest('.q').dataset.q;
+      answers['q'+q] = btn.dataset.v;
+      if(parseInt(q) < total){
+        setStep(parseInt(q)+1);
+      } else {
+        document.getElementById('fill').style.width = '100%';
+        document.getElementById('quiz').style.display = 'none';
+        document.getElementById('loading').classList.add('show');
+        runLoading();
+      }
+    });
+  });
+
+  function runLoading(){
+    const msgs = [
+      'Matching your answers to the Brazilian field-study dataset…',
+      'Analyzing appetite &amp; craving pattern…',
+      'Comparing metabolic profile with responder group…',
+      'Building your personalized recommendation…'
+    ];
+    let i = 0;
+    const t = document.getElementById('loadText');
+    const iv = setInterval(() => {
+      i++;
+      if(i >= msgs.length){
+        clearInterval(iv);
+        // persist answers to URL for the result page
+        const qs = Object.entries(answers).map(([k,v]) => k+'='+encodeURIComponent(v)).join('&');
+        window.location.href = 'result.html?'+qs;
+        return;
+      }
+      t.innerHTML = msgs[i];
+    }, 900);
+  }
+
+  setStep(1);
+</script>
+
+</body>
+</html>
