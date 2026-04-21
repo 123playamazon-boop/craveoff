@@ -98,11 +98,10 @@
   .testi-author span{color:#999;font-weight:400}
 
   /* GUARANTEE */
-  .guarantee{background:linear-gradient(135deg,#fff 0%,#fafafa 100%);border:2px solid #2e7d32;border-radius:16px;padding:26px 24px;text-align:center;margin-bottom:22px;display:flex;gap:18px;align-items:center}
+  .guarantee{background:linear-gradient(135deg,#fff 0%,#fafafa 100%);border:2px solid #2e7d32;border-radius:16px;padding:22px 22px;text-align:center;margin-bottom:22px;display:flex;gap:18px;align-items:center}
   @media(max-width:560px){.guarantee{flex-direction:column;text-align:center}}
-  .guarantee .seal{flex-shrink:0;width:80px;height:80px;border-radius:50%;background:#2e7d32;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;line-height:1;border:4px solid #fff;box-shadow:0 0 0 2px #2e7d32}
-  .guarantee .seal .num{font-size:28px}
-  .guarantee .seal .txt{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+  .guarantee .seal-img{flex-shrink:0;width:130px;height:auto;filter:drop-shadow(0 4px 10px rgba(0,0,0,.12))}
+  @media(max-width:560px){.guarantee .seal-img{width:150px}}
   .guarantee-content{text-align:left;flex:1}
   @media(max-width:560px){.guarantee-content{text-align:center}}
   .guarantee h4{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:6px;color:#2e7d32}
@@ -176,7 +175,7 @@
 
   <!-- GUARANTEE (moved above offer) -->
   <div class="guarantee" style="margin-bottom:22px">
-    <div class="seal"><div class="num">60</div><div class="txt">Day Guarantee</div></div>
+    <img src="img/guarantee_seal.jpg" alt="60-Day Money Back Guaranteed" class="seal-img">
     <div class="guarantee-content">
       <h4>🔥 "60-Day Risk-Free Trial"</h4>
       <p>You can try the product for up to 60 full days with no real risk to you. If you're not satisfied with your experience, you can request 100% of your money back within the guarantee period.</p>
