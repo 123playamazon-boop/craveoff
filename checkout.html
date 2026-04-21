@@ -162,7 +162,7 @@
   <div class="packs">
 
     <!-- 2 BOTTLES — RECOMMENDED / DEFAULT FOCUS -->
-    <div class="pack recommended">
+    <div class="pack recommended" id="pack2">
       <div class="pack-inner">
         <div class="jar"><img src="img/pack_2.jpg" alt="Crave-Off 2-bottle plan"></div>
         <div class="qty">2 Bottles</div>
@@ -185,7 +185,7 @@
     </div>
 
     <!-- 3 BOTTLES — BEST VALUE -->
-    <div class="pack best">
+    <div class="pack best" id="pack3">
       <div class="pack-inner">
         <div class="jar"><img src="img/pack_3.jpg" alt="Crave-Off 3-bottle plan"></div>
         <div class="qty">3 Bottles</div>
@@ -300,6 +300,33 @@
       if(n > 380) n = 378;
       el.textContent = n;
     }, 2500);
+  })();
+
+  // ========================================
+  // PERSONALIZED RECOMMENDATION (from quiz)
+  // ========================================
+  (function(){
+    const params = new URLSearchParams(window.location.search);
+    const rec = params.get('recommended');
+    if(rec === '3'){
+      // Switch the "RECOMMENDED FOR YOUR PROFILE" indicator to 3-bottle pack
+      const pack2 = document.getElementById('pack2');
+      const pack3 = document.getElementById('pack3');
+      if(pack2 && pack3){
+        // Remove recommended styling from 2-bottle
+        pack2.classList.remove('recommended');
+
+        // Inject a green "matched to your profile" chip on top of 3-bottle
+        const chip = document.createElement('div');
+        chip.innerHTML = '✓ MATCHED TO YOUR PROFILE';
+        chip.style.cssText = 'position:absolute;top:42px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#a33c00,#cc5500);color:#fff;font-size:10px;font-weight:900;letter-spacing:1.5px;padding:5px 12px;border-radius:20px;z-index:2;box-shadow:0 2px 8px rgba(163,60,0,.3)';
+        pack3.appendChild(chip);
+
+        // Update heading copy
+        const h1 = document.querySelector('.head h1');
+        if(h1){ h1.innerHTML = 'Your <span>Complete 90-Day Plan</span> — Matched to Your Profile'; }
+      }
+    }
   })();
 
   // Attach quiz answers to Stripe links as client_reference_id

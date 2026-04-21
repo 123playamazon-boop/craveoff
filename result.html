@@ -135,14 +135,23 @@
   <!-- SECTION 3: DIAGNOSTIC -->
   <div class="diagnostic">
     <h2 class="diagnostic-title">Your Personal Profile</h2>
-    <div class="diagnostic-sub">Key patterns from your 6 responses</div>
+    <div class="diagnostic-sub">Key patterns from your 8 responses</div>
     <div class="profile-grid">
+
+      <div class="profile-item">
+        <div class="icon">🎯</div>
+        <div class="pcontent">
+          <div class="plabel">Primary Goal</div>
+          <div class="pvalue" id="p-goal">Sustainable weight loss</div>
+          <div class="pnote" id="n-goal">Most achievable when paired with appetite-signaling support.</div>
+        </div>
+      </div>
 
       <div class="profile-item">
         <div class="icon">🕒</div>
         <div class="pcontent">
           <div class="plabel">Appetite Pattern</div>
-          <div class="pvalue" id="p-appetite">Peak cravings mid-afternoon</div>
+          <div class="pvalue" id="p-appetite">Peak hunger mid-afternoon</div>
           <div class="pnote" id="n-appetite">Most commonly associated with late-day cortisol and insulin fluctuations.</div>
         </div>
       </div>
@@ -150,25 +159,16 @@
       <div class="profile-item">
         <div class="icon">⚡</div>
         <div class="pcontent">
-          <div class="plabel">Energy Fluctuation</div>
+          <div class="plabel">Energy Profile</div>
           <div class="pvalue" id="p-energy">Afternoon energy slowdown</div>
           <div class="pnote" id="n-energy">Often linked to blood-sugar dysregulation and post-lunch insulin response.</div>
         </div>
       </div>
 
       <div class="profile-item">
-        <div class="icon">🎯</div>
-        <div class="pcontent">
-          <div class="plabel">Focus Area</div>
-          <div class="pvalue" id="p-body">Stubborn midsection fat</div>
-          <div class="pnote" id="n-body">Commonly driven by insulin-response patterns after age 35.</div>
-        </div>
-      </div>
-
-      <div class="profile-item">
         <div class="icon">🔄</div>
         <div class="pcontent">
-          <div class="plabel">Prior Attempts</div>
+          <div class="plabel">Behavioral History</div>
           <div class="pvalue" id="p-prior">Multiple diet attempts</div>
           <div class="pnote" id="n-prior">Typical for responder-group profiles — indicates the issue is signaling, not willpower.</div>
         </div>
@@ -290,8 +290,9 @@
 
   <!-- SECTION 10: FINAL CTA -->
   <div class="final-cta">
-    <div class="cta-preline">Ready to see your match?</div>
-    <a href="checkout.html" class="cta-btn" id="ctaBtn">See My Recommended Formula →</a>
+    <div class="cta-preline">Your personalized recommendation</div>
+    <div id="rec-badge" style="display:inline-block;background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:700;letter-spacing:.3px;margin-bottom:18px;box-shadow:0 3px 12px rgba(46,125,50,.3)">✓ Your profile matches the <strong>2-bottle · 60-day</strong> starter protocol</div>
+    <a href="checkout.html" class="cta-btn" id="ctaBtn">Continue With My Recommended Plan →</a>
     <div class="cta-subline">60-day money-back guarantee · U.S. shipping included</div>
 
     <div class="trust-icons">
@@ -311,68 +312,95 @@
   (function(){
     const params = new URLSearchParams(window.location.search);
     const a = {
-      q1: params.get('q1') || '35_44',
-      q2: params.get('q2') || 'afternoon',
-      q3: params.get('q3') || 'belly',
-      q4: params.get('q4') || 'crash',
-      q5: params.get('q5') || 'diets',
-      q6: params.get('q6') || '15_30'
+      q1: params.get('q1') || 'lose_weight',       // main goal
+      q2: params.get('q2') || 'cravings',           // biggest struggle
+      q3: params.get('q3') || 'multiple_diets',     // past experience
+      q4: params.get('q4') || 'afternoon',          // hunger pattern
+      q5: params.get('q5') || 'couple',             // snacking frequency
+      q6: params.get('q6') || 'medium',             // consistency
+      q7: params.get('q7') || 'afternoon_drop',     // energy
+      q8: params.get('q8') || 'somewhat',           // commitment
+      recommended: params.get('recommended') || '2'
     };
 
-    // Headline variation by age
+    // ==========================================================
+    // HEADLINE — based on biggest struggle (q2)
+    // ==========================================================
     const h1Variants = {
-      under35: 'early-onset appetite signaling imbalance',
-      '35_44': 'appetite regulation imbalance after 35',
-      '45_54': 'metabolic slowdown patterns common in women over 45',
-      '55plus': 'long-term metabolic plateau patterns'
+      cravings: 'appetite-signaling &amp; craving dysregulation',
+      consistency: 'appetite-signaling &amp; consistency-barrier profile',
+      hunger: 'persistent hunger &amp; satiety-response pattern',
+      energy: 'energy-driven eating &amp; metabolic slowdown pattern'
     };
-    document.getElementById('h1-span').textContent = h1Variants[a.q1] || h1Variants['35_44'];
+    document.getElementById('h1-span').innerHTML = h1Variants[a.q2] || h1Variants.cravings;
 
-    // Appetite pattern
-    const appetiteMap = {
-      morning: ['Morning hunger surges', 'Linked to overnight insulin dips and cortisol awakening response.'],
-      afternoon: ['Peak cravings between 2–5 PM', 'Most commonly associated with late-day cortisol and insulin fluctuations.'],
-      evening: ['Strongest cravings after dinner', 'Often reflects post-meal leptin response and habit-driven snacking patterns.'],
-      allday: ['Persistent cravings throughout the day', 'Typical of sustained appetite-signaling dysregulation — flagged as priority pattern.']
+    // ==========================================================
+    // CARD 1 — PRIMARY GOAL (q1)
+    // ==========================================================
+    const goalMap = {
+      lose_weight:      ['Sustainable weight loss',       'Most achievable when paired with appetite-signaling support.'],
+      appetite_control: ['Control cravings & emotional eating', 'A profile that responds well to satiety-signaling support.'],
+      energy_boost:     ['Energy, lightness & vitality',   'Linked to blood-sugar stability and metabolic balance.'],
+      overall_wellness: ['Overall wellness & balance',     'Whole-system approach indicated — supports metabolism, appetite, and energy together.']
     };
-    const appetite = appetiteMap[a.q2] || appetiteMap.afternoon;
+    const goal = goalMap[a.q1] || goalMap.lose_weight;
+    document.getElementById('p-goal').textContent = goal[0];
+    document.getElementById('n-goal').textContent = goal[1];
+
+    // ==========================================================
+    // CARD 2 — APPETITE PATTERN (q4)
+    // ==========================================================
+    const appetiteMap = {
+      stable:    ['Generally stable hunger signals',    'Supportive factor — indicates satiety hormones are partially responsive.'],
+      afternoon: ['Peak hunger between 2–5 PM',         'Most commonly associated with late-day cortisol and insulin fluctuations.'],
+      evening:   ['Strongest hunger after dinner',      'Often reflects post-meal leptin response and habit-driven snacking patterns.'],
+      allday:    ['Persistent hunger throughout the day', 'Typical of sustained appetite-signaling dysregulation — flagged as priority pattern.']
+    };
+    const appetite = appetiteMap[a.q4] || appetiteMap.afternoon;
     document.getElementById('p-appetite').textContent = appetite[0];
     document.getElementById('n-appetite').textContent = appetite[1];
 
-    // Energy pattern
+    // ==========================================================
+    // CARD 3 — ENERGY PROFILE (q7)
+    // ==========================================================
     const energyMap = {
-      good: ['Energy levels stable', 'Supportive factor — indicates good circadian regulation.'],
-      slow: ['Noticeable afternoon slowdown', 'Often linked to blood-sugar dysregulation and post-lunch insulin response.'],
-      crash: ['Full 3 PM energy crash', 'Strongly associated with blood-sugar swings and cortisol dips.'],
-      exhausted: ['Persistent low energy throughout the day', 'Pattern commonly tied to chronic metabolic stress — addressed in the 90-day protocol.']
+      stable:          ['Energy levels stable',                      'Supportive factor — indicates good circadian regulation.'],
+      afternoon_drop:  ['Noticeable afternoon energy slowdown',      'Often linked to blood-sugar dysregulation and post-lunch insulin response.'],
+      crashes:         ['Sudden energy crashes that trigger eating', 'Strongly associated with blood-sugar swings and cortisol dips.'],
+      always_low:      ['Persistent low energy throughout the day',  'Pattern commonly tied to chronic metabolic stress — addressed in the 90-day protocol.']
     };
-    const energy = energyMap[a.q4] || energyMap.crash;
+    const energy = energyMap[a.q7] || energyMap.afternoon_drop;
     document.getElementById('p-energy').textContent = energy[0];
     document.getElementById('n-energy').textContent = energy[1];
 
-    // Body focus area
-    const bodyMap = {
-      belly: ['Stubborn midsection fat', 'Commonly driven by insulin-response patterns after age 35.'],
-      hipsthighs: ['Hips & thighs focus area', 'Often tied to estrogen and cortisol ratios in women 35+.'],
-      arms: ['Arms & back focus area', 'Frequently associated with long-term metabolic slowdown.'],
-      overall: ['Overall body composition', 'Suggests the pattern is systemic — a whole-profile approach is indicated.']
-    };
-    const body = bodyMap[a.q3] || bodyMap.belly;
-    document.getElementById('p-body').textContent = body[0];
-    document.getElementById('n-body').textContent = body[1];
-
-    // Prior attempts
+    // ==========================================================
+    // CARD 4 — BEHAVIORAL HISTORY (q3)
+    // ==========================================================
     const priorMap = {
-      diets: ['Multiple diet attempts with limited sustained results', 'Typical for responder-group profiles — indicates the issue is signaling, not willpower.'],
-      meds: ['Including pharmaceutical interventions', 'Common trigger for seeking natural, food-based alternatives.'],
-      few: ['Few structured attempts without lasting success', 'Suggests the profile hasn\'t been properly matched to approach before.'],
-      first: ['Beginning your first structured approach', 'Advantage: you\'re starting with a profile-matched protocol from day one.']
+      multiple_diets: ['Multiple diet attempts, limited sustained results', 'Typical for responder-group profiles — indicates the issue is signaling, not willpower.'],
+      some_attempts:  ['A few attempts, then plateau',                      'Suggests the profile hasn\'t been properly matched to approach before.'],
+      pharma:         ['Including pharmaceutical interventions',           'Common trigger for seeking natural, food-based alternatives.'],
+      first_time:     ['First structured approach',                        'Advantage: you\'re starting with a profile-matched protocol from day one.']
     };
-    const prior = priorMap[a.q5] || priorMap.diets;
+    const prior = priorMap[a.q3] || priorMap.multiple_diets;
     document.getElementById('p-prior').textContent = prior[0];
     document.getElementById('n-prior').textContent = prior[1];
 
-    // Forward quiz params to checkout
+    // ==========================================================
+    // RECOMMENDED BUNDLE BADGE (if present)
+    // ==========================================================
+    const recEl = document.getElementById('rec-badge');
+    if(recEl){
+      if(a.recommended === '3'){
+        recEl.innerHTML = '⭐ Your profile matches the <strong>3-bottle · 90-day</strong> protocol';
+      } else {
+        recEl.innerHTML = '✓ Your profile matches the <strong>2-bottle · 60-day</strong> starter protocol';
+      }
+    }
+
+    // ==========================================================
+    // FORWARD QUIZ PARAMS TO CHECKOUT
+    // ==========================================================
     const cta = document.getElementById('ctaBtn');
     const qs = window.location.search;
     if(cta && qs) cta.href = 'checkout.html' + qs;

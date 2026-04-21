@@ -3,120 +3,222 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Metabolism & Appetite Assessment — 30-Second Quiz</title>
+<title>Your Personalized Appetite & Metabolism Assessment — Crave-Off</title>
+<meta name="description" content="Discover what may be affecting your appetite control in under 30 seconds. Personalized diagnostic-style assessment.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:Roboto,sans-serif;background:linear-gradient(180deg,#faf7f2 0%,#fff 100%);min-height:100vh;color:#111;padding:0}
-  .wrap{max-width:620px;margin:0 auto;padding:28px 20px 80px}
-  .header{text-align:center;margin-bottom:28px}
-  .badge{display:inline-block;background:#fff0e6;color:#a33c00;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;border:1px solid #f5c9ac}
-  h1{font-family:'Playfair Display',serif;font-size:32px;line-height:1.2;margin-bottom:10px;color:#111;font-weight:700}
-  .sub{color:#555;font-size:15px;line-height:1.5}
-  .progress-bar{height:6px;background:#e8e8e8;border-radius:3px;overflow:hidden;margin:20px 0 4px}
-  .progress-fill{height:100%;background:linear-gradient(90deg,#7a3a1a,#cc5500);border-radius:3px;transition:width .4s ease;width:0%}
-  .step-counter{font-size:12px;color:#666;text-align:right;letter-spacing:.5px}
+  html,body{background:linear-gradient(180deg,#faf7f2 0%,#fff 100%);color:#111;font-family:Roboto,sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:620px;margin:0 auto;padding:24px 20px 80px}
 
-  .card{background:#fff;border-radius:14px;padding:28px 24px;box-shadow:0 4px 24px rgba(0,0,0,.06);margin-top:20px}
+  /* ========= INTRO SCREEN ========= */
+  .intro{text-align:center;padding:20px 0 0}
+  .intro .badge{display:inline-block;background:#fff0e6;color:#a33c00;padding:7px 16px;border-radius:30px;font-size:11px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:20px;border:1px solid #f5c9ac}
+  .intro h1{font-family:'Playfair Display',serif;font-size:32px;line-height:1.2;margin-bottom:14px;color:#111;font-weight:900}
+  @media(min-width:640px){.intro h1{font-size:38px}}
+  .intro h1 span{color:#a33c00}
+  .intro .lede{color:#444;font-size:16px;line-height:1.6;max-width:520px;margin:0 auto 22px}
+  .intro .bullets{text-align:left;max-width:460px;margin:0 auto 28px;background:#fff;border-radius:14px;padding:20px 22px;box-shadow:0 3px 16px rgba(0,0,0,.06);border:1px solid #f0e4d6}
+  .intro .bullets li{list-style:none;font-size:14.5px;color:#333;line-height:1.5;padding-left:28px;position:relative;margin-bottom:11px}
+  .intro .bullets li:last-child{margin-bottom:0}
+  .intro .bullets li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .intro-cta{display:inline-block;background:linear-gradient(135deg,#cc5500,#a33c00);color:#fff;font-weight:800;font-size:17px;padding:16px 30px;border-radius:50px;border:none;cursor:pointer;box-shadow:0 6px 18px rgba(204,85,0,.35);letter-spacing:.3px;transition:transform .15s ease, box-shadow .15s ease;animation:pulseCta 2s infinite}
+  .intro-cta:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(204,85,0,.45)}
+  @keyframes pulseCta{0%,100%{box-shadow:0 6px 18px rgba(204,85,0,.35)}50%{box-shadow:0 6px 24px rgba(204,85,0,.55)}}
+  .intro .trust-row{margin-top:20px;font-size:11.5px;color:#888;letter-spacing:.3px}
+  .intro .trust-row span{margin:0 6px}
+
+  /* ========= QUIZ HEADER ========= */
+  .quiz-header{text-align:center;margin-bottom:22px}
+  .quiz-header .mini-badge{display:inline-block;background:#fff0e6;color:#a33c00;padding:5px 12px;border-radius:20px;font-size:10.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:12px;border:1px solid #f5c9ac}
+  .quiz-header h2{font-family:'Playfair Display',serif;font-size:20px;line-height:1.25;margin-bottom:6px;color:#111;font-weight:700}
+  .progress-bar{height:7px;background:#ececec;border-radius:4px;overflow:hidden;margin:18px 0 6px}
+  .progress-fill{height:100%;background:linear-gradient(90deg,#7a3a1a,#cc5500);border-radius:4px;transition:width .45s ease;width:0%}
+  .step-counter{font-size:11.5px;color:#888;text-align:right;letter-spacing:.5px;font-weight:600}
+
+  /* ========= QUESTION CARDS ========= */
+  .card{background:#fff;border-radius:16px;padding:26px 22px;box-shadow:0 4px 24px rgba(0,0,0,.07);margin-top:18px;border:1px solid #f2ece3}
+  .q-label{font-size:11px;color:#a33c00;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
   .question{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;line-height:1.3;margin-bottom:22px;color:#111}
-  .options{display:flex;flex-direction:column;gap:12px}
-  .option{background:#fafafa;border:2px solid #eaeaea;border-radius:10px;padding:16px 18px;cursor:pointer;font-size:16px;text-align:left;transition:all .15s ease;color:#222}
+  @media(min-width:640px){.question{font-size:24px}}
+  .options{display:flex;flex-direction:column;gap:11px}
+  .option{background:#fafafa;border:2px solid #eaeaea;border-radius:12px;padding:16px 18px;cursor:pointer;font-size:15.5px;text-align:left;transition:all .15s ease;color:#222;font-family:inherit;font-weight:500;line-height:1.4}
   .option:hover{border-color:#cc5500;background:#fff7ef;transform:translateY(-1px)}
   .option:active{transform:scale(.98)}
+  .option .emoji{display:inline-block;margin-right:10px;font-size:18px;vertical-align:middle}
 
-  .result{display:none;text-align:center}
-  .result.show{display:block}
-  .spinner{width:46px;height:46px;border:4px solid #f0f0f0;border-top-color:#cc5500;border-radius:50%;animation:spin 1s linear infinite;margin:18px auto}
+  /* ========= TRANSITION / LOADING ========= */
+  .transition{display:none;text-align:center;padding:40px 20px}
+  .transition.show{display:block}
+  .spinner{width:54px;height:54px;border:4px solid #f0e4d6;border-top-color:#cc5500;border-radius:50%;animation:spin 1s linear infinite;margin:20px auto}
   @keyframes spin{to{transform:rotate(360deg)}}
-  .loading-text{color:#666;font-size:14px;margin-top:12px}
+  .trans-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:800;margin-bottom:10px;color:#111}
+  .trans-msg{color:#555;font-size:15px;margin-top:16px;line-height:1.5;min-height:48px;transition:opacity .3s ease}
+  .trans-steps{margin-top:28px;text-align:left;max-width:360px;margin-left:auto;margin-right:auto}
+  .trans-steps .item{display:flex;align-items:center;gap:12px;padding:8px 0;font-size:14px;color:#666;opacity:.4;transition:opacity .4s ease,color .4s ease}
+  .trans-steps .item.active{opacity:1;color:#111;font-weight:500}
+  .trans-steps .item.done{opacity:.85;color:#2e7d32;font-weight:500}
+  .trans-steps .check{width:20px;height:20px;border-radius:50%;background:#eaeaea;color:transparent;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;transition:all .3s ease}
+  .trans-steps .item.done .check{background:#2e7d32;color:#fff}
+  .trans-steps .item.active .check{background:#cc5500;color:#fff}
 
-  .hidden{display:none}
+  .hidden{display:none !important}
 </style>
 </head>
 <body>
 
 <div class="wrap">
 
-  <div class="header">
-    <div class="badge">⏱ Takes under 30 seconds</div>
-    <h1>Find Your Metabolism & Appetite Profile</h1>
-    <p class="sub">Answer 6 quick questions to see if your profile matches the women who respond best to the Amazonian açaí formula.</p>
+  <!-- ================================================== -->
+  <!-- INTRO SCREEN                                        -->
+  <!-- ================================================== -->
+  <div id="intro" class="intro">
+    <div class="badge">⏱ 30-Second Personalized Assessment</div>
+    <h1>Discover what may be affecting <span>your appetite control</span> — in under 30 seconds.</h1>
+    <p class="lede">Most women struggling with cravings and stubborn weight share 3 common signaling patterns. This short diagnostic-style assessment identifies yours — and matches you with a support plan used by thousands of women 35+.</p>
+
+    <ul class="bullets">
+      <li>Identify your appetite &amp; craving pattern</li>
+      <li>Understand why past diets may have failed you</li>
+      <li>See your personalized 90-day plan recommendation</li>
+    </ul>
+
+    <button class="intro-cta" id="startBtn">Start My Assessment →</button>
+
+    <div class="trust-row">
+      <span>🔒 100% Private</span> · <span>No account needed</span> · <span>Free</span>
+    </div>
   </div>
 
-  <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
-  <div class="step-counter"><span id="stepNow">1</span> of <span id="stepTotal">6</span></div>
+  <!-- ================================================== -->
+  <!-- QUIZ                                                -->
+  <!-- ================================================== -->
+  <div id="quizWrap" class="hidden">
 
-  <!-- QUIZ -->
-  <div id="quiz">
-
-    <div class="card q" data-q="1">
-      <div class="question">1. How old are you?</div>
-      <div class="options">
-        <button class="option" data-v="under35">Under 35</button>
-        <button class="option" data-v="35_44">35 to 44</button>
-        <button class="option" data-v="45_54">45 to 54</button>
-        <button class="option" data-v="55plus">55 or older</button>
-      </div>
+    <div class="quiz-header">
+      <div class="mini-badge">Personalized Assessment</div>
+      <h2>Find Your Appetite &amp; Metabolism Profile</h2>
     </div>
 
-    <div class="card q hidden" data-q="2">
-      <div class="question">2. When are your cravings strongest?</div>
-      <div class="options">
-        <button class="option" data-v="morning">In the morning</button>
-        <button class="option" data-v="afternoon">Mid-afternoon (2–5 p.m.)</button>
-        <button class="option" data-v="evening">After dinner / late night</button>
-        <button class="option" data-v="allday">All day — it never stops</button>
-      </div>
-    </div>
+    <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
+    <div class="step-counter">Question <span id="stepNow">1</span> of <span id="stepTotal">8</span></div>
 
-    <div class="card q hidden" data-q="3">
-      <div class="question">3. Which feels most stuck on your body?</div>
-      <div class="options">
-        <button class="option" data-v="belly">Belly / midsection</button>
-        <button class="option" data-v="hipsthighs">Hips &amp; thighs</button>
-        <button class="option" data-v="arms">Arms &amp; back</button>
-        <button class="option" data-v="overall">Overall — every area</button>
-      </div>
-    </div>
+    <div id="quiz">
 
-    <div class="card q hidden" data-q="4">
-      <div class="question">4. How's your energy by 3 p.m.?</div>
-      <div class="options">
-        <button class="option" data-v="good">Still good</button>
-        <button class="option" data-v="slow">Slowing down</button>
-        <button class="option" data-v="crash">Full crash — need coffee or sugar</button>
-        <button class="option" data-v="exhausted">Exhausted all day</button>
+      <!-- Q1: Main goal -->
+      <div class="card q" data-q="1">
+        <div class="q-label">Your Goal</div>
+        <div class="question">What is your main goal right now?</div>
+        <div class="options">
+          <button class="option" data-v="lose_weight"><span class="emoji">⚖️</span>Lose weight in a healthy, sustainable way</button>
+          <button class="option" data-v="appetite_control"><span class="emoji">🧠</span>Control cravings and stop emotional eating</button>
+          <button class="option" data-v="energy_boost"><span class="emoji">⚡</span>Boost my energy and feel lighter</button>
+          <button class="option" data-v="overall_wellness"><span class="emoji">🌿</span>Improve overall wellness and balance</button>
+        </div>
       </div>
-    </div>
 
-    <div class="card q hidden" data-q="5">
-      <div class="question">5. Have you tried weight loss approaches before?</div>
-      <div class="options">
-        <button class="option" data-v="diets">Yes — multiple diets</button>
-        <button class="option" data-v="meds">Yes — including injectables / medications</button>
-        <button class="option" data-v="few">Tried a few, nothing stuck</button>
-        <button class="option" data-v="first">This would be my first real attempt</button>
+      <!-- Q2: Biggest struggle -->
+      <div class="card q hidden" data-q="2">
+        <div class="q-label">Your Struggle</div>
+        <div class="question">What's your biggest struggle with weight or food?</div>
+        <div class="options">
+          <button class="option" data-v="cravings"><span class="emoji">🍫</span>Uncontrollable cravings (sweets, carbs, snacks)</button>
+          <button class="option" data-v="consistency"><span class="emoji">🔁</span>Staying consistent — I start strong, then stop</button>
+          <button class="option" data-v="hunger"><span class="emoji">🍽️</span>Constant hunger — I never feel full</button>
+          <button class="option" data-v="energy"><span class="emoji">🔋</span>Low energy that leads me to eat more</button>
+        </div>
       </div>
-    </div>
 
-    <div class="card q hidden" data-q="6">
-      <div class="question">6. How much weight would you like to lose?</div>
-      <div class="options">
-        <button class="option" data-v="under15">Under 15 lbs</button>
-        <button class="option" data-v="15_30">15 to 30 lbs</button>
-        <button class="option" data-v="30_50">30 to 50 lbs</button>
-        <button class="option" data-v="over50">More than 50 lbs</button>
+      <!-- Q3: Past experience -->
+      <div class="card q hidden" data-q="3">
+        <div class="q-label">Your History</div>
+        <div class="question">Have you tried losing weight before?</div>
+        <div class="options">
+          <button class="option" data-v="multiple_diets"><span class="emoji">📉</span>Yes — multiple diets, nothing lasted</button>
+          <button class="option" data-v="some_attempts"><span class="emoji">🤷‍♀️</span>A few attempts — some results, then plateau</button>
+          <button class="option" data-v="pharma"><span class="emoji">💊</span>Yes — including medications or injectables</button>
+          <button class="option" data-v="first_time"><span class="emoji">🌱</span>This is my first real structured attempt</button>
+        </div>
       </div>
-    </div>
 
+      <!-- Q4: Hunger pattern -->
+      <div class="card q hidden" data-q="4">
+        <div class="q-label">Hunger Pattern</div>
+        <div class="question">How would you describe your hunger during the day?</div>
+        <div class="options">
+          <button class="option" data-v="stable"><span class="emoji">😊</span>Stable — I feel satisfied between meals</button>
+          <button class="option" data-v="afternoon"><span class="emoji">🕒</span>Spikes in the afternoon (2–5 p.m.)</button>
+          <button class="option" data-v="evening"><span class="emoji">🌙</span>Strongest at night / after dinner</button>
+          <button class="option" data-v="allday"><span class="emoji">🔥</span>I feel hungry almost all day</button>
+        </div>
+      </div>
+
+      <!-- Q5: Snacking -->
+      <div class="card q hidden" data-q="5">
+        <div class="q-label">Eating Behavior</div>
+        <div class="question">How often do you snack between meals?</div>
+        <div class="options">
+          <button class="option" data-v="multiple"><span class="emoji">🍪</span>Multiple times a day — I can't stop</button>
+          <button class="option" data-v="couple"><span class="emoji">🫐</span>A couple of times a day</button>
+          <button class="option" data-v="rare"><span class="emoji">🥗</span>Rarely — only when truly hungry</button>
+          <button class="option" data-v="never"><span class="emoji">⏳</span>Almost never — I stick to my meals</button>
+        </div>
+      </div>
+
+      <!-- Q6: Consistency -->
+      <div class="card q hidden" data-q="6">
+        <div class="q-label">Your Consistency</div>
+        <div class="question">How easy is it for you to stay consistent with a routine?</div>
+        <div class="options">
+          <button class="option" data-v="low"><span class="emoji">😓</span>Very hard — I start and quit quickly</button>
+          <button class="option" data-v="medium"><span class="emoji">🌀</span>Somewhat — I have good and bad weeks</button>
+          <button class="option" data-v="high"><span class="emoji">💪</span>Easy — once I commit, I follow through</button>
+          <button class="option" data-v="varies"><span class="emoji">⚖️</span>Depends on stress and life</button>
+        </div>
+      </div>
+
+      <!-- Q7: Energy -->
+      <div class="card q hidden" data-q="7">
+        <div class="q-label">Your Energy</div>
+        <div class="question">How are your energy levels throughout the day?</div>
+        <div class="options">
+          <button class="option" data-v="stable"><span class="emoji">☀️</span>Stable and consistent</button>
+          <button class="option" data-v="afternoon_drop"><span class="emoji">🥱</span>Solid in the morning, drops in the afternoon</button>
+          <button class="option" data-v="crashes"><span class="emoji">💥</span>I have sudden crashes that make me reach for food</button>
+          <button class="option" data-v="always_low"><span class="emoji">😴</span>Always low — I feel tired most of the day</button>
+        </div>
+      </div>
+
+      <!-- Q8: Commitment -->
+      <div class="card q hidden" data-q="8">
+        <div class="q-label">Your Commitment</div>
+        <div class="question">How serious are you about reaching your goal in the next 90 days?</div>
+        <div class="options">
+          <button class="option" data-v="very"><span class="emoji">🔥</span>Very serious — I'm ready to commit fully</button>
+          <button class="option" data-v="somewhat"><span class="emoji">✨</span>Somewhat — I want real results, not extreme effort</button>
+          <button class="option" data-v="exploring"><span class="emoji">🔍</span>Exploring — I want to see what actually works for me</button>
+          <button class="option" data-v="unsure"><span class="emoji">🤔</span>Not sure yet — still thinking about it</button>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <!-- LOADING / REDIRECT -->
-  <div id="loading" class="card result">
-    <div class="question" style="margin-bottom:8px">Analyzing your metabolism profile…</div>
+  <!-- ================================================== -->
+  <!-- TRANSITION / ANALYZING                              -->
+  <!-- ================================================== -->
+  <div id="transition" class="transition">
+    <div class="trans-title">Analyzing your personalized results…</div>
     <div class="spinner"></div>
-    <div class="loading-text" id="loadText">Matching your answers to the Brazilian field-study dataset…</div>
+    <div class="trans-msg" id="transMsg">Matching your answers to the Amazonian field-study dataset…</div>
+
+    <div class="trans-steps" id="transSteps">
+      <div class="item" data-step="1"><div class="check">✓</div><div>Mapping your appetite &amp; craving pattern</div></div>
+      <div class="item" data-step="2"><div class="check">✓</div><div>Analyzing your hunger &amp; energy profile</div></div>
+      <div class="item" data-step="3"><div class="check">✓</div><div>Matching your behavioral &amp; commitment cluster</div></div>
+      <div class="item" data-step="4"><div class="check">✓</div><div>Selecting your personalized 90-day support plan</div></div>
+    </div>
   </div>
 
 </div>
@@ -127,11 +229,28 @@
 </audio>
 
 <script>
-  const total = 6;
+  // ==================================================
+  // CONFIG
+  // ==================================================
+  const total = 8;
   let current = 1;
   const answers = {};
   const sfx = document.getElementById('clickSfx');
 
+  // ==================================================
+  // INTRO → QUIZ START
+  // ==================================================
+  document.getElementById('startBtn').addEventListener('click', () => {
+    try { sfx.currentTime = 0; sfx.play().catch(()=>{}); } catch(e){}
+    document.getElementById('intro').classList.add('hidden');
+    document.getElementById('quizWrap').classList.remove('hidden');
+    setStep(1);
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  // ==================================================
+  // STEP NAVIGATION
+  // ==================================================
   function setStep(n){
     current = n;
     document.querySelectorAll('.q').forEach(el => el.classList.add('hidden'));
@@ -141,6 +260,9 @@
     document.getElementById('fill').style.width = (((n-1)/total)*100)+'%';
   }
 
+  // ==================================================
+  // OPTION CLICK HANDLER
+  // ==================================================
   document.querySelectorAll('.option').forEach(btn => {
     btn.addEventListener('click', () => {
       try { sfx.currentTime = 0; sfx.play().catch(()=>{}); } catch(e){}
@@ -148,38 +270,83 @@
       answers['q'+q] = btn.dataset.v;
       if(parseInt(q) < total){
         setStep(parseInt(q)+1);
+        // smooth scroll to top of card
+        window.scrollTo({top:0, behavior:'smooth'});
       } else {
+        // Completed
         document.getElementById('fill').style.width = '100%';
-        document.getElementById('quiz').style.display = 'none';
-        document.getElementById('loading').classList.add('show');
-        runLoading();
+        document.getElementById('quizWrap').classList.add('hidden');
+        document.getElementById('transition').classList.add('show');
+        window.scrollTo({top:0, behavior:'smooth'});
+        runTransition();
       }
     });
   });
 
-  function runLoading(){
+  // ==================================================
+  // TRANSITION SCREEN + RECOMMENDATION LOGIC
+  // ==================================================
+  function runTransition(){
     const msgs = [
-      'Matching your answers to the Brazilian field-study dataset…',
-      'Analyzing appetite &amp; craving pattern…',
-      'Comparing metabolic profile with responder group…',
-      'Building your personalized recommendation…'
+      'Matching your answers to the Amazonian field-study dataset…',
+      'Cross-referencing your appetite &amp; craving profile…',
+      'Analyzing behavioral &amp; commitment signals…',
+      'Building your personalized 90-day plan…'
     ];
+    const steps = document.querySelectorAll('.trans-steps .item');
+    const msgEl = document.getElementById('transMsg');
     let i = 0;
-    const t = document.getElementById('loadText');
+
+    // activate first step
+    steps[0].classList.add('active');
+
     const iv = setInterval(() => {
       i++;
+
+      // Mark current step done, next step active
+      if(i <= steps.length){
+        if(steps[i-1]) { steps[i-1].classList.remove('active'); steps[i-1].classList.add('done'); }
+        if(steps[i])   { steps[i].classList.add('active'); }
+      }
+
+      // Update message
+      if(msgs[i]){
+        msgEl.style.opacity = 0;
+        setTimeout(()=>{ msgEl.innerHTML = msgs[i]; msgEl.style.opacity = 1; }, 180);
+      }
+
       if(i >= msgs.length){
         clearInterval(iv);
-        // persist answers to URL for the result page
-        const qs = Object.entries(answers).map(([k,v]) => k+'='+encodeURIComponent(v)).join('&');
-        window.location.href = 'result.html?'+qs;
-        return;
-      }
-      t.innerHTML = msgs[i];
-    }, 900);
-  }
 
-  setStep(1);
+        // ============================
+        // RECOMMENDATION LOGIC
+        // ============================
+        // Default = 2 bottles
+        // If high commitment OR low/varies consistency OR persistent hunger/cravings
+        // → recommend 3 bottles (they need more support + higher LTV)
+        let recommended = 2;
+        const q6 = answers.q6;  // consistency
+        const q8 = answers.q8;  // commitment
+        const q4 = answers.q4;  // hunger
+        const q2 = answers.q2;  // struggle
+
+        if(
+          q8 === 'very' ||
+          q6 === 'low' || q6 === 'varies' ||
+          q4 === 'allday' ||
+          (q2 === 'consistency' && q6 !== 'high')
+        ){
+          recommended = 3;
+        }
+
+        answers.recommended = recommended;
+
+        // Build URL and redirect to result
+        const qs = Object.entries(answers).map(([k,v]) => k+'='+encodeURIComponent(v)).join('&');
+        setTimeout(() => { window.location.href = 'result.html?'+qs; }, 700);
+      }
+    }, 1000);
+  }
 </script>
 
 </body>
