@@ -226,6 +226,14 @@
     </div>
   </div>
 
+  <!-- MID-PAGE CTA (duplicate of final CTA, shown higher up) -->
+  <div class="final-cta" style="margin-top:20px">
+    <div class="cta-preline">Your personalized recommendation</div>
+    <div id="rec-badge-top" style="display:inline-block;background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:700;letter-spacing:.3px;margin-bottom:18px;box-shadow:0 3px 12px rgba(46,125,50,.3)">✓ Your profile matches the <strong>2-bottle · 60-day</strong> starter protocol</div>
+    <a href="checkout.html" class="cta-btn" id="ctaBtnTop">Continue With My Recommended Plan →</a>
+    <div class="cta-subline">60-day money-back guarantee · U.S. shipping included</div>
+  </div>
+
   <!-- SECTION 7: TWO PATHS -->
   <div class="paths-intro">
     <h2>From here, you have two paths</h2>
@@ -387,23 +395,25 @@
     document.getElementById('n-prior').textContent = prior[1];
 
     // ==========================================================
-    // RECOMMENDED BUNDLE BADGE (if present)
+    // RECOMMENDED BUNDLE BADGE (both top + bottom placements)
     // ==========================================================
+    const badgeHtml = (a.recommended === '3')
+      ? '⭐ Your profile matches the <strong>3-bottle · 90-day</strong> protocol'
+      : '✓ Your profile matches the <strong>2-bottle · 60-day</strong> starter protocol';
+
     const recEl = document.getElementById('rec-badge');
-    if(recEl){
-      if(a.recommended === '3'){
-        recEl.innerHTML = '⭐ Your profile matches the <strong>3-bottle · 90-day</strong> protocol';
-      } else {
-        recEl.innerHTML = '✓ Your profile matches the <strong>2-bottle · 60-day</strong> starter protocol';
-      }
-    }
+    if(recEl) recEl.innerHTML = badgeHtml;
+    const recElTop = document.getElementById('rec-badge-top');
+    if(recElTop) recElTop.innerHTML = badgeHtml;
 
     // ==========================================================
-    // FORWARD QUIZ PARAMS TO CHECKOUT
+    // FORWARD QUIZ PARAMS TO CHECKOUT (both CTAs)
     // ==========================================================
-    const cta = document.getElementById('ctaBtn');
     const qs = window.location.search;
-    if(cta && qs) cta.href = 'checkout.html' + qs;
+    ['ctaBtn','ctaBtnTop'].forEach(id => {
+      const el = document.getElementById(id);
+      if(el && qs) el.href = 'checkout.html' + qs;
+    });
   })();
 
   // ========================
