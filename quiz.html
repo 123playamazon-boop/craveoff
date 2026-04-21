@@ -355,9 +355,14 @@
 
         answers.recommended = recommended;
 
-        // Build URL and redirect to result
-        const qs = Object.entries(answers).map(([k,v]) => k+'='+encodeURIComponent(v)).join('&');
-        setTimeout(() => { window.location.href = 'result.html?'+qs; }, 700);
+        // Build URL and redirect to result — merging incoming params (clickid/utm_*)
+        const incoming = new URLSearchParams(window.location.search);
+        const out = new URLSearchParams();
+        // Preserve tracking/ad params first
+        incoming.forEach((v,k) => { if(!(k in answers)) out.set(k, v); });
+        // Then merge quiz answers (takes priority)
+        Object.entries(answers).forEach(([k,v]) => out.set(k, v));
+        setTimeout(() => { window.location.href = 'result.html?' + out.toString(); }, 700);
       }
     }, 1000);
   }

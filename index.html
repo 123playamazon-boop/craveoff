@@ -783,6 +783,32 @@
 </footer>
 
 <script>
+  // ==========================================================
+  // TRACKING — Propagate incoming query string to ALL internal
+  // links (preserves clickid, utm_*, subids through the funnel)
+  // ==========================================================
+  (function(){
+    var qs = window.location.search;
+    if(!qs) return;
+    var params = qs.substring(1); // drop the leading ?
+    function hasQS(href){ return href.indexOf('?') !== -1; }
+    function append(href){
+      if(hasQS(href)) return href + '&' + params;
+      return href + '?' + params;
+    }
+    // Forward to every link pointing to quiz.html (including those added after DOM ready)
+    function forwardAll(){
+      document.querySelectorAll('a[href^="quiz.html"]').forEach(function(a){
+        var h = a.getAttribute('href');
+        if(h && h.indexOf(params) === -1) a.setAttribute('href', append(h));
+      });
+    }
+    forwardAll();
+    // Also re-run after DOM load in case elements render late
+    document.addEventListener('DOMContentLoaded', forwardAll);
+    setTimeout(forwardAll, 500);
+  })();
+
   // Live reader count (header)
   (function(){
     const el = document.getElementById('liveCount');
