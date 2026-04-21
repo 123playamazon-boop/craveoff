@@ -57,6 +57,17 @@
 
   .body p{font-size:19px;line-height:1.7;margin-bottom:18px;color:#222}
   .body p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;float:left;line-height:.9;margin:4px 8px 0 0;color:#000}
+  /* Reset drop-cap for interactive / card components */
+  .mini-quiz p:first-of-type::first-letter,
+  .mini-quiz p::first-letter,
+  .day-story p:first-of-type::first-letter,
+  .day-story p::first-letter,
+  .day-marker p:first-of-type::first-letter,
+  .day-marker p::first-letter,
+  .testi-card p:first-of-type::first-letter,
+  .testi-grid p:first-of-type::first-letter,
+  .final-reserve p:first-of-type::first-letter,
+  .final-reserve p::first-letter{font-family:inherit;font-size:inherit;font-weight:inherit;float:none;line-height:inherit;margin:0;color:inherit}
   .body h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin:34px 0 14px;line-height:1.25}
   .body h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin:26px 0 10px}
   .body strong{font-weight:700}
