@@ -107,9 +107,109 @@
   .exit-modal .exit-cta{display:block;background:var(--red);color:#fff;font-family:Roboto,sans-serif;font-weight:800;font-size:15px;letter-spacing:.5px;text-transform:uppercase;text-decoration:none;text-align:center;padding:16px 14px;border-radius:8px;margin-bottom:10px;box-shadow:0 4px 14px rgba(204,0,0,.35)}
   .exit-modal .exit-no{display:block;text-align:center;color:#999;font-size:12px;background:none;border:none;cursor:pointer;text-decoration:underline;padding:6px;margin:0 auto;font-family:Roboto,sans-serif}
   .exit-modal .exit-trust{display:flex;gap:12px;justify-content:center;margin-top:14px;font-size:11px;color:#777;letter-spacing:.3px}
+
+  /* TOP URGENCY BAR */
+  .urgency-bar{position:sticky;top:0;z-index:9996;background:linear-gradient(90deg,#cc0000 0%,#a00000 100%);color:#fff;text-align:center;padding:8px 14px;font-family:Roboto,sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.3px;line-height:1.4;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+  .urgency-bar .urgency-icon{display:inline-block;margin-right:4px;animation:flash 1.4s infinite}
+  @keyframes flash{0%,100%{opacity:1}50%{opacity:.45}}
+  .urgency-bar .urgency-time{background:#fff;color:#cc0000;padding:2px 8px;border-radius:4px;font-weight:900;margin-left:6px;display:inline-block;min-width:54px}
+  @media(max-width:560px){.urgency-bar{font-size:11.5px;padding:7px 10px}}
+
+  /* STATS BAR */
+  .stats-bar{background:#fff8ed;border-bottom:1px solid #f0e0c0;padding:10px 14px;text-align:center;font-family:Roboto,sans-serif;font-size:12.5px;color:#5a3a10;letter-spacing:.2px}
+  .stats-bar strong{color:#a33c00;font-weight:800}
+  .stats-bar .stats-dot{display:inline-block;width:7px;height:7px;background:#cc0000;border-radius:50%;margin-right:6px;animation:pulseDot 1.2s infinite;vertical-align:middle}
+  @keyframes pulseDot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.35);opacity:.55}}
+  .stats-bar .stats-sep{color:#ccb68a;margin:0 8px}
+  @media(max-width:560px){.stats-bar .stats-sep{display:none}.stats-bar span.stats-item{display:block;margin:2px 0}}
+
+  /* AS REPORTED IN */
+  .as-reported{background:#fafafa;border-bottom:1px solid #eee;padding:12px 14px;text-align:center;font-family:Roboto,sans-serif}
+  .as-reported .ar-label{font-size:10.5px;color:#888;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+  .as-reported .ar-sources{font-size:12.5px;color:#333;font-style:italic;line-height:1.5}
+  .as-reported .ar-sources span{margin:0 10px;white-space:nowrap;display:inline-block;font-weight:600;color:#2e4a6b}
+
+  /* EMBEDDED MINI-QUIZ */
+  .mini-quiz{background:linear-gradient(135deg,#fff6ee 0%,#fff 100%);border:2px solid #cc5500;border-radius:18px;padding:26px 24px;margin:32px 0;box-shadow:0 6px 24px rgba(204,85,0,.12)}
+  .mini-quiz .mq-head{text-align:center;margin-bottom:18px}
+  .mini-quiz .mq-badge{display:inline-block;background:#cc5500;color:#fff;padding:6px 14px;border-radius:30px;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+  .mini-quiz h3{font-family:'Playfair Display',serif;font-size:24px;line-height:1.25;color:#111;font-weight:900;margin-bottom:6px}
+  .mini-quiz .mq-sub{color:#555;font-size:14px;line-height:1.5}
+  .mini-quiz .mq-list{display:grid;grid-template-columns:1fr;gap:8px;margin:18px 0}
+  @media(min-width:520px){.mini-quiz .mq-list{grid-template-columns:1fr 1fr}}
+  .mini-quiz .mq-item{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid #e5e5e5;border-radius:10px;padding:12px 14px;cursor:pointer;font-size:14px;color:#333;transition:all .15s ease;font-family:Roboto,sans-serif}
+  .mini-quiz .mq-item:hover{border-color:#cc5500;background:#fffaf4}
+  .mini-quiz .mq-item input{accent-color:#cc5500;width:18px;height:18px;flex-shrink:0;cursor:pointer}
+  .mini-quiz .mq-item.checked{border-color:#cc5500;background:#fff0e0;font-weight:600}
+  .mini-quiz .mq-counter{text-align:center;font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#111;margin:16px 0 8px}
+  .mini-quiz .mq-counter .num{color:#a33c00;font-size:26px;font-weight:900}
+  .mini-quiz .mq-verdict{background:#fff;border-left:4px solid #cc5500;padding:14px 16px;border-radius:6px;margin-top:14px;font-size:14px;color:#333;line-height:1.55;display:none}
+  .mini-quiz .mq-verdict.show{display:block}
+  .mini-quiz .mq-verdict strong{color:#a33c00}
+  .mini-quiz .mq-cta{display:block;background:var(--red);color:#fff;font-family:Roboto,sans-serif;font-weight:800;font-size:15px;letter-spacing:.5px;text-transform:uppercase;text-decoration:none;text-align:center;padding:15px 12px;border-radius:8px;margin-top:14px;box-shadow:0 4px 14px rgba(204,0,0,.3);animation:stickyPulse 1.6s infinite}
+
+  /* TESTIMONIAL CARDS */
+  .testi-grid{display:grid;grid-template-columns:1fr;gap:16px;margin:24px 0}
+  @media(min-width:640px){.testi-grid{grid-template-columns:1fr 1fr}}
+  .testi-card{background:#fff;border:1px solid #eee;border-radius:14px;padding:20px 20px 18px;box-shadow:0 3px 14px rgba(0,0,0,.05);display:flex;flex-direction:column;gap:10px}
+  .testi-card .tc-top{display:flex;align-items:center;gap:12px}
+  .testi-card .avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#cc5500,#a33c00);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:20px;flex-shrink:0}
+  .testi-card .tc-meta{flex:1}
+  .testi-card .tc-name{font-family:'Playfair Display',serif;font-weight:800;font-size:15px;color:#111;line-height:1.2}
+  .testi-card .tc-loc{font-size:12px;color:#666;margin-top:1px}
+  .testi-card .tc-stars{color:#f5a623;letter-spacing:1.5px;font-size:13px;margin-bottom:4px}
+  .testi-card .tc-verified{font-size:10.5px;color:#2e7d32;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;display:inline-flex;align-items:center;gap:4px;margin-bottom:6px}
+  .testi-card .tc-quote{font-size:14.5px;line-height:1.55;color:#333;font-style:italic;flex:1}
+  .testi-card .tc-quote::before{content:'"';font-family:'Playfair Display',serif;font-size:48px;color:#cc5500;line-height:0;vertical-align:-16px;margin-right:2px;opacity:.3}
+
+  /* DAY-BY-DAY STORY */
+  .day-story{background:#fff8ed;border:2px solid #e5b700;border-radius:14px;padding:24px;margin:26px 0}
+  .day-story .ds-head{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;line-height:1.25;margin-bottom:12px;color:#111}
+  .day-story .ds-head span{color:#a33c00}
+  .day-story .ds-intro{font-size:15px;color:#333;line-height:1.6;margin-bottom:18px}
+  .day-marker{background:#fff;border-left:4px solid #cc5500;border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+  .day-marker .dm-label{display:inline-block;background:#cc5500;color:#fff;font-family:Roboto,sans-serif;font-size:11px;font-weight:800;padding:3px 10px;border-radius:4px;letter-spacing:1.5px;margin-bottom:8px}
+  .day-marker p{font-size:14.5px;line-height:1.55;color:#333;margin:0}
+  .day-marker strong{color:#111}
+
+  /* FINAL CTA ESCALATION */
+  .final-reserve{background:linear-gradient(135deg,#1a0f0a,#2d1810);color:#fff;border-radius:16px;padding:32px 24px;margin:36px 0 24px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.15)}
+  .final-reserve .fr-warn{color:#ffb94a;font-size:12px;letter-spacing:2px;font-weight:800;text-transform:uppercase;margin-bottom:10px}
+  .final-reserve h3{font-family:'Playfair Display',serif;font-size:26px;line-height:1.25;font-weight:900;margin-bottom:10px;color:#fff}
+  .final-reserve h3 span{color:#ffb94a}
+  .final-reserve p{font-size:15px;line-height:1.55;color:#e5d9c8;margin-bottom:18px;max-width:520px;margin-left:auto;margin-right:auto}
+  .final-reserve .fr-stock{display:inline-block;background:rgba(255,100,100,.15);border:1px solid #cc4444;color:#ff9999;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:16px;letter-spacing:.5px}
+  .final-reserve .fr-cta{display:inline-block;background:#cc0000;color:#fff;font-family:Roboto,sans-serif;font-weight:900;font-size:17px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:20px 36px;border-radius:8px;box-shadow:0 6px 22px rgba(204,0,0,.4);animation:stickyPulse 1.5s infinite}
+  .final-reserve .fr-sub{font-size:12px;color:#aaa;margin-top:12px;letter-spacing:.3px}
 </style>
 </head>
 <body>
+
+<!-- TOP URGENCY BAR — sticky countdown -->
+<div class="urgency-bar">
+  <span class="urgency-icon">⚠️</span>
+  <strong>HIGH DEMAND:</strong> Wild Amazonian açaí inventory critically low · Your assessment slot is held for
+  <span class="urgency-time" id="urgencyTime">12:00</span>
+</div>
+
+<!-- STATS BAR — live social proof -->
+<div class="stats-bar">
+  <span class="stats-item"><span class="stats-dot"></span><strong id="statsReading">2,847</strong> reading right now</span>
+  <span class="stats-sep">·</span>
+  <span class="stats-item"><strong>41,000+</strong> women assessed</span>
+  <span class="stats-sep">·</span>
+  <span class="stats-item"><strong>94%</strong> profile match rate</span>
+  <span class="stats-sep">·</span>
+  <span class="stats-item"><strong id="statsShares">171,382</strong> shares</span>
+</div>
+
+<!-- AS REPORTED IN -->
+<div class="as-reported">
+  <div class="ar-label">As reported in</div>
+  <div class="ar-sources">
+    <span>Natural Health Review</span>·<span>Women's Wellness Today</span>·<span>Holistic Living Weekly</span>·<span>American Metabolic Journal</span>
+  </div>
+</div>
 
 <div class="breaking"><span class="dot"></span>SPECIAL REPORT — APRIL 2026 — U.S. RESEARCHERS INVESTIGATE AMAZONIAN APPETITE SUPPRESSANT</div>
 <div class="live">🔴 <strong id="liveCount">2,143</strong> readers viewing this story right now</div>
@@ -225,6 +325,34 @@
 
     <p>Reader submissions like these — mostly women <strong>40 to 60, who describe having "tried everything"</strong> — have been arriving at a rate health editors say they haven't seen since the ozempic coverage peaked in 2023.</p>
 
+    <!-- ============================================== -->
+    <!-- EMBEDDED MINI-QUIZ — Self-identification        -->
+    <!-- ============================================== -->
+    <div class="mini-quiz">
+      <div class="mq-head">
+        <div class="mq-badge">Quick Check — Self Assessment</div>
+        <h3>Do any of these sound like <em>you</em>?</h3>
+        <p class="mq-sub">Based on the responder data, women who check 3 or more of the patterns below are the ones who tend to see the biggest shift within the first 30 days.</p>
+      </div>
+
+      <div class="mq-list" id="mqList">
+        <label class="mq-item"><input type="checkbox" data-mq> <span>Cravings you can't control</span></label>
+        <label class="mq-item"><input type="checkbox" data-mq> <span>Afternoon energy crashes</span></label>
+        <label class="mq-item"><input type="checkbox" data-mq> <span>Wake up still exhausted</span></label>
+        <label class="mq-item"><input type="checkbox" data-mq> <span>Weight that won't budge</span></label>
+        <label class="mq-item"><input type="checkbox" data-mq> <span>Emotional or stress eating</span></label>
+        <label class="mq-item"><input type="checkbox" data-mq> <span>Belly fat that keeps growing</span></label>
+        <label class="mq-item"><input type="checkbox" data-mq> <span>Multiple failed diets</span></label>
+        <label class="mq-item"><input type="checkbox" data-mq> <span>Feeling invisible in photos</span></label>
+      </div>
+
+      <div class="mq-counter">You checked <span class="num" id="mqCount">0</span> of 8 symptoms</div>
+
+      <div class="mq-verdict" id="mqVerdict"></div>
+
+      <a href="quiz.html" class="mq-cta" id="mqCta" style="display:none">Take My Free 30-Second Assessment →</a>
+    </div>
+
   </div>
 
   <div class="hero"><img src="img/before_after_1.jpg" alt="Reader before and after weight loss — 60 days"></div>
@@ -267,11 +395,111 @@
 
     <p>Readers curious about whether their appetite and weight-loss profile matches the responder group can take the free quiz below.</p>
 
+    <!-- ============================================== -->
+    <!-- DAY-BY-DAY TRANSFORMATION STORY                 -->
+    <!-- ============================================== -->
+    <div class="day-story">
+      <div class="ds-head">Diana's <span>30-day timeline</span> — what she described week by week</div>
+      <p class="ds-intro"><strong>Diana L., 48, from Phoenix, Arizona</strong>, agreed to document her first 30 days after being matched to the responder profile. She had tried — by her own count — "ten different diets, two gym memberships, and one round of injectable medication" in the previous six years. None had lasted more than a month.</p>
+
+      <div class="day-marker">
+        <span class="dm-label">Day 3</span>
+        <p>The first thing Diana noticed wasn't the scale. It was the <strong>afternoon</strong>. "I always hit a wall around 3 p.m. I'd go for coffee or a bag of almonds. By day three I realized I just… didn't. I kept working. I looked at the clock and it was 4:45. That hadn't happened in years."</p>
+      </div>
+
+      <div class="day-marker">
+        <span class="dm-label">Day 10</span>
+        <p>"The cravings for sweets at night quieted down. I used to have ice cream four or five nights a week. I'd just skip it because I <strong>wasn't thinking about it</strong>. Not willpower — absence. It was the strangest feeling."</p>
+      </div>
+
+      <div class="day-marker">
+        <span class="dm-label">Day 21</span>
+        <p>Diana's jeans started feeling looser. She hadn't weighed herself — intentionally. "I didn't want the number to mess with my head." Instead, she noticed the button on her work pants closed without her pulling it in. "I sat at my desk and almost cried."</p>
+      </div>
+
+      <div class="day-marker">
+        <span class="dm-label">Day 30</span>
+        <p>She finally stepped on the scale. "Down 9 pounds. No calorie counting. No workout I wouldn't have done anyway. <strong>Just a body that had finally stopped fighting me.</strong>" Some individuals may experience results at a different pace — but Diana's pattern tracks closely with what the Brazilian field-study data predicted for her profile.</p>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- VISUAL TESTIMONIALS — CARD GRID                 -->
+    <!-- ============================================== -->
+    <h2 style="margin-top:36px">More women, more profiles, same pattern</h2>
+
+    <div class="testi-grid">
+
+      <div class="testi-card">
+        <div class="tc-top">
+          <div class="avatar">JP</div>
+          <div class="tc-meta">
+            <div class="tc-name">Jessica P.</div>
+            <div class="tc-loc">41 · Tampa, FL</div>
+          </div>
+        </div>
+        <div class="tc-stars">★★★★★</div>
+        <div class="tc-verified">✓ Verified Buyer</div>
+        <div class="tc-quote">Down 14 pounds in 8 weeks. The afternoon crashes stopped first, then the nighttime grazing. I'm finally eating like a normal person again.</div>
+      </div>
+
+      <div class="testi-card">
+        <div class="tc-top">
+          <div class="avatar">KM</div>
+          <div class="tc-meta">
+            <div class="tc-name">Karen M.</div>
+            <div class="tc-loc">54 · Dallas, TX</div>
+          </div>
+        </div>
+        <div class="tc-stars">★★★★★</div>
+        <div class="tc-verified">✓ Verified Buyer</div>
+        <div class="tc-quote">After menopause nothing worked. This is the first thing that actually matched my body. 17 pounds in 12 weeks. My doctor is stunned.</div>
+      </div>
+
+      <div class="testi-card">
+        <div class="tc-top">
+          <div class="avatar">TB</div>
+          <div class="tc-meta">
+            <div class="tc-name">Tammy B.</div>
+            <div class="tc-loc">46 · Charlotte, NC</div>
+          </div>
+        </div>
+        <div class="tc-stars">★★★★★</div>
+        <div class="tc-verified">✓ Verified Buyer</div>
+        <div class="tc-quote">I'd given up on being in family photos. Three months on the 3-bottle plan and I actually wanted to be in them again. Don't even care about the scale anymore.</div>
+      </div>
+
+      <div class="testi-card">
+        <div class="tc-top">
+          <div class="avatar">SR</div>
+          <div class="tc-meta">
+            <div class="tc-name">Sharon R.</div>
+            <div class="tc-loc">52 · Knoxville, TN</div>
+          </div>
+        </div>
+        <div class="tc-stars">★★★★★</div>
+        <div class="tc-verified">✓ Verified Buyer</div>
+        <div class="tc-quote">I'd tried ozempic. Made me sick. This was the opposite — I felt normal. Steady. Clear. 22 pounds over 10 weeks and I still have energy.</div>
+      </div>
+
+    </div>
+
+    <div style="font-size:11px;color:#888;font-style:italic;text-align:center;margin-top:10px;line-height:1.5">
+      Individual results vary and are not guaranteed. Customer submissions above reflect voluntary reports and do not represent typical results.
+    </div>
+
   </div>
 
-  <div class="cta-wrap">
-    <a href="quiz.html" class="cta">Lock In My Risk-Free Trial →</a>
-    <div class="cta-sub">Over 41,000 women have taken this FREE assessment · 60-day money-back guarantee</div>
+  <!-- ================================================ -->
+  <!-- FINAL RESERVE-STYLE CTA (scarcity + urgency)      -->
+  <!-- ================================================ -->
+  <div class="final-reserve">
+    <div class="fr-warn">⚠ Limited batch · Wild açaí inventory</div>
+    <h3>Reserve Your <span>Profile-Matched Bottle</span> Before This Batch Runs Out</h3>
+    <div class="fr-stock">🔥 Current batch: 87 bottles remaining at today's price</div>
+    <p>Take the free 30-second assessment now. Your profile-matched plan stays held only while you're on this page. Once inventory drops below 40 bottles, the company has historically opened the waitlist — adding weeks to ship times.</p>
+    <a href="quiz.html" class="fr-cta">Reserve My Free Profile Match »</a>
+    <div class="fr-sub">60-day money-back guarantee · Ships from USA · No account required</div>
   </div>
 
 </article>
@@ -284,6 +512,7 @@
 </footer>
 
 <script>
+  // Live reader count (header)
   (function(){
     const el = document.getElementById('liveCount');
     let n = 2143;
@@ -293,6 +522,101 @@
       if(n > 2600) n = 2580;
       el.textContent = n.toLocaleString();
     }, 2800);
+  })();
+
+  // ======================================
+  // URGENCY BAR — 12 min countdown (persists via sessionStorage)
+  // ======================================
+  (function(){
+    var el = document.getElementById('urgencyTime');
+    if(!el) return;
+    var end;
+    try{
+      end = parseInt(sessionStorage.getItem('co_urgency_end') || '0');
+      if(!end || end < Date.now()){
+        end = Date.now() + 12 * 60 * 1000;
+        sessionStorage.setItem('co_urgency_end', String(end));
+      }
+    } catch(e) { end = Date.now() + 12*60*1000; }
+
+    function tick(){
+      var left = Math.max(0, end - Date.now());
+      var m = Math.floor(left / 60000);
+      var s = Math.floor((left % 60000) / 1000);
+      el.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+      if(left <= 0){
+        // Reset for persistence
+        end = Date.now() + 12 * 60 * 1000;
+        try{ sessionStorage.setItem('co_urgency_end', String(end)); }catch(e){}
+      }
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  // ======================================
+  // STATS BAR — live tick-up of readers + shares
+  // ======================================
+  (function(){
+    var r = document.getElementById('statsReading');
+    var s = document.getElementById('statsShares');
+    var rN = 2847, sN = 171382;
+    setInterval(function(){
+      if(Math.random() < 0.45){
+        rN += Math.floor(Math.random()*11) - 4;
+        if(rN < 2500) rN = 2520;
+        if(rN > 3400) rN = 3380;
+        if(r) r.textContent = rN.toLocaleString();
+      }
+      if(Math.random() < 0.25){
+        sN += Math.floor(Math.random()*3) + 1;
+        if(s) s.textContent = sN.toLocaleString();
+      }
+    }, 3500);
+  })();
+
+  // ======================================
+  // MINI-QUIZ — self-identification widget
+  // ======================================
+  (function(){
+    var boxes = document.querySelectorAll('#mqList input[data-mq]');
+    var counter = document.getElementById('mqCount');
+    var verdict = document.getElementById('mqVerdict');
+    var cta = document.getElementById('mqCta');
+    if(!boxes.length) return;
+
+    function update(){
+      var n = 0;
+      boxes.forEach(function(b){
+        var lbl = b.closest('.mq-item');
+        if(b.checked){ n++; lbl.classList.add('checked'); }
+        else { lbl.classList.remove('checked'); }
+      });
+      counter.textContent = n;
+
+      if(n === 0){
+        verdict.classList.remove('show');
+        cta.style.display = 'none';
+      } else if(n <= 2){
+        verdict.innerHTML = '<strong>You checked ' + n + ' symptom' + (n>1?'s':'') + '.</strong> Your profile shows early patterns. Taking the 30-second assessment will give you a personalized breakdown before the pattern deepens.';
+        verdict.classList.add('show');
+        cta.style.display = 'block';
+      } else if(n <= 4){
+        verdict.innerHTML = '<strong>You checked ' + n + ' of 8 symptoms.</strong> This matches the responder-group profile seen in the Brazilian data. Most women at this level report meaningful change within the first 30 days.';
+        verdict.classList.add('show');
+        cta.style.display = 'block';
+      } else if(n <= 6){
+        verdict.innerHTML = '<strong>You checked ' + n + ' of 8 — your pattern is strong.</strong> 94% of women at this symptom count were matched to the full responder profile. Take the free assessment to see your personalized plan.';
+        verdict.classList.add('show');
+        cta.style.display = 'block';
+      } else {
+        verdict.innerHTML = '<strong>⚠️ You checked ' + n + ' of 8 — the highest responder profile.</strong> Your symptom stack matches the exact demographic the Amazonian formula was designed around. Take the 30-second assessment to lock in your profile-matched plan.';
+        verdict.classList.add('show');
+        cta.style.display = 'block';
+      }
+    }
+
+    boxes.forEach(function(b){ b.addEventListener('change', update); });
   })();
 </script>
 
