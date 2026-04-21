@@ -111,6 +111,13 @@
 
   .trust-icons{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:20px;font-size:11px;color:#666;letter-spacing:.3px}
   .trust-icons span{display:inline-flex;align-items:center;gap:4px}
+
+  /* STICKY MOBILE CTA */
+  .sticky-mobile-cta{display:none;position:fixed;left:0;right:0;bottom:0;z-index:9997;background:rgba(255,255,255,.98);border-top:1px solid #e5e5e5;padding:10px 14px env(safe-area-inset-bottom) 10px;box-shadow:0 -4px 14px rgba(0,0,0,.08);backdrop-filter:blur(10px)}
+  .sticky-mobile-cta a{display:block;background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;font-family:Roboto,sans-serif;font-size:15px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;text-decoration:none;text-align:center;padding:15px 10px;border-radius:8px;box-shadow:0 3px 10px rgba(46,125,50,.4);animation:stickyPulseG 1.6s infinite}
+  @keyframes stickyPulseG{0%,100%{box-shadow:0 3px 10px rgba(46,125,50,.4)}50%{box-shadow:0 3px 18px rgba(46,125,50,.65)}}
+  .sticky-mobile-cta .tiny{font-size:10.5px;color:#777;text-align:center;margin-top:4px;letter-spacing:.3px}
+  @media(max-width:760px){.sticky-mobile-cta{display:block}body{padding-bottom:90px}}
 </style>
 </head>
 <body>
@@ -441,6 +448,20 @@
       if(Date.now() < stopAt || parts.some(p=>p.y < c.height+40)) requestAnimationFrame(loop);
     }
     loop();
+  })();
+</script>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-mobile-cta">
+  <a href="checkout.html" id="stickyMobCta">Continue With My Recommended Plan →</a>
+  <div class="tiny">60-day risk-free trial · held for your profile</div>
+</div>
+<script>
+  // Forward quiz params to the sticky CTA as well
+  (function(){
+    var qs = window.location.search;
+    var el = document.getElementById('stickyMobCta');
+    if(qs && el) el.href = 'checkout.html' + qs;
   })();
 </script>
 

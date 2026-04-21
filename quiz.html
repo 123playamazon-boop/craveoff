@@ -64,6 +64,20 @@
   .trans-steps .item.active .check{background:#cc5500;color:#fff}
 
   .hidden{display:none !important}
+
+  /* EXIT-INTENT POPUP */
+  .exit-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:9998;align-items:center;justify-content:center;padding:20px;animation:fadeInQz .25s ease}
+  .exit-overlay.show{display:flex}
+  @keyframes fadeInQz{from{opacity:0}to{opacity:1}}
+  .exit-modal{background:#fff;max-width:470px;width:100%;border-radius:18px;padding:30px 26px 24px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.4);animation:popInQz .35s cubic-bezier(.2,.9,.3,1.4)}
+  @keyframes popInQz{from{transform:scale(.85) translateY(20px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
+  .exit-close{position:absolute;top:10px;right:14px;background:none;border:none;font-size:24px;color:#999;cursor:pointer;line-height:1;padding:4px 8px}
+  .exit-modal .exit-badge{display:inline-block;background:#fff0e6;color:#a33c00;padding:6px 14px;border-radius:30px;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;border:1px solid #f5c9ac}
+  .exit-modal h2{font-family:'Playfair Display',serif;font-size:26px;line-height:1.2;margin-bottom:10px;color:#111;font-weight:900}
+  .exit-modal h2 span{color:#cc5500}
+  .exit-modal p{font-size:14.5px;color:#444;line-height:1.55;margin-bottom:16px}
+  .exit-modal .exit-cta{display:block;background:linear-gradient(135deg,#cc5500,#a33c00);color:#fff;font-weight:800;font-size:15px;letter-spacing:.5px;text-transform:uppercase;text-decoration:none;text-align:center;padding:16px 14px;border-radius:50px;margin-bottom:10px;box-shadow:0 5px 16px rgba(204,85,0,.35);border:none;cursor:pointer;width:100%;font-family:Roboto,sans-serif}
+  .exit-modal .exit-no{display:block;text-align:center;color:#999;font-size:12px;background:none;border:none;cursor:pointer;text-decoration:underline;padding:6px;margin:0 auto;font-family:Roboto,sans-serif}
 </style>
 </head>
 <body>
@@ -347,7 +361,57 @@
       }
     }, 1000);
   }
+
+  // ======================================
+  // EXIT-INTENT POPUP (quiz abandonment)
+  // ======================================
+  (function(){
+    var shown = false;
+    var modal = document.getElementById('exitOverlay');
+    if(!modal) return;
+
+    function show(){
+      if(shown) return;
+      // Don't show if user hasn't started the quiz OR is on transition screen
+      if(!document.getElementById('intro').classList.contains('hidden')) return;
+      if(document.getElementById('transition').classList.contains('show')) return;
+      shown = true;
+      modal.classList.add('show');
+      try{ sessionStorage.setItem('co_exit_qz','1'); }catch(e){}
+    }
+    function hide(){ modal.classList.remove('show'); }
+
+    try{ if(sessionStorage.getItem('co_exit_qz') === '1') shown = true; }catch(e){}
+
+    // Desktop trigger
+    document.addEventListener('mouseout', function(e){
+      if(!e.relatedTarget && e.clientY < 10) show();
+    });
+
+    // Mobile: fast upward scroll or back navigation
+    if(!shown){
+      history.pushState({exit:true}, '');
+      window.addEventListener('popstate', function(){ if(!shown){ show(); history.pushState({exit:true}, ''); } });
+    }
+
+    document.getElementById('exitClose').addEventListener('click', hide);
+    document.getElementById('exitNo').addEventListener('click', hide);
+    document.getElementById('exitResume').addEventListener('click', hide);
+    modal.addEventListener('click', function(e){ if(e.target === modal) hide(); });
+  })();
 </script>
+
+<!-- EXIT-INTENT POPUP -->
+<div class="exit-overlay" id="exitOverlay">
+  <div class="exit-modal">
+    <button class="exit-close" id="exitClose" aria-label="Close">×</button>
+    <div class="exit-badge">⚠ Wait — you're almost done</div>
+    <h2>Don't lose the <span>questions you already answered</span>.</h2>
+    <p>You're just a few questions away from your personalized profile match. Leave now and all your answers reset — you'd have to start from question one.</p>
+    <button class="exit-cta" id="exitResume">Continue My Assessment →</button>
+    <button class="exit-no" id="exitNo">No thanks, leave this page</button>
+  </div>
+</div>
 
 </body>
 </html>
