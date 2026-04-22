@@ -581,15 +581,31 @@
     }
   })();
 
-  // Attach quiz answers to Stripe links as client_reference_id
-  const qs = window.location.search;
-  if(qs){
-    document.querySelectorAll('.buy-btn').forEach(a => {
-      const u = new URL(a.href);
-      u.searchParams.set('client_reference_id', qs.substring(1).slice(0, 200));
-      a.href = u.toString();
+  // === REDTRACK: rtkcid -> Stripe client_reference_id + fire Initiate Checkout pixel ===
+  (function(){
+    var RTK_DOMAIN = '5fxrt.ttrk.io';
+    var p = new URLSearchParams(window.location.search);
+    var rtkcid = p.get('rtkcid');
+    if(rtkcid){ try { sessionStorage.setItem('rtkcid', rtkcid); } catch(e){} }
+    else { try { rtkcid = sessionStorage.getItem('rtkcid'); } catch(e){} }
+
+    document.querySelectorAll('.buy-btn').forEach(function(a){
+      if(rtkcid){
+        try {
+          var u = new URL(a.href);
+          u.searchParams.set('client_reference_id', rtkcid);
+          a.href = u.toString();
+        } catch(e) {}
+      }
+      a.addEventListener('click', function(){
+        if(!rtkcid || !RTK_DOMAIN) return;
+        var pack = a.getAttribute('data-pack') || '';
+        var pixel = 'https://' + RTK_DOMAIN + '/postback?clickid=' + encodeURIComponent(rtkcid) + '&status=initiate_checkout&type=ic&pack=' + encodeURIComponent(pack);
+        var img = new Image();
+        img.src = pixel;
+      });
     });
-  }
+  })();
 
   // FAQ accordion
   document.querySelectorAll('.faq-item .faq-q').forEach(q => {
