@@ -55,6 +55,28 @@
   .sp-sep{color:#ccc;margin:0 8px}
   @media(max-width:520px){.sp-meta .sp-sep{display:none}.sp-meta{display:flex;flex-direction:column;gap:4px}}
 
+  /* AMAZON IMPACT SECTION */
+  .impact-section{margin:34px 0 30px;animation:impactFadeIn .9s ease both}
+  @keyframes impactFadeIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+  .impact-card{background:linear-gradient(135deg,#f7f3ea 0%,#eef2e6 100%);border-radius:22px;overflow:hidden;box-shadow:0 10px 30px rgba(46,77,46,.08),0 2px 6px rgba(0,0,0,.04);border:1px solid #e5e0d1;display:grid;grid-template-columns:1fr 1.05fr;align-items:stretch}
+  @media(max-width:720px){.impact-card{grid-template-columns:1fr}}
+  .impact-media{position:relative;overflow:hidden;min-height:280px;background:#e9ead8}
+  .impact-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease}
+  .impact-card:hover .impact-media img{transform:scale(1.04)}
+  .impact-badge{position:absolute;bottom:14px;left:14px;background:rgba(255,255,255,.94);color:#2e4d2e;padding:8px 14px;border-radius:30px;font-family:'Roboto',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.4px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 3px 10px rgba(0,0,0,.1);display:inline-flex;align-items:center;gap:6px}
+  .impact-badge .leaf{font-size:13px}
+  .impact-body{padding:32px 32px 30px;display:flex;flex-direction:column;justify-content:center}
+  @media(max-width:720px){.impact-body{padding:26px 24px 28px}}
+  .impact-eyebrow{font-family:'Roboto',sans-serif;font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:#4a6b3f;font-weight:700;margin-bottom:12px;display:inline-flex;align-items:center;gap:6px}
+  .impact-eyebrow::before{content:'';width:18px;height:1px;background:#4a6b3f;display:inline-block}
+  .impact-headline{font-family:'Playfair Display',serif;font-size:24px;line-height:1.22;color:#1e3a1e;font-weight:900;margin-bottom:12px}
+  @media(min-width:720px){.impact-headline{font-size:28px}}
+  .impact-copy{font-family:'Roboto',sans-serif;font-size:15px;line-height:1.6;color:#4a4a4a;margin-bottom:18px}
+  .impact-footer{display:flex;align-items:center;gap:10px;padding-top:14px;border-top:1px solid rgba(74,107,63,.18);margin-bottom:14px}
+  .impact-dot{width:8px;height:8px;border-radius:50%;background:#4a6b3f;box-shadow:0 0 0 4px rgba(74,107,63,.15)}
+  .impact-sub{font-family:'Roboto',sans-serif;font-size:12.5px;color:#4a6b3f;font-weight:600;letter-spacing:.3px}
+  .impact-cta-line{font-family:'Roboto',sans-serif;font-size:13.5px;color:#2e4d2e;line-height:1.55;font-weight:500;font-style:italic}
+
   /* STICKY MOBILE CTA */
   .sticky-mobile-cta{display:none;position:fixed;left:0;right:0;bottom:0;z-index:9997;background:rgba(255,255,255,.98);border-top:1px solid #e5e5e5;padding:10px 14px env(safe-area-inset-bottom) 10px;box-shadow:0 -4px 14px rgba(0,0,0,.08);backdrop-filter:blur(10px)}
   .sticky-mobile-cta a{display:block;background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;font-family:Roboto,sans-serif;font-size:15px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;text-decoration:none;text-align:center;padding:15px 10px;border-radius:8px;box-shadow:0 3px 10px rgba(46,125,50,.4);animation:stickyPulseG 1.6s infinite}
@@ -289,6 +311,26 @@
     </div>
 
   </div>
+
+  <!-- AMAZON IMPACT SECTION -->
+  <section class="impact-section" aria-label="Amazon community impact">
+    <div class="impact-card">
+      <div class="impact-media">
+        <img src="img/amazon_impact.jpg" alt="Indigenous Amazon families harvesting açaí — direct partners of Crave-Off" loading="lazy">
+        <span class="impact-badge"><span class="leaf">🌿</span> 20% goes back to the Amazon</span>
+      </div>
+      <div class="impact-body">
+        <div class="impact-eyebrow">Purpose · Real Impact</div>
+        <h3 class="impact-headline">Wellness that does more than transform your body.</h3>
+        <p class="impact-copy">20% of every Crave-Off purchase goes directly to the Amazon communities that harvest our açaí. Real families. Real impact. A living forest.</p>
+        <div class="impact-footer">
+          <span class="impact-dot"></span>
+          <span class="impact-sub">Supporting real communities in Brazil</span>
+        </div>
+        <div class="impact-cta-line">Complete your purchase knowing you’re part of something bigger.</div>
+      </div>
+    </div>
+  </section>
 
   <!-- TESTIMONIALS -->
   <div class="testi-section">
