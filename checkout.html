@@ -600,7 +600,7 @@
       a.addEventListener('click', function(){
         if(!rtkcid || !RTK_DOMAIN) return;
         var pack = a.getAttribute('data-pack') || '';
-        var pixel = 'https://' + RTK_DOMAIN + '/postback?clickid=' + encodeURIComponent(rtkcid) + '&status=initiate_checkout&type=ic&pack=' + encodeURIComponent(pack);
+        var pixel = 'https://' + RTK_DOMAIN + '/postback?clickid=' + encodeURIComponent(rtkcid) + '&type=InitiateCheckout&status=approved&pack=' + encodeURIComponent(pack);
         var img = new Image();
         img.src = pixel;
       });

@@ -51,7 +51,7 @@ export default async function handler(req, res) {
     });
 
     if (clickId && REDTRACK_DOMAIN) {
-      const url = `https://${REDTRACK_DOMAIN}/postback?clickid=${encodeURIComponent(clickId)}&sum=${amount}&currency=${currency}&txid=${encodeURIComponent(txId)}&status=sale&type=purchase`;
+      const url = `https://${REDTRACK_DOMAIN}/postback?clickid=${encodeURIComponent(clickId)}&sum=${amount}&currency=${currency}&txid=${encodeURIComponent(txId)}&type=Purchase&status=approved`;
       try {
         const r = await fetch(url);
         console.log('[stripe-webhook] RedTrack postback →', r.status, url);
