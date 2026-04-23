@@ -597,12 +597,36 @@
           a.href = u.toString();
         } catch(e) {}
       }
-      a.addEventListener('click', function(){
+      a.addEventListener('click', function(e){
         if(!rtkcid || !RTK_DOMAIN) return;
         var pack = a.getAttribute('data-pack') || '';
         var pixel = 'https://' + RTK_DOMAIN + '/postback?clickid=' + encodeURIComponent(rtkcid) + '&type=InitiateCheckout&status=approved&pack=' + encodeURIComponent(pack);
-        var img = new Image();
-        img.src = pixel;
+
+        // Prevent immediate navigation so pixel can fire reliably
+        e.preventDefault();
+        var targetHref = a.href;
+
+        // Try sendBeacon (most reliable during unload), fallback to fetch, then Image
+        var fired = false;
+        try {
+          if (navigator.sendBeacon) {
+            fired = navigator.sendBeacon(pixel);
+          }
+        } catch(err) {}
+        if (!fired) {
+          try {
+            fetch(pixel, { method: 'GET', mode: 'no-cors', keepalive: true }).catch(function(){});
+          } catch(err) {}
+        }
+        try {
+          var img = new Image();
+          img.src = pixel;
+        } catch(err) {}
+
+        // Navigate after brief delay to ensure pixel request completes
+        setTimeout(function(){
+          window.location.href = targetHref;
+        }, 250);
       });
     });
   })();
