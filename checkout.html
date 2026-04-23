@@ -606,7 +606,7 @@
         e.preventDefault();
         var targetHref = a.href;
 
-        // Try sendBeacon (most reliable during unload), fallback to fetch, then Image
+        // Fire pixel once: sendBeacon (best for unload) → fetch keepalive → Image (final fallback)
         var fired = false;
         try {
           if (navigator.sendBeacon) {
@@ -615,13 +615,17 @@
         } catch(err) {}
         if (!fired) {
           try {
-            fetch(pixel, { method: 'GET', mode: 'no-cors', keepalive: true }).catch(function(){});
+            fetch(pixel, { method: 'GET', mode: 'no-cors', keepalive: true }).then(function(){}).catch(function(){});
+            fired = true;
           } catch(err) {}
         }
-        try {
-          var img = new Image();
-          img.src = pixel;
-        } catch(err) {}
+        if (!fired) {
+          try {
+            var img = new Image();
+            img.src = pixel;
+            fired = true;
+          } catch(err) {}
+        }
 
         // Navigate after brief delay to ensure pixel request completes
         setTimeout(function(){
