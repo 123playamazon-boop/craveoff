@@ -276,13 +276,6 @@
 </head>
 <body>
 
-<!-- TOP URGENCY BAR — sticky countdown -->
-<div class="urgency-bar">
-  <span class="urgency-icon">⚠️</span>
-  <strong>HIGH DEMAND:</strong> Wild Amazonian açaí inventory critically low · Your assessment slot is held for
-  <span class="urgency-time" id="urgencyTime">12:00</span>
-</div>
-
 <!-- STATS BAR — live social proof -->
 <div class="stats-bar">
   <span class="stats-item"><span class="stats-dot"></span><strong id="statsReading">2,847</strong> reading right now</span>
@@ -758,16 +751,13 @@
 
     <a href="quiz.html" class="pw-cta">Secure My Profile-Matched Bottle »</a>
     <div class="pw-limit">(Limit 6 bottles per household)</div>
-    <div class="pw-stock"><span class="pw-dot"></span><strong>In Stock:</strong> Ships within 24 hrs from our U.S. facility 🇺🇸</div>
   </div>
 
   <!-- ================================================ -->
   <!-- FINAL RESERVE-STYLE CTA (scarcity + urgency)      -->
   <!-- ================================================ -->
   <div class="final-reserve">
-    <div class="fr-warn">⚠ Limited batch · Wild açaí inventory</div>
     <h3>Reserve Your <span>Profile-Matched Bottle</span> Before This Batch Runs Out</h3>
-    <div class="fr-stock">🔥 Current batch: 87 bottles remaining at today's price</div>
     <p>Take the free 30-second assessment now. Your profile-matched plan stays held only while you're on this page. Once inventory drops below 40 bottles, the company has historically opened the waitlist — adding weeks to ship times.</p>
     <a href="quiz.html" class="fr-cta">Reserve My Free Profile Match »</a>
     <div class="fr-sub">60-day money-back guarantee · Ships from USA · No account required</div>
@@ -819,36 +809,6 @@
       if(n > 2600) n = 2580;
       el.textContent = n.toLocaleString();
     }, 2800);
-  })();
-
-  // ======================================
-  // URGENCY BAR — 12 min countdown (persists via sessionStorage)
-  // ======================================
-  (function(){
-    var el = document.getElementById('urgencyTime');
-    if(!el) return;
-    var end;
-    try{
-      end = parseInt(sessionStorage.getItem('co_urgency_end') || '0');
-      if(!end || end < Date.now()){
-        end = Date.now() + 12 * 60 * 1000;
-        sessionStorage.setItem('co_urgency_end', String(end));
-      }
-    } catch(e) { end = Date.now() + 12*60*1000; }
-
-    function tick(){
-      var left = Math.max(0, end - Date.now());
-      var m = Math.floor(left / 60000);
-      var s = Math.floor((left % 60000) / 1000);
-      el.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
-      if(left <= 0){
-        // Reset for persistence
-        end = Date.now() + 12 * 60 * 1000;
-        try{ sessionStorage.setItem('co_urgency_end', String(end)); }catch(e){}
-      }
-    }
-    tick();
-    setInterval(tick, 1000);
   })();
 
   // ======================================
@@ -924,67 +884,6 @@
   <a href="quiz.html">Take The FREE 30-Second Test →</a>
   <div class="tiny">41,000+ women · personalized result in 30 seconds</div>
 </div>
-
-<!-- ============================================= -->
-<!-- EXIT-INTENT POPUP                              -->
-<!-- ============================================= -->
-<div class="exit-overlay" id="exitOverlay">
-  <div class="exit-modal">
-    <button class="exit-close" id="exitClose" aria-label="Close">×</button>
-    <div class="exit-badge">⚠ Wait — before you leave</div>
-    <h2>Your <span>profile slot</span> is still held for 15 minutes.</h2>
-    <p>Take the free 30-second assessment now and see if your body type matches the Brazilian responder group. Most women who skip this step never come back — and when they do, the plan they were matched to is gone.</p>
-    <a href="quiz.html" class="exit-cta" id="exitCta">Take My Free Assessment Now →</a>
-    <button class="exit-no" id="exitNo">No thanks, I'll continue struggling with cravings</button>
-    <div class="exit-trust"><span>🔒 100% Free</span><span>·</span><span>No account needed</span><span>·</span><span>30 seconds</span></div>
-  </div>
-</div>
-
-<script>
-(function(){
-  var shown = false;
-  var modal = document.getElementById('exitOverlay');
-
-  function show(){
-    if(shown) return;
-    shown = true;
-    modal.classList.add('show');
-    try { sessionStorage.setItem('co_exit_shown','1'); } catch(e){}
-  }
-  function hide(){ modal.classList.remove('show'); }
-
-  // Only trigger once per session
-  try { if(sessionStorage.getItem('co_exit_shown') === '1') shown = true; } catch(e){}
-
-  // Desktop: trigger on mouse leaving top of viewport
-  document.addEventListener('mouseout', function(e){
-    if(!e.relatedTarget && e.clientY < 10) show();
-  });
-
-  // Mobile: trigger on fast upward scroll after engagement
-  var lastY = window.scrollY, lastT = Date.now(), engaged = false;
-  setTimeout(function(){ engaged = true; }, 15000); // 15s on page minimum
-  window.addEventListener('scroll', function(){
-    var y = window.scrollY, t = Date.now();
-    var dy = lastY - y, dt = t - lastT;
-    if(engaged && dy > 160 && dt < 350 && y < 300) show();
-    lastY = y; lastT = t;
-  }, { passive: true });
-
-  // History back trap (mobile)
-  if(!shown){
-    history.pushState({exit:true}, '');
-    window.addEventListener('popstate', function(){
-      if(!shown){ show(); history.pushState({exit:true}, ''); }
-    });
-  }
-
-  document.getElementById('exitClose').addEventListener('click', hide);
-  document.getElementById('exitNo').addEventListener('click', hide);
-  modal.addEventListener('click', function(e){ if(e.target === modal) hide(); });
-})();
-</script>
-
 
 <!-- === REDTRACK: preserve click ID across funnel === -->
 <script>
