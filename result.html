@@ -184,6 +184,14 @@
     </div>
   </div>
 
+  <!-- EARLY CTA (inserted before Section 4: Why this pattern keeps showing up) -->
+  <div class="final-cta" style="margin-top:10px">
+    <div class="cta-preline">Your personalized recommendation</div>
+    <div id="rec-badge-early" style="display:inline-block;background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:700;letter-spacing:.3px;margin-bottom:18px;box-shadow:0 3px 12px rgba(46,125,50,.3)">✓ Your profile matches the <strong>2-bottle · 60-day</strong> starter protocol</div>
+    <a href="checkout.html" class="cta-btn" id="ctaBtnEarly">Continue With My Recommended Plan →</a>
+    <div class="cta-subline">60-day money-back guarantee · U.S. shipping included</div>
+  </div>
+
   <!-- SECTION 4: SIMPLE EXPLANATION -->
   <div class="section">
     <h2>Why this pattern <span>keeps showing up</span></h2>
@@ -412,12 +420,14 @@
     if(recEl) recEl.innerHTML = badgeHtml;
     const recElTop = document.getElementById('rec-badge-top');
     if(recElTop) recElTop.innerHTML = badgeHtml;
+    const recElEarly = document.getElementById('rec-badge-early');
+    if(recElEarly) recElEarly.innerHTML = badgeHtml;
 
     // ==========================================================
     // FORWARD QUIZ PARAMS TO CHECKOUT (both CTAs)
     // ==========================================================
     const qs = window.location.search;
-    ['ctaBtn','ctaBtnTop'].forEach(id => {
+    ['ctaBtn','ctaBtnTop','ctaBtnEarly'].forEach(id => {
       const el = document.getElementById(id);
       if(el && qs) el.href = 'checkout.html' + qs;
     });
