@@ -373,11 +373,12 @@
   @media(min-width:680px){.reader-ba-grid{grid-template-columns:1fr 1fr 1fr;gap:14px}}
   .reader-ba-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.08);border:1px solid #eee;position:relative;transition:transform .2s ease,box-shadow .2s ease}
   .reader-ba-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
-  .reader-ba-card .ba-img-wrap{position:relative;background:#000}
+  .reader-ba-card .ba-img-wrap{position:relative;background:#fafafa}
   .reader-ba-card img{width:100%;height:auto;display:block;aspect-ratio:16/9;object-fit:cover}
-  .reader-ba-card .ba-verified{position:absolute;top:10px;right:10px;background:rgba(46,125,50,.95);color:#fff;font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;padding:4px 10px;border-radius:14px;backdrop-filter:blur(6px);box-shadow:0 2px 6px rgba(0,0,0,.2)}
-  .reader-ba-card .ba-lbs{position:absolute;bottom:10px;left:10px;background:rgba(204,0,0,.95);color:#fff;font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;font-weight:900;letter-spacing:-.02em;padding:5px 11px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
   .reader-ba-card .ba-meta{padding:12px 14px}
+  .reader-ba-card .ba-badges{display:flex;gap:6px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+  .reader-ba-card .ba-verified{display:inline-flex;align-items:center;gap:4px;background:#2e7d32;color:#fff;font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;padding:4px 9px;border-radius:14px}
+  .reader-ba-card .ba-lbs{display:inline-flex;align-items:center;background:#cc0000;color:#fff;font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:900;letter-spacing:-.02em;padding:4px 10px;border-radius:6px}
   .reader-ba-card .ba-name{font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:900;font-size:14px;color:#111;letter-spacing:-.01em;margin-bottom:2px}
   .reader-ba-card .ba-detail{font-size:12px;color:#666;line-height:1.4}
   .reader-ba-card .ba-detail strong{color:#a33c00;font-weight:700}
@@ -596,10 +597,12 @@ clarity("set","funnel_step","quiz_completed");
       <figure class="reader-ba-card">
         <div class="ba-img-wrap">
           <img src="img/ba_real_1.jpg" loading="lazy" decoding="async" alt="Sofia G., 34, Miami FL — 90-day protocol, 38 lbs lost" width="1200" height="675">
-          <span class="ba-verified">✓ Verified</span>
-          <span class="ba-lbs">−38 lbs</span>
         </div>
         <figcaption class="ba-meta">
+          <div class="ba-badges">
+            <span class="ba-lbs">−38 lbs</span>
+            <span class="ba-verified">✓ Verified</span>
+          </div>
           <div class="ba-name">Sofia G., 34</div>
           <div class="ba-detail">Miami, FL · <strong>90-day protocol</strong> · 38 lbs lost</div>
         </figcaption>
@@ -608,10 +611,12 @@ clarity("set","funnel_step","quiz_completed");
       <figure class="reader-ba-card">
         <div class="ba-img-wrap">
           <img src="img/ba_real_2.jpg" loading="lazy" decoding="async" alt="Megan T., 31, Denver CO — 5-month protocol, 62 lbs lost" width="1200" height="675">
-          <span class="ba-verified">✓ Verified</span>
-          <span class="ba-lbs">−62 lbs</span>
         </div>
         <figcaption class="ba-meta">
+          <div class="ba-badges">
+            <span class="ba-lbs">−62 lbs</span>
+            <span class="ba-verified">✓ Verified</span>
+          </div>
           <div class="ba-name">Megan T., 31</div>
           <div class="ba-detail">Denver, CO · <strong>5-month protocol</strong> · 62 lbs lost</div>
         </figcaption>
@@ -620,10 +625,12 @@ clarity("set","funnel_step","quiz_completed");
       <figure class="reader-ba-card">
         <div class="ba-img-wrap">
           <img src="img/ba_real_3.jpg" loading="lazy" decoding="async" alt="Diane K., 49, Boise ID — 6-month protocol, 41 lbs lost" width="1200" height="675">
-          <span class="ba-verified">✓ Verified</span>
-          <span class="ba-lbs">−41 lbs</span>
         </div>
         <figcaption class="ba-meta">
+          <div class="ba-badges">
+            <span class="ba-lbs">−41 lbs</span>
+            <span class="ba-verified">✓ Verified</span>
+          </div>
           <div class="ba-name">Diane K., 49</div>
           <div class="ba-detail">Boise, ID · <strong>6-month protocol</strong> · 41 lbs lost</div>
         </figcaption>
