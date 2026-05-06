@@ -361,6 +361,30 @@
   .press-logo--slim-strong{font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15.5px;color:#0a0a0a;font-weight:700}
   .press-logo--slim-strong span{font-style:italic;color:#7a3300;margin-left:2px;font-weight:900}
 
+
+  /* === REAL READER TRANSFORMATIONS GRID === */
+  .reader-ba-section{margin:34px 0 26px}
+  .reader-ba-head{text-align:center;margin-bottom:16px}
+  .reader-ba-head .ba-eyebrow{display:inline-block;background:#fff0e6;color:#a33c00;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;border:1px solid #f5c9ac}
+  .reader-ba-head h2{font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:24px;font-weight:900;line-height:1.2;color:#111;letter-spacing:-.02em;margin-bottom:6px}
+  .reader-ba-head h2 span{color:#a33c00}
+  .reader-ba-head p{color:#555;font-size:13.5px;line-height:1.5;max-width:520px;margin:0 auto}
+  .reader-ba-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:14px}
+  @media(min-width:680px){.reader-ba-grid{grid-template-columns:1fr 1fr 1fr;gap:14px}}
+  .reader-ba-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.08);border:1px solid #eee;position:relative;transition:transform .2s ease,box-shadow .2s ease}
+  .reader-ba-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+  .reader-ba-card .ba-img-wrap{position:relative;background:#000}
+  .reader-ba-card img{width:100%;height:auto;display:block;aspect-ratio:16/9;object-fit:cover}
+  .reader-ba-card .ba-verified{position:absolute;top:10px;right:10px;background:rgba(46,125,50,.95);color:#fff;font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;padding:4px 10px;border-radius:14px;backdrop-filter:blur(6px);box-shadow:0 2px 6px rgba(0,0,0,.2)}
+  .reader-ba-card .ba-lbs{position:absolute;bottom:10px;left:10px;background:rgba(204,0,0,.95);color:#fff;font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;font-weight:900;letter-spacing:-.02em;padding:5px 11px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+  .reader-ba-card .ba-meta{padding:12px 14px}
+  .reader-ba-card .ba-name{font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:900;font-size:14px;color:#111;letter-spacing:-.01em;margin-bottom:2px}
+  .reader-ba-card .ba-detail{font-size:12px;color:#666;line-height:1.4}
+  .reader-ba-card .ba-detail strong{color:#a33c00;font-weight:700}
+  .reader-ba-foot{text-align:center;font-size:12.5px;color:#666;line-height:1.55;margin-top:8px;padding:0 10px}
+  .reader-ba-foot strong{color:#111;font-weight:700}
+  .reader-ba-foot em{color:#a33c00;font-style:normal;font-weight:700}
+
   /* === END MERGED OFFER CSS === */
 
 
@@ -557,6 +581,58 @@ clarity("set","funnel_step","quiz_completed");
     </div>
 
   </div>
+
+
+  <!-- REAL READER TRANSFORMATIONS — 3-photo BA grid -->
+  <section class="reader-ba-section" aria-label="Real reader transformations">
+    <div class="reader-ba-head">
+      <div class="ba-eyebrow">Real reader submissions</div>
+      <h2>Three readers. Three protocols. <span>141 lbs lost between them.</span></h2>
+      <p>Voluntary submissions from women who completed the 90-day or 5-month protocol — no Ozempic, no surgery, no fad diets. Bodies, faces, names, cities. Real.</p>
+    </div>
+
+    <div class="reader-ba-grid">
+
+      <figure class="reader-ba-card">
+        <div class="ba-img-wrap">
+          <img src="img/ba_real_1.jpg" loading="lazy" decoding="async" alt="Sofia G., 34, Miami FL — 90-day protocol, 38 lbs lost" width="1200" height="675">
+          <span class="ba-verified">✓ Verified</span>
+          <span class="ba-lbs">−38 lbs</span>
+        </div>
+        <figcaption class="ba-meta">
+          <div class="ba-name">Sofia G., 34</div>
+          <div class="ba-detail">Miami, FL · <strong>90-day protocol</strong> · 38 lbs lost</div>
+        </figcaption>
+      </figure>
+
+      <figure class="reader-ba-card">
+        <div class="ba-img-wrap">
+          <img src="img/ba_real_2.jpg" loading="lazy" decoding="async" alt="Megan T., 31, Denver CO — 5-month protocol, 62 lbs lost" width="1200" height="675">
+          <span class="ba-verified">✓ Verified</span>
+          <span class="ba-lbs">−62 lbs</span>
+        </div>
+        <figcaption class="ba-meta">
+          <div class="ba-name">Megan T., 31</div>
+          <div class="ba-detail">Denver, CO · <strong>5-month protocol</strong> · 62 lbs lost</div>
+        </figcaption>
+      </figure>
+
+      <figure class="reader-ba-card">
+        <div class="ba-img-wrap">
+          <img src="img/ba_real_3.jpg" loading="lazy" decoding="async" alt="Diane K., 49, Boise ID — 6-month protocol, 41 lbs lost" width="1200" height="675">
+          <span class="ba-verified">✓ Verified</span>
+          <span class="ba-lbs">−41 lbs</span>
+        </div>
+        <figcaption class="ba-meta">
+          <div class="ba-name">Diane K., 49</div>
+          <div class="ba-detail">Boise, ID · <strong>6-month protocol</strong> · 41 lbs lost</div>
+        </figcaption>
+      </figure>
+
+    </div>
+
+    <p class="reader-ba-foot"><strong>3 verified reader submissions</strong> · <em>141 lbs lost between them</em> · zero Ozempic, zero surgery. Individual results vary — these reflect commitment to the full protocol period.</p>
+  </section>
 
   <!-- AMAZON IMPACT SECTION -->
   <section class="impact-section" aria-label="Amazon community impact">
@@ -1367,6 +1443,7 @@ document.querySelectorAll('a.buy-btn').forEach(function(btn){
       '.social-proof-bar', '.sp-rating', '.sp-meta',
       '.live-viewers-bar', '.stock-bar', '.countdown-bar',
       '.testi-title', '.testi-card', '.testi-avatar', '.testi-photo',
+      '.reader-ba-section', '.reader-ba-head', '.reader-ba-card', '.ba-name', '.ba-detail', '.ba-meta', '.reader-ba-foot',
       '.section h2', '.section p strong',
       '.anchor-banner', '.anchor-banner div',
       '.complete-bar', '.reference-note'
