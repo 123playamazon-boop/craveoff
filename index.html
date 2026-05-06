@@ -88,6 +88,20 @@
   .stat .num{font-family:'Playfair Display',serif;font-weight:900;font-size:36px;color:var(--red);line-height:1}
   .stat .lbl{font-family:Roboto,sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#333;margin-top:8px}
 
+
+  .dual-personas{margin:24px 0 20px;display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:680px){.dual-personas{grid-template-columns:1fr 1fr;gap:16px}}
+  .persona-card{background:#fff;border:2px solid #f0e4d6;border-radius:14px;padding:20px 20px;box-shadow:0 3px 14px rgba(0,0,0,.05);position:relative;cursor:pointer;transition:all .18s ease}
+  .persona-card:hover{border-color:#cc5500;transform:translateY(-2px);box-shadow:0 6px 22px rgba(204,85,0,.12)}
+  .persona-card.persona-b{border-color:#cc0000;background:linear-gradient(135deg,#fff5f0 0%,#fff 100%)}
+  .persona-card.persona-b:hover{border-color:#a00000}
+  .persona-tag{display:inline-block;background:#fff0e6;color:#a33c00;font-family:Roboto,sans-serif;font-size:10.5px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:14px;margin-bottom:10px;border:1px solid #f5c9ac}
+  .persona-card.persona-b .persona-tag{background:#fff0f0;color:#a00000;border-color:#f5acac}
+  .persona-card h4{font-family:'Playfair Display',serif;font-size:18px;line-height:1.25;font-weight:900;color:#111;margin-bottom:8px}
+  .persona-card.persona-b h4 span{color:#cc0000}
+  .persona-card p{font-size:14px;line-height:1.55;color:#444;margin:0}
+  .persona-card .persona-foot{margin-top:10px;font-size:12.5px;color:#a33c00;font-weight:700;letter-spacing:.3px}
+  .persona-card.persona-b .persona-foot{color:#a00000}
   .cta-wrap{margin:32px 0;text-align:center}
   .cta{display:inline-block;background:var(--red);color:#fff;padding:20px 48px;font-family:Roboto,sans-serif;font-weight:700;font-size:18px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:4px;position:relative;box-shadow:0 4px 14px rgba(204,0,0,.3);animation:newsCtaPulse 1.4s infinite}
   .cta::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;border-radius:4px;animation:ctaWave 1.4s infinite;pointer-events:none}
@@ -391,7 +405,7 @@ clarity("set","funnel_step","advertorial_view");
 <article class="wrap">
 
   <h1 class="headline" data-clickable="quiz" style="cursor:pointer">The <em>Brazilian Amazonian Berry</em> Erasing Cravings, Belly Fat &amp; Afternoon Hunger Crashes <em>In Just 21 Days</em> — Without A Single Ozempic Shot</h1>
-  <p class="subhead" data-clickable="quiz" style="cursor:pointer"><strong>Forget Ozempic. Forget Wegovy. Forget $1,400/month injections.</strong> A 4-ingredient Amazonian formula — wild açaí, green tea, garcinia and apple cider vinegar — is silencing afternoon cravings and melting belly fat on American women 35+ who were one click away from booking a GLP-1 prescription. Endocrinologists are calling it "the first natural protocol that targets the appetite signaling Ozempic was supposed to fix."</p>
+  <p class="subhead" data-clickable="quiz" style="cursor:pointer"><strong>Whether you're trying to lose weight without ever touching Ozempic — or you're ON Ozempic right now and the nausea, the gaunt face and the dead-eyed fatigue have you Googling "how to quit safely" — read this before your next dose.</strong> A 4-ingredient Amazonian formula — wild açaí, green tea, garcinia and apple cider vinegar — is silencing afternoon cravings and melting belly fat on women 35+ in both groups. Endocrinologists are calling it "the first natural protocol that targets the appetite signaling Ozempic was supposed to fix — without the side effects that made you want out."</p>
 
   <div class="byline">
     <div class="avatar">CV</div>
@@ -409,6 +423,22 @@ clarity("set","funnel_step","advertorial_view");
   <div class="status-proof" style="margin:22px 0 14px;padding:18px 20px;background:#fff8e8;border-left:4px solid #cc5500;border-radius:0 12px 12px 0;font-family:Georgia,'Times New Roman',serif">
     <p style="font-size:15.5px;line-height:1.6;color:#222;margin:0 0 10px 0"><strong>What started as a São Paulo cooperative secret is now quietly stocked at Beverly Hills longevity clinics</strong> — sold out three times this year at two upscale Manhattan pharmacies before official import shipments could refill the shelves.</p>
     <p style="font-size:14.5px;line-height:1.6;color:#444;margin:0;font-style:italic">Hollywood A-listers fly it in privately from Brazilian growers. Tech-CEO wives in Silicon Valley get it through concierge metabolic clinics. The same women who could afford $1,400/month Ozempic are increasingly choosing this 4-ingredient natural protocol starting at $79 instead — quietly, before friends and trainers notice.</p>
+  </div>
+
+  <!-- DUAL PERSONA CALLOUT — speaks to both cold weight-loss readers and current GLP-1 users -->
+  <div class="dual-personas">
+    <div class="persona-card" data-clickable="quiz">
+      <span class="persona-tag">If you&apos;re reader #1</span>
+      <h4>You&apos;ve been watching the Ozempic conversations from the outside.</h4>
+      <p>You want to lose 15, 25, 40 pounds — but the idea of injecting yourself every Tuesday for the rest of your life makes your stomach turn. You&apos;ve seen what it does to your friend&apos;s face. You want a real way out — natural, food-based, no needles, no prescription, no chemical lease.</p>
+      <div class="persona-foot">→ Take the 30-second test, see if your profile matches</div>
+    </div>
+    <div class="persona-card persona-b" data-clickable="quiz">
+      <span class="persona-tag">If you&apos;re reader #2</span>
+      <h4>You&apos;re already on Ozempic, Wegovy or Mounjaro — <span>and you want out</span>.</h4>
+      <p>The nausea after every meal. The metallic taste. The "Ozempic face" staring back from the mirror. The 3pm dead-eyed fatigue that no coffee fixes. The fear that the moment you stop, the weight floods back worse than before. You&apos;re looking for an exit ramp that doesn&apos;t end in 20 lbs of rebound.</p>
+      <div class="persona-foot">→ Take the 30-second test, see your taper-friendly protocol match</div>
+    </div>
   </div>
 
   <div class="cta-wrap">
@@ -440,6 +470,17 @@ clarity("set","funnel_step","advertorial_view");
     <div class="pullquote">
       "GLP-1 drugs treat the symptom. The signaling problem is still there when you stop. That's why almost everyone regains the weight."
       <cite>— Dr. Marcus Levin, board-certified endocrinologist, Cleveland Clinic</cite>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#a00000;margin:26px 0 10px">"I was on Wegovy for 9 months. The nausea won. So did the mirror."</h3>
+
+    <p>Rebecca, 44, from Charlotte, started Wegovy in 2024 after her doctor flagged her A1C trending toward pre-diabetes. The first 4 months were a honeymoon — the cravings vanished, the scale moved 18 pounds. Then the side effects she'd brushed off in the brochure stopped being a side note. <strong>Vomiting twice a week. A flat, hollowed-out face her sister kept commenting on. Energy so low she canceled her son's birthday hike.</strong> When she asked her doctor for a tapering plan, the answer was a shrug — "most patients just stop." She stopped. Within 11 weeks she'd regained 22 pounds, plus 4 more her body decided to keep as insurance.</p>
+
+    <p>Rebecca's pattern is now so common that the term "<strong>GLP-1 rebound profile</strong>" is showing up in clinical notes — women between 38 and 55 who lost weight fast on the shot, came off because of side effects, regained more than they started with, and are now looking for a <em>signaling-based</em> approach that doesn't depend on weekly chemistry. The Brazilian protocol below was built precisely for that profile — gentle on the stomach, food-based, designed to coax leptin sensitivity back online instead of overriding it.</p>
+
+    <div class="pullquote" style="border-left-color:#cc0000">
+      "I should have started with the natural protocol. The shot didn't fix anything — it just paused it. The minute I stopped, my body remembered exactly where it wanted to be."
+      <cite>— Rebecca M., 44, Charlotte NC · Crave-Off user, month 3</cite>
     </div>
 
     <h2>Why the $72 billion diet industry doesn't want you to know this either</h2>
@@ -1156,6 +1197,7 @@ clarity("set","funnel_step","advertorial_view");
       '.stats', '.stat', '.stat .num', '.stat .lbl',
       '.body h2', '.body h3', '.body strong', '.body em',
       '.status-proof', '.status-proof p',
+      '.dual-personas', '.persona-card', '.persona-card h4', '.persona-card p', '.persona-tag', '.persona-foot',
       '.fr-warn', '.fr-stock', '.fr-sub'
     ];
 
