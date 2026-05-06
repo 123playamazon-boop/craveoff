@@ -102,7 +102,7 @@ clarity("set","funnel_step","quiz_started");
   <!-- ================================================== -->
   <!-- INTRO SCREEN                                        -->
   <!-- ================================================== -->
-  <div id="intro" class="intro">
+  <div id="intro" class="intro hidden">
     <div class="badge">⏱ 30-Second Personalized Assessment</div>
     <h1>Discover what may be affecting <span>your appetite control</span> — in under 30 seconds.</h1>
     <p class="lede">Most women struggling with cravings and stubborn weight share 3 common signaling patterns. This short diagnostic-style assessment identifies yours — and matches you with a support plan used by thousands of women 35+.</p>
@@ -123,7 +123,7 @@ clarity("set","funnel_step","quiz_started");
   <!-- ================================================== -->
   <!-- QUIZ                                                -->
   <!-- ================================================== -->
-  <div id="quizWrap" class="hidden">
+  <div id="quizWrap">
 
     <div class="quiz-header">
       <div class="mini-badge">Personalized Assessment</div>
@@ -234,13 +234,27 @@ clarity("set","funnel_step","quiz_started");
   // ==================================================
   // INTRO → QUIZ START
   // ==================================================
-  document.getElementById('startBtn').addEventListener('click', () => {
-    try { sfx.currentTime = 0; sfx.play().catch(()=>{}); } catch(e){}
-    document.getElementById('intro').classList.add('hidden');
-    document.getElementById('quizWrap').classList.remove('hidden');
-    setStep(1);
-    window.scrollTo({top:0, behavior:'smooth'});
-  });
+  // INTRO SCREEN REMOVED — user lands directly on Q1 (mirrors bumbum quiz flow)
+  // The startBtn handler is kept defensive in case any old cached link still
+  // references it, but the intro is hidden by default and Q1 is shown immediately.
+  (function(){
+    var btn = document.getElementById('startBtn');
+    if(btn){
+      btn.addEventListener('click', function(){
+        try { sfx.currentTime = 0; sfx.play().catch(function(){}); } catch(e){}
+        document.getElementById('intro').classList.add('hidden');
+        document.getElementById('quizWrap').classList.remove('hidden');
+        setStep(1);
+        window.scrollTo({top:0, behavior:'smooth'});
+      });
+    }
+  })();
+
+  // Auto-start the quiz on Q1 — no intro click required
+  function bootQuiz(){ try { setStep(1); } catch(e){} }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', bootQuiz);
+  } else { bootQuiz(); }
 
   // ==================================================
   // STEP NAVIGATION
