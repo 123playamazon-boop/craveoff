@@ -131,7 +131,7 @@ clarity("set","funnel_step","quiz_started");
     </div>
 
     <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
-    <div class="step-counter">Question <span id="stepNow">1</span> of <span id="stepTotal">8</span></div>
+    <div class="step-counter">Question <span id="stepNow">1</span> of <span id="stepTotal">5</span></div>
 
     <div id="quiz">
 
@@ -183,44 +183,9 @@ clarity("set","funnel_step","quiz_started");
         </div>
       </div>
 
-      <!-- Q5: Snacking -->
+
+      <!-- Q5: Commitment -->
       <div class="card q hidden" data-q="5">
-        <div class="q-label">Eating Behavior</div>
-        <div class="question">How often do you snack between meals?</div>
-        <div class="options">
-          <button class="option" data-v="multiple"><span class="emoji">🍪</span>Multiple times a day — I can't stop</button>
-          <button class="option" data-v="couple"><span class="emoji">🫐</span>A couple of times a day</button>
-          <button class="option" data-v="rare"><span class="emoji">🥗</span>Rarely — only when truly hungry</button>
-          <button class="option" data-v="never"><span class="emoji">⏳</span>Almost never — I stick to my meals</button>
-        </div>
-      </div>
-
-      <!-- Q6: Consistency -->
-      <div class="card q hidden" data-q="6">
-        <div class="q-label">Your Consistency</div>
-        <div class="question">How easy is it for you to stay consistent with a routine?</div>
-        <div class="options">
-          <button class="option" data-v="low"><span class="emoji">😓</span>Very hard — I start and quit quickly</button>
-          <button class="option" data-v="medium"><span class="emoji">🌀</span>Somewhat — I have good and bad weeks</button>
-          <button class="option" data-v="high"><span class="emoji">💪</span>Easy — once I commit, I follow through</button>
-          <button class="option" data-v="varies"><span class="emoji">⚖️</span>Depends on stress and life</button>
-        </div>
-      </div>
-
-      <!-- Q7: Energy -->
-      <div class="card q hidden" data-q="7">
-        <div class="q-label">Your Energy</div>
-        <div class="question">How are your energy levels throughout the day?</div>
-        <div class="options">
-          <button class="option" data-v="stable"><span class="emoji">☀️</span>Stable and consistent</button>
-          <button class="option" data-v="afternoon_drop"><span class="emoji">🥱</span>Solid in the morning, drops in the afternoon</button>
-          <button class="option" data-v="crashes"><span class="emoji">💥</span>I have sudden crashes that make me reach for food</button>
-          <button class="option" data-v="always_low"><span class="emoji">😴</span>Always low — I feel tired most of the day</button>
-        </div>
-      </div>
-
-      <!-- Q8: Commitment -->
-      <div class="card q hidden" data-q="8">
         <div class="q-label">Your Commitment</div>
         <div class="question">How serious are you about reaching your goal in the next 90 days?</div>
         <div class="options">
@@ -261,7 +226,7 @@ clarity("set","funnel_step","quiz_started");
   // ==================================================
   // CONFIG
   // ==================================================
-  const total = 8;
+  const total = 5;
   let current = 1;
   const answers = {};
   const sfx = document.getElementById('clickSfx');
@@ -354,16 +319,17 @@ clarity("set","funnel_step","quiz_started");
         // If high commitment OR low/varies consistency OR persistent hunger/cravings
         // → recommend 3 bottles (they need more support + higher LTV)
         let recommended = 2;
-        const q6 = answers.q6;  // consistency
-        const q8 = answers.q8;  // commitment
+        const q5 = answers.q5;  // commitment
         const q4 = answers.q4;  // hunger
+        const q3 = answers.q3;  // history
         const q2 = answers.q2;  // struggle
 
         if(
-          q8 === 'very' ||
-          q6 === 'low' || q6 === 'varies' ||
+          q5 === 'very' ||
           q4 === 'allday' ||
-          (q2 === 'consistency' && q6 !== 'high')
+          q3 === 'pharma' ||
+          q2 === 'cravings' ||
+          q2 === 'consistency'
         ){
           recommended = 3;
         }
