@@ -673,34 +673,6 @@ clarity("set","funnel_step","advertorial_view");
 
     <p>Reader submissions like these — mostly women <strong>40 to 60, who describe having "tried everything"</strong> — have been arriving at a rate health editors say they haven't seen since the ozempic coverage peaked in 2023.</p>
 
-    <!-- ============================================== -->
-    <!-- EMBEDDED MINI-QUIZ — Self-identification        -->
-    <!-- ============================================== -->
-    <div class="mini-quiz">
-      <div class="mq-head">
-        <div class="mq-badge">Quick Check — Self Assessment</div>
-        <h3>Do any of these sound like <em>you</em>?</h3>
-        <p class="mq-sub">Based on the responder data, women who check 3 or more of the patterns below are the ones who tend to see the biggest shift within the first 30 days.</p>
-      </div>
-
-      <div class="mq-list" id="mqList">
-        <label class="mq-item"><input type="checkbox" data-mq> <span>Cravings you can't control</span></label>
-        <label class="mq-item"><input type="checkbox" data-mq> <span>Afternoon energy crashes</span></label>
-        <label class="mq-item"><input type="checkbox" data-mq> <span>Wake up still exhausted</span></label>
-        <label class="mq-item"><input type="checkbox" data-mq> <span>Weight that won't budge</span></label>
-        <label class="mq-item"><input type="checkbox" data-mq> <span>Emotional or stress eating</span></label>
-        <label class="mq-item"><input type="checkbox" data-mq> <span>Belly fat that keeps growing</span></label>
-        <label class="mq-item"><input type="checkbox" data-mq> <span>Multiple failed diets</span></label>
-        <label class="mq-item"><input type="checkbox" data-mq> <span>Feeling invisible in photos</span></label>
-      </div>
-
-      <div class="mq-counter">You checked <span class="num" id="mqCount">0</span> of 8 symptoms</div>
-
-      <div class="mq-verdict" id="mqVerdict"></div>
-
-      <a href="quiz.html" class="mq-cta" id="mqCta" style="display:none">Take My Free 30-Second Assessment →</a>
-    </div>
-
   </div>
 
   <div class="hero"><img src="img/before_after_1.jpg" alt="Reader before and after weight loss — 60 days"></div>
@@ -1103,50 +1075,6 @@ clarity("set","funnel_step","advertorial_view");
         if(s) s.textContent = sN.toLocaleString();
       }
     }, 3500);
-  })();
-
-  // ======================================
-  // MINI-QUIZ — self-identification widget
-  // ======================================
-  (function(){
-    var boxes = document.querySelectorAll('#mqList input[data-mq]');
-    var counter = document.getElementById('mqCount');
-    var verdict = document.getElementById('mqVerdict');
-    var cta = document.getElementById('mqCta');
-    if(!boxes.length) return;
-
-    function update(){
-      var n = 0;
-      boxes.forEach(function(b){
-        var lbl = b.closest('.mq-item');
-        if(b.checked){ n++; lbl.classList.add('checked'); }
-        else { lbl.classList.remove('checked'); }
-      });
-      counter.textContent = n;
-
-      if(n === 0){
-        verdict.classList.remove('show');
-        cta.style.display = 'none';
-      } else if(n <= 2){
-        verdict.innerHTML = '<strong>You checked ' + n + ' symptom' + (n>1?'s':'') + '.</strong> Your profile shows early patterns. Taking the 30-second assessment will give you a personalized breakdown before the pattern deepens.';
-        verdict.classList.add('show');
-        cta.style.display = 'block';
-      } else if(n <= 4){
-        verdict.innerHTML = '<strong>You checked ' + n + ' of 8 symptoms.</strong> This matches the responder-group profile seen in the Brazilian data. Most women at this level report meaningful change within the first 30 days.';
-        verdict.classList.add('show');
-        cta.style.display = 'block';
-      } else if(n <= 6){
-        verdict.innerHTML = '<strong>You checked ' + n + ' of 8 — your pattern is strong.</strong> 94% of women at this symptom count were matched to the full responder profile. Take the free assessment to see your personalized plan.';
-        verdict.classList.add('show');
-        cta.style.display = 'block';
-      } else {
-        verdict.innerHTML = '<strong>⚠️ You checked ' + n + ' of 8 — the highest responder profile.</strong> Your symptom stack matches the exact demographic the Amazonian formula was designed around. Take the 30-second assessment to lock in your profile-matched plan.';
-        verdict.classList.add('show');
-        cta.style.display = 'block';
-      }
-    }
-
-    boxes.forEach(function(b){ b.addEventListener('change', update); });
   })();
 </script>
 
