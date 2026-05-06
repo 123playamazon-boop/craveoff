@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Personalized Analysis — Crave-Off</title>
+<meta name="description" content="Personalized appetite and metabolism analysis based on your quiz responses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#faf7f2;color:#111;font-family:Roboto,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px 70px}
+
+  /* COMPLETION BAR */
+  .complete-bar{background:linear-gradient(90deg,#2e7d32,#4caf50);color:#fff;text-align:center;padding:10px 16px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700}
+  .complete-bar .pulse{display:inline-block;width:8px;height:8px;background:#fff;border-radius:50%;margin-right:8px;vertical-align:middle;animation:pulse 1.2s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+
+  /* HERO HEADER */
+  .hero-head{text-align:center;padding:32px 0 18px}
+  .match-badge{display:inline-block;background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;padding:7px 18px;border-radius:30px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:16px;box-shadow:0 3px 10px rgba(46,125,50,.25)}
+  h1.headline{font-family:'Playfair Display',serif;font-size:30px;line-height:1.18;font-weight:900;margin-bottom:12px;color:#111}
+  @media(min-width:640px){h1.headline{font-size:38px}}
+  h1.headline span{color:#a33c00;display:inline}
+  .subhead{color:#555;font-size:16px;line-height:1.55;max-width:580px;margin:0 auto}
+  .subhead em{color:#333;font-style:italic}
+
+  /* CONFETTI BLOCKER */
+  canvas#confetti{position:fixed;inset:0;pointer-events:none;z-index:9999}
+
+  /* DIAGNOSTIC CARDS */
+  .diagnostic{margin:30px 0 26px}
+  .diagnostic-title{font-family:'Playfair Display',serif;font-size:22px;text-align:center;margin-bottom:6px;font-weight:900}
+  .diagnostic-sub{text-align:center;color:#777;font-size:13px;margin-bottom:20px;letter-spacing:.5px}
+  .profile-grid{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:640px){.profile-grid{grid-template-columns:1fr 1fr}}
+  .profile-item{background:#fff;border-radius:14px;padding:18px 18px;box-shadow:0 2px 10px rgba(0,0,0,.05);display:flex;gap:14px;align-items:flex-start}
+  .profile-item .icon{flex-shrink:0;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#f4efe6,#fff0e6);display:flex;align-items:center;justify-content:center;font-size:20px}
+  .profile-item .pcontent{flex:1}
+  .profile-item .plabel{font-size:11px;color:#999;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:4px}
+  .profile-item .pvalue{font-family:'Playfair Display',serif;font-size:16px;color:#111;font-weight:700;line-height:1.3;margin-bottom:4px}
+  .profile-item .pnote{font-size:12px;color:#666;line-height:1.45}
+
+  /* EXPLANATION SECTION */
+  .section{margin:36px 0}
+  .section h2{font-family:'Playfair Display',serif;font-size:24px;line-height:1.25;font-weight:900;margin-bottom:14px;color:#111}
+  .section h2 span{color:#a33c00}
+  .section p{font-size:16px;line-height:1.65;color:#333;margin-bottom:14px}
+  .section p strong{color:#111;font-weight:700}
+
+  .key-point{background:#fff;border-left:4px solid #a33c00;padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0;font-size:15px;color:#333;line-height:1.55}
+
+  /* AMAZON SECTION */
+  .amazon-block{background:linear-gradient(135deg,#2d5a27 0%,#1e3a1a 100%);color:#fff;border-radius:16px;padding:28px 24px;margin:26px 0;position:relative;overflow:hidden}
+  .amazon-block::before{content:'🌿';position:absolute;top:-20px;right:-20px;font-size:140px;opacity:.08;transform:rotate(20deg)}
+  .amazon-block h2{color:#fff;font-family:'Playfair Display',serif;font-size:22px;margin-bottom:12px;line-height:1.25;position:relative}
+  .amazon-block p{color:rgba(255,255,255,.9);font-size:15px;line-height:1.6;margin-bottom:12px;position:relative}
+  .amazon-block em{color:#ffd98a}
+  .ingredient-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px;position:relative}
+  @media(min-width:640px){.ingredient-row{grid-template-columns:repeat(4,1fr)}}
+  .ing-chip{background:rgba(255,255,255,.12);backdrop-filter:blur(10px);padding:12px 8px;border-radius:10px;text-align:center;border:1px solid rgba(255,255,255,.15)}
+  .ing-chip .ename{font-size:13px;font-weight:700;margin-bottom:2px}
+  .ing-chip .edesc{font-size:10px;color:rgba(255,255,255,.7);letter-spacing:.5px;text-transform:uppercase}
+
+  /* PRODUCT SOFT INTRO */
+  .product-intro{background:#fff;border-radius:16px;padding:24px;margin:26px 0;box-shadow:0 3px 14px rgba(0,0,0,.06);display:grid;grid-template-columns:1fr;gap:18px;align-items:center;text-align:center}
+  @media(min-width:640px){.product-intro{grid-template-columns:180px 1fr;text-align:left;gap:22px}}
+  .product-intro .pimg{width:160px;height:160px;margin:0 auto;background:#fafafa;border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  @media(min-width:640px){.product-intro .pimg{width:180px;height:180px;margin:0}}
+  .product-intro .pimg img{width:100%;height:100%;object-fit:contain}
+  .product-intro h3{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:6px;font-weight:900}
+  .product-intro .p-tag{display:inline-block;background:#e7f5e7;color:#2e7d32;padding:3px 10px;border-radius:12px;font-size:10px;font-weight:700;letter-spacing:.5px;margin-bottom:10px;text-transform:uppercase}
+  .product-intro p{font-size:14px;color:#555;line-height:1.55;margin-bottom:8px}
+
+  /* TWO PATHS */
+  .paths-intro{text-align:center;margin:10px 0 18px}
+  .paths-intro h2{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;margin-bottom:8px}
+  .paths-intro p{color:#666;font-size:14px}
+  .paths-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:26px}
+  @media(min-width:640px){.paths-grid{grid-template-columns:1fr 1fr}}
+  .path-card{background:#fff;border:2px solid #eaeaea;border-radius:14px;padding:22px 20px;position:relative}
+  .path-card.path-b{border-color:#2e7d32;border-width:3px}
+  .path-card.path-b::before{content:'✓ RECOMMENDED FOR YOU';position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#2e7d32;color:#fff;padding:4px 12px;font-size:10px;letter-spacing:1.5px;font-weight:700;border-radius:12px;white-space:nowrap}
+  .path-label{font-size:11px;color:#999;text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:8px}
+  .path-b .path-label{color:#2e7d32}
+  .path-card h3{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:14px;line-height:1.25;font-weight:900}
+  .path-list{list-style:none;padding:0;margin:0}
+  .path-list li{font-size:14px;color:#444;line-height:1.5;margin-bottom:8px;padding-left:22px;position:relative}
+  .path-card .path-list li::before{content:'○';position:absolute;left:0;top:0;color:#999;font-size:16px;line-height:1.3}
+  .path-b .path-list li::before{content:'●';color:#2e7d32}
+
+  /* SOCIAL PROOF */
+  .reports{display:grid;grid-template-columns:1fr;gap:12px;margin-top:16px}
+  .report{background:#fff;border-radius:12px;padding:16px 18px;border-left:3px solid #a33c00;box-shadow:0 1px 6px rgba(0,0,0,.04)}
+  .report .rq{font-family:Georgia,serif;font-size:14px;font-style:italic;color:#333;line-height:1.55;margin-bottom:8px}
+  .report .rmeta{font-size:11px;color:#888;letter-spacing:.5px}
+  .report .rmeta strong{color:#555}
+  .compliance-note{background:#f8f8f8;padding:10px 14px;border-radius:8px;font-size:11px;color:#888;text-align:center;margin-top:14px;line-height:1.5}
+
+  /* DISCLAIMER */
+  .disclaimer-block{background:#f5f5f5;border-radius:10px;padding:16px 18px;font-size:11px;color:#777;line-height:1.55;margin:28px 0 24px}
+  .disclaimer-block strong{color:#555}
+
+  /* FINAL CTA */
+  .final-cta{text-align:center;margin:30px 0 20px}
+  .cta-preline{font-size:13px;color:#555;margin-bottom:14px;letter-spacing:.5px;text-transform:uppercase;font-weight:700}
+  .cta-btn{display:inline-block;background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;padding:20px 40px;font-size:16px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;text-decoration:none;border-radius:50px;box-shadow:0 8px 22px rgba(46,125,50,.35);animation:ctaPulse 1.6s infinite;position:relative}
+  @keyframes ctaPulse{0%,100%{transform:scale(1);box-shadow:0 8px 22px rgba(46,125,50,.35)}50%{transform:scale(1.03);box-shadow:0 12px 30px rgba(46,125,50,.5)}}
+  .cta-subline{font-size:12px;color:#888;margin-top:12px;letter-spacing:.5px}
+
+  .trust-icons{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:20px;font-size:11px;color:#666;letter-spacing:.3px}
+  .trust-icons span{display:inline-flex;align-items:center;gap:4px}
+
+  /* STICKY MOBILE CTA */
+  .sticky-mobile-cta{display:none;position:fixed;left:0;right:0;bottom:0;z-index:9997;background:rgba(255,255,255,.98);border-top:1px solid #e5e5e5;padding:10px 14px env(safe-area-inset-bottom) 10px;box-shadow:0 -4px 14px rgba(0,0,0,.08);backdrop-filter:blur(10px)}
+  .sticky-mobile-cta a{display:block;background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;font-family:Roboto,sans-serif;font-size:15px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;text-decoration:none;text-align:center;padding:15px 10px;border-radius:8px;box-shadow:0 3px 10px rgba(46,125,50,.4);animation:stickyPulseG 1.6s infinite}
+  @keyframes stickyPulseG{0%,100%{box-shadow:0 3px 10px rgba(46,125,50,.4)}50%{box-shadow:0 3px 18px rgba(46,125,50,.65)}}
+  .sticky-mobile-cta .tiny{font-size:10.5px;color:#777;text-align:center;margin-top:4px;letter-spacing:.3px}
+  @media(max-width:760px){.sticky-mobile-cta{display:block}body{padding-bottom:90px}}
+
+  /* PRESS STRIP — continuidade visual */
+  .press-strip{background:linear-gradient(180deg,#fff 0%,#fafafa 100%);border-bottom:1px solid #e8e8e8;border-top:1px solid #e8e8e8;padding:14px 0 12px;text-align:center;overflow:hidden;margin:18px 0}
+  .press-strip-label{font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10.5px;color:#999;letter-spacing:2.5px;font-weight:700;margin-bottom:10px;text-transform:uppercase}
+  .press-marquee{position:relative;width:100%;overflow:hidden;mask-image:linear-gradient(90deg,transparent 0%,#000 8%,#000 92%,transparent 100%);-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 8%,#000 92%,transparent 100%)}
+  .press-track{display:flex;gap:34px;align-items:center;justify-content:center;flex-wrap:wrap;padding:4px 16px}
+  @media(min-width:760px){.press-track{flex-wrap:nowrap;animation:pressScroll 32s linear infinite;justify-content:flex-start;width:max-content}}
+  @keyframes pressScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .press-logo{font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;letter-spacing:-.5px;color:#222;font-weight:900;white-space:nowrap;flex-shrink:0;opacity:.78}
+  .press-logo span{color:#cc0000;font-weight:900}
+  .press-logo--health-wire{font-family:'Times New Roman',Georgia,serif;letter-spacing:-.5px;font-size:17px;font-weight:900;color:#000}
+  .press-logo--health-wire span{background:#cc0000;color:#fff;padding:2px 6px;margin-left:3px;font-size:14px;letter-spacing:1px}
+  .press-logo--natural-living{font-family:Georgia,'Times New Roman',serif;font-style:italic;color:#1a1a1a;font-weight:700;font-size:16px}
+  .press-logo--natural-living span{font-style:italic;color:#cc0000;font-weight:900;margin-left:3px}
+  .press-logo--metabolic{letter-spacing:1.5px;font-size:13.5px;color:#0a3a5a;font-weight:900;text-transform:uppercase}
+  .press-logo--metabolic span{color:#0a3a5a;letter-spacing:2px;margin-left:6px;border-left:2px solid #0a3a5a;padding-left:6px}
+  .press-logo--wellness-net{font-size:14.5px;color:#2a7d3c;font-weight:900}
+  .press-logo--wellness-net span{color:#666;font-weight:600;font-size:12.5px;margin-left:2px}
+  .press-logo--nutrition-daily{font-family:Georgia,'Times New Roman',serif;font-size:16px;color:#1a1a1a;font-weight:900}
+  .press-logo--nutrition-daily span{font-style:italic;color:#a33c00;margin-left:2px;font-weight:900}
+  .press-logo--health-insider{font-size:14px;color:#000;font-weight:900;text-transform:uppercase}
+  .press-logo--health-insider span{color:#fff;background:#000;padding:2px 7px;margin-left:3px;letter-spacing:1.5px;font-size:11.5px}
+  .press-logo--womens-body{font-size:13.5px;color:#a33c00;font-weight:900;text-transform:uppercase;line-height:1.1}
+  .press-logo--womens-body span{display:block;font-size:9.5px;color:#666;letter-spacing:1.5px;font-weight:700;margin-top:1px}
+  .press-logo--slim-strong{font-family:Georgia,'Times New Roman',serif;font-size:15.5px;color:#0a0a0a;font-weight:700}
+  .press-logo--slim-strong span{font-style:italic;color:#7a3300;margin-left:2px;font-weight:900}
+</style>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wiwixsq2by");
+</script>
+<!-- /Microsoft Clarity -->
+
+<!-- Newsbreak Pixel -->
+<script type="text/javascript">
+!(function(e,n,t,i,p,a,s){e[i]||(((p=e[i]=function(){p.process?p.process.apply(p,arguments):p.queue.push(arguments)}).queue=[]),(pt=+new Date),((a=n.createElement(t)).async=1),(a.src='https://static.newsbreak.com/business/tracking/nbpixel.js?t='+864e5*Math.ceil(new Date/864e5)),(s=n.getElementsByTagName(t)[0]).parentNode.insertBefore(a,s))})(window,document,'script','nbpix'),
+nbpix('event','page_view'),
+nbpix('event','quiz_completed');
+</script>
+<!-- /Newsbreak Pixel -->
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","whxdotwqls");
+clarity("event","quiz_completed");
+clarity("set","funnel_step","quiz_completed");
+</script>
+<!-- /Microsoft Clarity -->
+</head>
+<!-- PRESS MARQUEE -->
+<div class="press-strip">
+  <div class="press-strip-label">FEATURED &nbsp;·&nbsp; AS REPORTED IN</div>
+  <div class="press-marquee">
+    <div class="press-track">
+      <div class="press-logo press-logo--health-wire">HEALTH<span>WIRE</span></div>
+      <div class="press-logo press-logo--natural-living">Natural<span>Living</span></div>
+      <div class="press-logo press-logo--metabolic">METABOLIC <span>JOURNAL</span></div>
+      <div class="press-logo press-logo--wellness-net">WELLNESS<span>•NET</span></div>
+      <div class="press-logo press-logo--nutrition-daily">Nutrition<span>Daily</span></div>
+      <div class="press-logo press-logo--health-insider">HEALTH<span>INSIDER</span></div>
+      <div class="press-logo press-logo--womens-body">WOMEN&apos;S<span>BODY DAILY</span></div>
+      <div class="press-logo press-logo--slim-strong">Slim<span>&amp; Strong</span></div>
+    </div>
+  </div>
+</div>
+
+<body>
+
+<canvas id="confetti"></canvas>
+
+<div class="complete-bar"><span class="pulse"></span>Analysis complete · Personal report ready</div>
+
+<div class="wrap">
+
+  <!-- SECTION 1 & 2: HEADLINE + SUBHEADLINE -->
+  <header class="hero-head">
+    <div class="match-badge">✓ 94% Profile Match</div>
+    <h1 class="headline" id="dynamic-h1">
+      Your results indicate a pattern commonly seen in <span id="h1-span">appetite regulation imbalance after 35</span>
+    </h1>
+    <p class="subhead">
+      Based on behavioral and metabolic pattern data observed across <strong>41,000+</strong> U.S. women who completed this assessment. Your profile has been matched to the nearest responder cluster identified in the underlying research.
+    </p>
+  </header>
+
+  <!-- SECTION 3: DIAGNOSTIC -->
+  <div class="diagnostic">
+    <h2 class="diagnostic-title">Your Personal Profile</h2>
+    <div class="diagnostic-sub">Key patterns from your 8 responses</div>
+    <div class="profile-grid">
+
+      <div class="profile-item">
+        <div class="icon">🎯</div>
+        <div class="pcontent">
+          <div class="plabel">Primary Goal</div>
+          <div class="pvalue" id="p-goal">Sustainable weight loss</div>
+          <div class="pnote" id="n-goal">Most achievable when paired with appetite-signaling support.</div>
+        </div>
+      </div>
+
+      <div class="profile-item">
+        <div class="icon">🕒</div>
+        <div class="pcontent">
+          <div class="plabel">Appetite Pattern</div>
+          <div class="pvalue" id="p-appetite">Peak hunger mid-afternoon</div>
+          <div class="pnote" id="n-appetite">Most commonly associated with late-day cortisol and insulin fluctuations.</div>
+        </div>
+      </div>
+
+      <div class="profile-item">
+        <div class="icon">⚡</div>
+        <div class="pcontent">
+          <div class="plabel">Energy Profile</div>
+          <div class="pvalue" id="p-energy">Afternoon energy slowdown</div>
+          <div class="pnote" id="n-energy">Often linked to blood-sugar dysregulation and post-lunch insulin response.</div>
+        </div>
+      </div>
+
+      <div class="profile-item">
+        <div class="icon">🔄</div>
+        <div class="pcontent">
+          <div class="plabel">Behavioral History</div>
+          <div class="pvalue" id="p-prior">Multiple diet attempts</div>
+          <div class="pnote" id="n-prior">Typical for responder-group profiles — indicates the issue is signaling, not willpower.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EARLY CTA (inserted before Section 4: Why this pattern keeps showing up) -->
+  <div class="final-cta" style="margin-top:10px">
+    <div class="cta-preline">Your personalized recommendation</div>
+    <div id="rec-badge-early" style="display:inline-block;background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:700;letter-spacing:.3px;margin-bottom:18px;box-shadow:0 3px 12px rgba(46,125,50,.3)">✓ Your profile matches the <strong>2-bottle · 60-day</strong> starter protocol</div>
+    <a href="checkout.html" class="cta-btn" id="ctaBtnEarly">Continue With My Recommended Plan →</a>
+    <div class="cta-subline">60-day money-back guarantee · U.S. shipping included</div>
+  </div>
+
+  <!-- SECTION 4: SIMPLE EXPLANATION -->
+  <div class="section">
+    <h2>Why this pattern <span>keeps showing up</span></h2>
+    <p>
+      Your profile aligns with what researchers describe as an <strong>appetite-signaling imbalance</strong> — a pattern commonly observed in women after age 35.
+    </p>
+    <p>
+      In simple terms: the hormones that tell your brain when you're full (leptin) and how to process food (insulin) start sending weaker or delayed signals. Your body isn't "broken" — the messaging system is just muted.
+    </p>
+    <p>
+      When those signals fade, three things typically follow: cravings that feel impossible to resist, a slower metabolism, and stubborn fat that doesn't budge no matter how "clean" the week was.
+    </p>
+    <div class="key-point">
+      This is why discipline-based approaches (eating less, counting calories) tend to produce limited sustained results for people in this profile. The issue isn't willpower — it's signaling.
+    </div>
+  </div>
+
+  <!-- SECTION 5: AMAZON INSIGHT -->
+  <div class="amazon-block">
+    <h2>The Amazonian research connection</h2>
+    <p>
+      For centuries, indigenous Ribeirinho communities in the Amazon floodplains of northern Brazil have built their traditional diet around one superfruit: <em>açaí</em>.
+    </p>
+    <p>
+      Field research has noted that these populations tend to show lower rates of appetite dysregulation and adult-onset weight gain than nearby lowland populations — a finding researchers associate with the fruit's unusual concentration of <strong>polyphenols, anthocyanins, and plant fiber</strong>.
+    </p>
+    <p>
+      These compounds are commonly studied for their role in supporting <em>leptin sensitivity</em>, <em>healthy insulin response</em>, and <em>normal satiety signaling</em>.
+    </p>
+    <div class="ingredient-row">
+      <div class="ing-chip"><div class="ename">Açaí</div><div class="edesc">Polyphenols</div></div>
+      <div class="ing-chip"><div class="ename">Green Tea</div><div class="edesc">Thermogenic</div></div>
+      <div class="ing-chip"><div class="ename">Garcinia</div><div class="edesc">HCA</div></div>
+      <div class="ing-chip"><div class="ename">ACV</div><div class="edesc">Blood Sugar</div></div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: SOFT PRODUCT INTRODUCTION -->
+  <div class="product-intro">
+    <div class="pimg"><img src="img/product_jar.jpg" loading="lazy" decoding="async" alt="Crave-Off bottle" onerror="this.replaceWith(document.createTextNode('CRAVE-OFF'))"></div>
+    <div>
+      <span class="p-tag">Matched to your profile</span>
+      <h3>Crave-Off</h3>
+      <p>A natural support formula that combines wild <strong>Amazonian açaí</strong> with three complementary, well-studied plant ingredients — <strong>green tea extract, garcinia cambogia, and raw apple cider vinegar</strong>.</p>
+      <p>The formulation is designed around the same four-ingredient pattern observed in the responder-group data.</p>
+      <p style="font-size:12px;color:#888;margin-top:10px">Non-GMO · Gluten-Free · Made in USA · GMP-certified facility</p>
+    </div>
+  </div>
+
+  <!-- MID-PAGE CTA (duplicate of final CTA, shown higher up) -->
+  <div class="final-cta" style="margin-top:20px">
+    <div class="cta-preline">Your personalized recommendation</div>
+    <div id="rec-badge-top" style="display:inline-block;background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:700;letter-spacing:.3px;margin-bottom:18px;box-shadow:0 3px 12px rgba(46,125,50,.3)">✓ Your profile matches the <strong>2-bottle · 60-day</strong> starter protocol</div>
+    <a href="checkout.html" class="cta-btn" id="ctaBtnTop">Continue With My Recommended Plan →</a>
+    <div class="cta-subline">60-day money-back guarantee · U.S. shipping included</div>
+  </div>
+
+  <!-- SECTION 7: TWO PATHS -->
+  <div class="paths-intro">
+    <h2>From here, you have two paths</h2>
+    <p>Your next step is your choice. Here's what each path typically looks like.</p>
+  </div>
+  <div class="paths-grid">
+
+    <div class="path-card">
+      <div class="path-label">Option A</div>
+      <h3>Keep the current pattern</h3>
+      <ul class="path-list">
+        <li>Continue managing cravings with willpower alone</li>
+        <li>No new structured support for appetite signaling</li>
+        <li>Wait to see if the pattern shifts on its own</li>
+        <li>Accept afternoon energy dips and plateau results</li>
+      </ul>
+    </div>
+
+    <div class="path-card path-b">
+      <div class="path-label">Option B</div>
+      <h3>Give your profile structured support</h3>
+      <ul class="path-list">
+        <li>Use a formula matched to responder-group patterns</li>
+        <li>Support appetite signaling with the 4-ingredient blend</li>
+        <li>Start the 60- or 90-day protocol used in the assessment data</li>
+        <li>Backed by a 60-day money-back guarantee</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- SECTION 8: SOCIAL PROOF -->
+  <div class="section">
+    <h2>What users in similar profiles report</h2>
+    <div class="reports">
+
+      <div class="report">
+        <div class="rq">"Within about ten days the hunger between meals quieted down. I lost 11 pounds in the first month without counting a single calorie. I just wasn't hungry all the time."</div>
+        <div class="rmeta"><strong>Rachel M.</strong> · 43 · Austin, TX</div>
+      </div>
+
+      <div class="report">
+        <div class="rq">"I'd tried every diet out there. What I noticed first was the 3 PM crash stopped. Then the jeans started feeling different. Some women describe it as 'finally being able to hear your own body again.'"</div>
+        <div class="rmeta"><strong>Jennifer L.</strong> · 38 · San Diego, CA</div>
+      </div>
+
+      <div class="report">
+        <div class="rq">"I'm not chasing food all day anymore. That alone changed how I relate to meals. Some individuals may not experience the same pace of change — but for me, it's been steady."</div>
+        <div class="rmeta"><strong>Amanda K.</strong> · 45 · Orlando, FL</div>
+      </div>
+
+    </div>
+    <div class="compliance-note">
+      Individual experiences above are voluntary customer submissions. "Some users report" and "is commonly associated with" language reflects general patterns — individual results vary, and outcomes are not guaranteed.
+    </div>
+  </div>
+
+  <!-- SECTION 9: DISCLAIMER -->
+  <div class="disclaimer-block">
+    <strong>Important:</strong> These statements have not been evaluated by the U.S. Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. This assessment does not constitute medical advice. Individual results vary and are not guaranteed. Always consult a qualified healthcare provider before starting any new supplement — especially if you are pregnant, nursing, taking medication, or have an existing health condition.
+  </div>
+
+  <!-- SECTION 10: FINAL CTA -->
+  <div class="final-cta">
+    <div class="cta-preline">Your personalized recommendation</div>
+    <div id="rec-badge" style="display:inline-block;background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:700;letter-spacing:.3px;margin-bottom:18px;box-shadow:0 3px 12px rgba(46,125,50,.3)">✓ Your profile matches the <strong>2-bottle · 60-day</strong> starter protocol</div>
+    <a href="checkout.html" class="cta-btn" id="ctaBtn">Continue With My Recommended Plan →</a>
+    <div class="cta-subline">60-day money-back guarantee · U.S. shipping included</div>
+
+    <div class="trust-icons">
+      <span>🔒 SSL Secure</span>
+      <span>🌿 Non-GMO</span>
+      <span>🏭 GMP-Certified</span>
+      <span>📦 Ships from USA</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ========================
+  // PERSONALIZATION ENGINE
+  // ========================
+  (function(){
+    const params = new URLSearchParams(window.location.search);
+    const a = {
+      q1: params.get('q1') || 'lose_weight',       // main goal
+      q2: params.get('q2') || 'cravings',           // biggest struggle
+      q3: params.get('q3') || 'multiple_diets',     // past experience
+      q4: params.get('q4') || 'afternoon',          // hunger pattern
+      q5: params.get('q5') || 'couple',             // snacking frequency
+      q6: params.get('q6') || 'medium',             // consistency
+      q7: params.get('q7') || 'afternoon_drop',     // energy
+      q8: params.get('q8') || 'somewhat',           // commitment
+      recommended: params.get('recommended') || '2'
+    };
+
+    // ==========================================================
+    // HEADLINE — based on biggest struggle (q2)
+    // ==========================================================
+    const h1Variants = {
+      cravings: 'appetite-signaling &amp; craving dysregulation',
+      consistency: 'appetite-signaling &amp; consistency-barrier profile',
+      hunger: 'persistent hunger &amp; satiety-response pattern',
+      energy: 'energy-driven eating &amp; metabolic slowdown pattern'
+    };
+    document.getElementById('h1-span').innerHTML = h1Variants[a.q2] || h1Variants.cravings;
+
+    // ==========================================================
+    // CARD 1 — PRIMARY GOAL (q1)
+    // ==========================================================
+    const goalMap = {
+      lose_weight:      ['Sustainable weight loss',       'Most achievable when paired with appetite-signaling support.'],
+      appetite_control: ['Control cravings & emotional eating', 'A profile that responds well to satiety-signaling support.'],
+      energy_boost:     ['Energy, lightness & vitality',   'Linked to blood-sugar stability and metabolic balance.'],
+      overall_wellness: ['Overall wellness & balance',     'Whole-system approach indicated — supports metabolism, appetite, and energy together.']
+    };
+    const goal = goalMap[a.q1] || goalMap.lose_weight;
+    document.getElementById('p-goal').textContent = goal[0];
+    document.getElementById('n-goal').textContent = goal[1];
+
+    // ==========================================================
+    // CARD 2 — APPETITE PATTERN (q4)
+    // ==========================================================
+    const appetiteMap = {
+      stable:    ['Generally stable hunger signals',    'Supportive factor — indicates satiety hormones are partially responsive.'],
+      afternoon: ['Peak hunger between 2–5 PM',         'Most commonly associated with late-day cortisol and insulin fluctuations.'],
+      evening:   ['Strongest hunger after dinner',      'Often reflects post-meal leptin response and habit-driven snacking patterns.'],
+      allday:    ['Persistent hunger throughout the day', 'Typical of sustained appetite-signaling dysregulation — flagged as priority pattern.']
+    };
+    const appetite = appetiteMap[a.q4] || appetiteMap.afternoon;
+    document.getElementById('p-appetite').textContent = appetite[0];
+    document.getElementById('n-appetite').textContent = appetite[1];
+
+    // ==========================================================
+    // CARD 3 — ENERGY PROFILE (q7)
+    // ==========================================================
+    const energyMap = {
+      stable:          ['Energy levels stable',                      'Supportive factor — indicates good circadian regulation.'],
+      afternoon_drop:  ['Noticeable afternoon energy slowdown',      'Often linked to blood-sugar dysregulation and post-lunch insulin response.'],
+      crashes:         ['Sudden energy crashes that trigger eating', 'Strongly associated with blood-sugar swings and cortisol dips.'],
+      always_low:      ['Persistent low energy throughout the day',  'Pattern commonly tied to chronic metabolic stress — addressed in the 90-day protocol.']
+    };
+    const energy = energyMap[a.q7] || energyMap.afternoon_drop;
+    document.getElementById('p-energy').textContent = energy[0];
+    document.getElementById('n-energy').textContent = energy[1];
+
+    // ==========================================================
+    // CARD 4 — BEHAVIORAL HISTORY (q3)
+    // ==========================================================
+    const priorMap = {
+      multiple_diets: ['Multiple diet attempts, limited sustained results', 'Typical for responder-group profiles — indicates the issue is signaling, not willpower.'],
+      some_attempts:  ['A few attempts, then plateau',                      'Suggests the profile hasn\'t been properly matched to approach before.'],
+      pharma:         ['Including pharmaceutical interventions',           'Common trigger for seeking natural, food-based alternatives.'],
+      first_time:     ['First structured approach',                        'Advantage: you\'re starting with a profile-matched protocol from day one.']
+    };
+    const prior = priorMap[a.q3] || priorMap.multiple_diets;
+    document.getElementById('p-prior').textContent = prior[0];
+    document.getElementById('n-prior').textContent = prior[1];
+
+    // ==========================================================
+    // RECOMMENDED BUNDLE BADGE (both top + bottom placements)
+    // ==========================================================
+    const badgeHtml = (a.recommended === '3')
+      ? '⭐ Your profile matches the <strong>3-bottle · 90-day</strong> protocol'
+      : '✓ Your profile matches the <strong>2-bottle · 60-day</strong> starter protocol';
+
+    const recEl = document.getElementById('rec-badge');
+    if(recEl) recEl.innerHTML = badgeHtml;
+    const recElTop = document.getElementById('rec-badge-top');
+    if(recElTop) recElTop.innerHTML = badgeHtml;
+    const recElEarly = document.getElementById('rec-badge-early');
+    if(recElEarly) recElEarly.innerHTML = badgeHtml;
+
+    // ==========================================================
+    // FORWARD QUIZ PARAMS TO CHECKOUT (both CTAs)
+    // ==========================================================
+    const qs = window.location.search;
+    ['ctaBtn','ctaBtnTop','ctaBtnEarly'].forEach(id => {
+      const el = document.getElementById(id);
+      if(el && qs) el.href = 'checkout.html' + qs;
+    });
+  })();
+
+  // ========================
+  // CONFETTI (celebration)
+  // ========================
+  (function(){
+    const c = document.getElementById('confetti');
+    const ctx = c.getContext('2d');
+    function resize(){ c.width = innerWidth; c.height = innerHeight; }
+    resize(); addEventListener('resize', resize);
+    const colors = ['#a33c00','#cc5500','#2e7d32','#4caf50','#e5b700','#ffd98a'];
+    const parts = [];
+    for(let i=0;i<120;i++){
+      parts.push({x:Math.random()*c.width,y:-20-Math.random()*c.height*0.6,vx:(Math.random()-.5)*3,vy:2+Math.random()*4,s:3+Math.random()*6,c:colors[Math.floor(Math.random()*colors.length)],r:Math.random()*Math.PI,vr:(Math.random()-.5)*.2});
+    }
+    let stopAt = Date.now() + 4500;
+    function loop(){
+      ctx.clearRect(0,0,c.width,c.height);
+      parts.forEach(p=>{
+        p.x += p.vx; p.y += p.vy; p.r += p.vr;
+        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.r);
+        ctx.fillStyle = p.c; ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);
+        ctx.restore();
+      });
+      if(Date.now() < stopAt || parts.some(p=>p.y < c.height+40)) requestAnimationFrame(loop);
+    }
+    loop();
+  })();
+</script>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-mobile-cta">
+  <a href="checkout.html" id="stickyMobCta">Continue With My Recommended Plan →</a>
+  <div class="tiny">60-day risk-free trial · held for your profile</div>
+</div>
+<script>
+  // Forward quiz params to the sticky CTA as well
+  (function(){
+    var qs = window.location.search;
+    var el = document.getElementById('stickyMobCta');
+    if(qs && el) el.href = 'checkout.html' + qs;
+  })();
+</script>
+
+
+<!-- === REDTRACK: preserve click ID across funnel === -->
+<script>
+(function(){
+  var p = new URLSearchParams(window.location.search);
+  var rtkcid = p.get('rtkcid');
+  if(rtkcid){ try { sessionStorage.setItem('rtkcid', rtkcid); } catch(e){} }
+  else { try { rtkcid = sessionStorage.getItem('rtkcid'); } catch(e){} }
+  if(!rtkcid) return;
+
+  function rewriteLinks(){
+    document.querySelectorAll('a[href]').forEach(function(a){
+      try {
+        var href = a.getAttribute('href');
+        if(!href || /^(mailto:|tel:|#)/i.test(href)) return;
+        if(/^https?:\/\//i.test(href) && !href.includes(window.location.host)) return;
+        var u = new URL(a.href, window.location.href);
+        u.searchParams.set('rtkcid', rtkcid);
+        a.href = u.toString();
+      } catch(e) {}
+    });
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', rewriteLinks);
+  } else { rewriteLinks(); }
+})();
+</script>
+
+</body>
+</html>

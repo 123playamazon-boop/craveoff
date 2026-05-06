@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Personalized Appetite & Metabolism Assessment — Crave-Off</title>
+<meta name="description" content="Discover what may be affecting your appetite control in under 30 seconds. Personalized diagnostic-style assessment.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:linear-gradient(180deg,#faf7f2 0%,#fff 100%);color:#111;font-family:Roboto,sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:620px;margin:0 auto;padding:24px 20px 80px}
+
+  /* ========= INTRO SCREEN ========= */
+  .intro{text-align:center;padding:20px 0 0}
+  .intro .badge{display:inline-block;background:#fff0e6;color:#a33c00;padding:7px 16px;border-radius:30px;font-size:11px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:20px;border:1px solid #f5c9ac}
+  .intro h1{font-family:'Playfair Display',serif;font-size:32px;line-height:1.2;margin-bottom:14px;color:#111;font-weight:900}
+  @media(min-width:640px){.intro h1{font-size:38px}}
+  .intro h1 span{color:#a33c00}
+  .intro .lede{color:#444;font-size:16px;line-height:1.6;max-width:520px;margin:0 auto 22px}
+  .intro .bullets{text-align:left;max-width:460px;margin:0 auto 28px;background:#fff;border-radius:14px;padding:20px 22px;box-shadow:0 3px 16px rgba(0,0,0,.06);border:1px solid #f0e4d6}
+  .intro .bullets li{list-style:none;font-size:14.5px;color:#333;line-height:1.5;padding-left:28px;position:relative;margin-bottom:11px}
+  .intro .bullets li:last-child{margin-bottom:0}
+  .intro .bullets li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:linear-gradient(135deg,#2e7d32,#4caf50);color:#fff;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .intro-cta{display:inline-block;background:linear-gradient(135deg,#cc5500,#a33c00);color:#fff;font-weight:800;font-size:17px;padding:16px 30px;border-radius:50px;border:none;cursor:pointer;box-shadow:0 6px 18px rgba(204,85,0,.35);letter-spacing:.3px;transition:transform .15s ease, box-shadow .15s ease;animation:pulseCta 2s infinite}
+  .intro-cta:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(204,85,0,.45)}
+  @keyframes pulseCta{0%,100%{box-shadow:0 6px 18px rgba(204,85,0,.35)}50%{box-shadow:0 6px 24px rgba(204,85,0,.55)}}
+  .intro .trust-row{margin-top:20px;font-size:11.5px;color:#888;letter-spacing:.3px}
+  .intro .trust-row span{margin:0 6px}
+
+  /* ========= QUIZ HEADER ========= */
+  .quiz-header{text-align:center;margin-bottom:22px}
+  .quiz-header .mini-badge{display:inline-block;background:#fff0e6;color:#a33c00;padding:5px 12px;border-radius:20px;font-size:10.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:12px;border:1px solid #f5c9ac}
+  .quiz-header h2{font-family:'Playfair Display',serif;font-size:20px;line-height:1.25;margin-bottom:6px;color:#111;font-weight:700}
+  .progress-bar{height:7px;background:#ececec;border-radius:4px;overflow:hidden;margin:18px 0 6px}
+  .progress-fill{height:100%;background:linear-gradient(90deg,#7a3a1a,#cc5500);border-radius:4px;transition:width .45s ease;width:0%}
+  .step-counter{font-size:11.5px;color:#888;text-align:right;letter-spacing:.5px;font-weight:600}
+
+  /* ========= QUESTION CARDS ========= */
+  .card{background:#fff;border-radius:16px;padding:26px 22px;box-shadow:0 4px 24px rgba(0,0,0,.07);margin-top:18px;border:1px solid #f2ece3}
+  .q-label{font-size:11px;color:#a33c00;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+  .question{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;line-height:1.3;margin-bottom:22px;color:#111}
+  @media(min-width:640px){.question{font-size:24px}}
+  .options{display:flex;flex-direction:column;gap:11px}
+  .option{background:#fafafa;border:2px solid #eaeaea;border-radius:12px;padding:16px 18px;cursor:pointer;font-size:15.5px;text-align:left;transition:all .15s ease;color:#222;font-family:inherit;font-weight:500;line-height:1.4}
+  .option:hover{border-color:#cc5500;background:#fff7ef;transform:translateY(-1px)}
+  .option:active{transform:scale(.98)}
+  .option .emoji{display:inline-block;margin-right:10px;font-size:18px;vertical-align:middle}
+
+  /* ========= TRANSITION / LOADING ========= */
+  .transition{display:none;text-align:center;padding:40px 20px}
+  .transition.show{display:block}
+  .spinner{width:54px;height:54px;border:4px solid #f0e4d6;border-top-color:#cc5500;border-radius:50%;animation:spin 1s linear infinite;margin:20px auto}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .trans-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:800;margin-bottom:10px;color:#111}
+  .trans-msg{color:#555;font-size:15px;margin-top:16px;line-height:1.5;min-height:48px;transition:opacity .3s ease}
+  .trans-steps{margin-top:28px;text-align:left;max-width:360px;margin-left:auto;margin-right:auto}
+  .trans-steps .item{display:flex;align-items:center;gap:12px;padding:8px 0;font-size:14px;color:#666;opacity:.4;transition:opacity .4s ease,color .4s ease}
+  .trans-steps .item.active{opacity:1;color:#111;font-weight:500}
+  .trans-steps .item.done{opacity:.85;color:#2e7d32;font-weight:500}
+  .trans-steps .check{width:20px;height:20px;border-radius:50%;background:#eaeaea;color:transparent;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;transition:all .3s ease}
+  .trans-steps .item.done .check{background:#2e7d32;color:#fff}
+  .trans-steps .item.active .check{background:#cc5500;color:#fff}
+
+  .hidden{display:none !important}
+
+  /* EXIT-INTENT POPUP */
+  .exit-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:9998;align-items:center;justify-content:center;padding:20px;animation:fadeInQz .25s ease}
+  .exit-overlay.show{display:flex}
+  @keyframes fadeInQz{from{opacity:0}to{opacity:1}}
+  .exit-modal{background:#fff;max-width:470px;width:100%;border-radius:18px;padding:30px 26px 24px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.4);animation:popInQz .35s cubic-bezier(.2,.9,.3,1.4)}
+  @keyframes popInQz{from{transform:scale(.85) translateY(20px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
+  .exit-close{position:absolute;top:10px;right:14px;background:none;border:none;font-size:24px;color:#999;cursor:pointer;line-height:1;padding:4px 8px}
+  .exit-modal .exit-badge{display:inline-block;background:#fff0e6;color:#a33c00;padding:6px 14px;border-radius:30px;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;border:1px solid #f5c9ac}
+  .exit-modal h2{font-family:'Playfair Display',serif;font-size:26px;line-height:1.2;margin-bottom:10px;color:#111;font-weight:900}
+  .exit-modal h2 span{color:#cc5500}
+  .exit-modal p{font-size:14.5px;color:#444;line-height:1.55;margin-bottom:16px}
+  .exit-modal .exit-cta{display:block;background:linear-gradient(135deg,#cc5500,#a33c00);color:#fff;font-weight:800;font-size:15px;letter-spacing:.5px;text-transform:uppercase;text-decoration:none;text-align:center;padding:16px 14px;border-radius:50px;margin-bottom:10px;box-shadow:0 5px 16px rgba(204,85,0,.35);border:none;cursor:pointer;width:100%;font-family:Roboto,sans-serif}
+  .exit-modal .exit-no{display:block;text-align:center;color:#999;font-size:12px;background:none;border:none;cursor:pointer;text-decoration:underline;padding:6px;margin:0 auto;font-family:Roboto,sans-serif}
+</style>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wiwixsq2by");
+</script>
+<!-- /Microsoft Clarity -->
+
+<!-- Newsbreak Pixel -->
+<script type="text/javascript">
+!(function(e,n,t,i,p,a,s){e[i]||(((p=e[i]=function(){p.process?p.process.apply(p,arguments):p.queue.push(arguments)}).queue=[]),(pt=+new Date),((a=n.createElement(t)).async=1),(a.src='https://static.newsbreak.com/business/tracking/nbpixel.js?t='+864e5*Math.ceil(new Date/864e5)),(s=n.getElementsByTagName(t)[0]).parentNode.insertBefore(a,s))})(window,document,'script','nbpix'),
+nbpix('event','page_view'),
+nbpix('event','quiz_started');
+</script>
+<!-- /Newsbreak Pixel -->
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","whxdotwqls");
+clarity("event","quiz_started");
+clarity("set","funnel_step","quiz_started");
+</script>
+<!-- /Microsoft Clarity -->
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ================================================== -->
+  <!-- INTRO SCREEN                                        -->
+  <!-- ================================================== -->
+  <div id="intro" class="intro">
+    <div class="badge">⏱ 30-Second Personalized Assessment</div>
+    <h1>Discover what may be affecting <span>your appetite control</span> — in under 30 seconds.</h1>
+    <p class="lede">Most women struggling with cravings and stubborn weight share 3 common signaling patterns. This short diagnostic-style assessment identifies yours — and matches you with a support plan used by thousands of women 35+.</p>
+
+    <ul class="bullets">
+      <li>Identify your appetite &amp; craving pattern</li>
+      <li>Understand why past diets may have failed you</li>
+      <li>See your personalized 90-day plan recommendation</li>
+    </ul>
+
+    <button class="intro-cta" id="startBtn">Start My FREE Assessment →</button>
+
+    <div class="trust-row">
+      <span>🔒 100% Private</span> · <span>No account needed</span> · <span>100% FREE</span>
+    </div>
+  </div>
+
+  <!-- ================================================== -->
+  <!-- QUIZ                                                -->
+  <!-- ================================================== -->
+  <div id="quizWrap" class="hidden">
+
+    <div class="quiz-header">
+      <div class="mini-badge">Personalized Assessment</div>
+      <h2>Find Your Appetite &amp; Metabolism Profile</h2>
+    </div>
+
+    <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
+    <div class="step-counter">Question <span id="stepNow">1</span> of <span id="stepTotal">8</span></div>
+
+    <div id="quiz">
+
+      <!-- Q1: Main goal -->
+      <div class="card q" data-q="1">
+        <div class="q-label">Your Goal</div>
+        <div class="question">What is your main goal right now?</div>
+        <div class="options">
+          <button class="option" data-v="lose_weight"><span class="emoji">⚖️</span>Lose weight in a healthy, sustainable way</button>
+          <button class="option" data-v="appetite_control"><span class="emoji">🧠</span>Control cravings and stop emotional eating</button>
+          <button class="option" data-v="energy_boost"><span class="emoji">⚡</span>Boost my energy and feel lighter</button>
+          <button class="option" data-v="overall_wellness"><span class="emoji">🌿</span>Improve overall wellness and balance</button>
+        </div>
+      </div>
+
+      <!-- Q2: Biggest struggle -->
+      <div class="card q hidden" data-q="2">
+        <div class="q-label">Your Struggle</div>
+        <div class="question">What's your biggest struggle with weight or food?</div>
+        <div class="options">
+          <button class="option" data-v="cravings"><span class="emoji">🍫</span>Uncontrollable cravings (sweets, carbs, snacks)</button>
+          <button class="option" data-v="consistency"><span class="emoji">🔁</span>Staying consistent — I start strong, then stop</button>
+          <button class="option" data-v="hunger"><span class="emoji">🍽️</span>Constant hunger — I never feel full</button>
+          <button class="option" data-v="energy"><span class="emoji">🔋</span>Low energy that leads me to eat more</button>
+        </div>
+      </div>
+
+      <!-- Q3: Past experience -->
+      <div class="card q hidden" data-q="3">
+        <div class="q-label">Your History</div>
+        <div class="question">Have you tried losing weight before?</div>
+        <div class="options">
+          <button class="option" data-v="multiple_diets"><span class="emoji">📉</span>Yes — multiple diets, nothing lasted</button>
+          <button class="option" data-v="some_attempts"><span class="emoji">🤷‍♀️</span>A few attempts — some results, then plateau</button>
+          <button class="option" data-v="pharma"><span class="emoji">💊</span>Yes — including medications or injectables</button>
+          <button class="option" data-v="first_time"><span class="emoji">🌱</span>This is my first real structured attempt</button>
+        </div>
+      </div>
+
+      <!-- Q4: Hunger pattern -->
+      <div class="card q hidden" data-q="4">
+        <div class="q-label">Hunger Pattern</div>
+        <div class="question">How would you describe your hunger during the day?</div>
+        <div class="options">
+          <button class="option" data-v="stable"><span class="emoji">😊</span>Stable — I feel satisfied between meals</button>
+          <button class="option" data-v="afternoon"><span class="emoji">🕒</span>Spikes in the afternoon (2–5 p.m.)</button>
+          <button class="option" data-v="evening"><span class="emoji">🌙</span>Strongest at night / after dinner</button>
+          <button class="option" data-v="allday"><span class="emoji">🔥</span>I feel hungry almost all day</button>
+        </div>
+      </div>
+
+      <!-- Q5: Snacking -->
+      <div class="card q hidden" data-q="5">
+        <div class="q-label">Eating Behavior</div>
+        <div class="question">How often do you snack between meals?</div>
+        <div class="options">
+          <button class="option" data-v="multiple"><span class="emoji">🍪</span>Multiple times a day — I can't stop</button>
+          <button class="option" data-v="couple"><span class="emoji">🫐</span>A couple of times a day</button>
+          <button class="option" data-v="rare"><span class="emoji">🥗</span>Rarely — only when truly hungry</button>
+          <button class="option" data-v="never"><span class="emoji">⏳</span>Almost never — I stick to my meals</button>
+        </div>
+      </div>
+
+      <!-- Q6: Consistency -->
+      <div class="card q hidden" data-q="6">
+        <div class="q-label">Your Consistency</div>
+        <div class="question">How easy is it for you to stay consistent with a routine?</div>
+        <div class="options">
+          <button class="option" data-v="low"><span class="emoji">😓</span>Very hard — I start and quit quickly</button>
+          <button class="option" data-v="medium"><span class="emoji">🌀</span>Somewhat — I have good and bad weeks</button>
+          <button class="option" data-v="high"><span class="emoji">💪</span>Easy — once I commit, I follow through</button>
+          <button class="option" data-v="varies"><span class="emoji">⚖️</span>Depends on stress and life</button>
+        </div>
+      </div>
+
+      <!-- Q7: Energy -->
+      <div class="card q hidden" data-q="7">
+        <div class="q-label">Your Energy</div>
+        <div class="question">How are your energy levels throughout the day?</div>
+        <div class="options">
+          <button class="option" data-v="stable"><span class="emoji">☀️</span>Stable and consistent</button>
+          <button class="option" data-v="afternoon_drop"><span class="emoji">🥱</span>Solid in the morning, drops in the afternoon</button>
+          <button class="option" data-v="crashes"><span class="emoji">💥</span>I have sudden crashes that make me reach for food</button>
+          <button class="option" data-v="always_low"><span class="emoji">😴</span>Always low — I feel tired most of the day</button>
+        </div>
+      </div>
+
+      <!-- Q8: Commitment -->
+      <div class="card q hidden" data-q="8">
+        <div class="q-label">Your Commitment</div>
+        <div class="question">How serious are you about reaching your goal in the next 90 days?</div>
+        <div class="options">
+          <button class="option" data-v="very"><span class="emoji">🔥</span>Very serious — I'm ready to commit fully</button>
+          <button class="option" data-v="somewhat"><span class="emoji">✨</span>Somewhat — I want real results, not extreme effort</button>
+          <button class="option" data-v="exploring"><span class="emoji">🔍</span>Exploring — I want to see what actually works for me</button>
+          <button class="option" data-v="unsure"><span class="emoji">🤔</span>Not sure yet — still thinking about it</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================================================== -->
+  <!-- TRANSITION / ANALYZING                              -->
+  <!-- ================================================== -->
+  <div id="transition" class="transition">
+    <div class="trans-title">Analyzing your personalized results…</div>
+    <div class="spinner"></div>
+    <div class="trans-msg" id="transMsg">Matching your answers to the Amazonian field-study dataset…</div>
+
+    <div class="trans-steps" id="transSteps">
+      <div class="item" data-step="1"><div class="check">✓</div><div>Mapping your appetite &amp; craving pattern</div></div>
+      <div class="item" data-step="2"><div class="check">✓</div><div>Analyzing your hunger &amp; energy profile</div></div>
+      <div class="item" data-step="3"><div class="check">✓</div><div>Matching your behavioral &amp; commitment cluster</div></div>
+      <div class="item" data-step="4"><div class="check">✓</div><div>Selecting your personalized 90-day support plan</div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Click sound -->
+<audio id="clickSfx" preload="auto">
+  <source src="data:audio/wav;base64,UklGRhgCAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YfQBAAABAAEAAwACAAYAAwAJAAUADAAHAA8ACQATAAsAFgANABgADwAbABEAHgATACAAFAAhABUAIgAVACAAFQAfABQAGwATABYAEQARAA4ACwALAAUABgD//wAA+v/5//T/8//s/+3/5P/m/9z/3//V/9n/z//T/8n/zv/F/8n/wP/F/7//w/+9/8L/vv/C/77/wf/A/8L/wv/D/8X/xf/J/8f/zf/L/9D/zv/V/9L/2f/W/93/2f/h/93/5P/g/+j/4//r/+X/8P/o//L/6f/1/+z/+P/t//v/7v/8/+//AADv/wIA7/8DAO//BQDu/wgA7v8LAO7/DQDt/xAA7v8TAO//FgDw/xcA8v8ZAPT/GwD2/xwA+f8eAPv/HwD9/x8A//8eAAAAHQACABwABAAYAAUAFQAGABEABwANAAcACAAIAAMABwD+/wcA+f8GAPT/BQDv/wQA6v8DAOb/AgDh/wEA3f8AANn///8AAAMAEwA1AE0AcAB/AJAAmACbAJgAlwCMAIgAegB2AGgAZABVAFMARwBGADoAPAAwADMAKAAsACAAJgAbACEAGQAcABkAHAAYABoAGgAaABsAGAAcABgAHAAVABsAEQAYAA0AEwAGAAwAAQADAPj//f/w//D/6P/l/9v/2v/T/87/yP/E/8D/uv+4/7T/sP+t/6z/q/+q/6v/rP+u/7L/uP+9/8b/zf/X/97/5//t//f//f8GAA0AFwAeACkAMQA9AEQAUQBaAGgAcQB/AIcAlACdAKkAsQC9AMQAzgDUAN0A4gDoAOwA8QDxAPQA8gDyAO4A7gDmAOMA2gDXAMsAxQC5ALIApACbAI0AhAB1AGsAXABSAEQA" type="audio/wav">
+</audio>
+
+<script>
+  // ==================================================
+  // CONFIG
+  // ==================================================
+  const total = 8;
+  let current = 1;
+  const answers = {};
+  const sfx = document.getElementById('clickSfx');
+
+  // ==================================================
+  // INTRO → QUIZ START
+  // ==================================================
+  document.getElementById('startBtn').addEventListener('click', () => {
+    try { sfx.currentTime = 0; sfx.play().catch(()=>{}); } catch(e){}
+    document.getElementById('intro').classList.add('hidden');
+    document.getElementById('quizWrap').classList.remove('hidden');
+    setStep(1);
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  // ==================================================
+  // STEP NAVIGATION
+  // ==================================================
+  function setStep(n){
+    current = n;
+    document.querySelectorAll('.q').forEach(el => el.classList.add('hidden'));
+    const node = document.querySelector('.q[data-q="'+n+'"]');
+    if(node) node.classList.remove('hidden');
+    document.getElementById('stepNow').textContent = n;
+    document.getElementById('fill').style.width = (((n-1)/total)*100)+'%';
+  }
+
+  // ==================================================
+  // OPTION CLICK HANDLER
+  // ==================================================
+  document.querySelectorAll('.option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      try { sfx.currentTime = 0; sfx.play().catch(()=>{}); } catch(e){}
+      const q = btn.closest('.q').dataset.q;
+      answers['q'+q] = btn.dataset.v;
+      if(parseInt(q) < total){
+        setStep(parseInt(q)+1);
+        // smooth scroll to top of card
+        window.scrollTo({top:0, behavior:'smooth'});
+      } else {
+        // Completed
+        document.getElementById('fill').style.width = '100%';
+        document.getElementById('quizWrap').classList.add('hidden');
+        document.getElementById('transition').classList.add('show');
+        window.scrollTo({top:0, behavior:'smooth'});
+        runTransition();
+      }
+    });
+  });
+
+  // ==================================================
+  // TRANSITION SCREEN + RECOMMENDATION LOGIC
+  // ==================================================
+  function runTransition(){
+    const msgs = [
+      'Matching your answers to the Amazonian field-study dataset…',
+      'Cross-referencing your appetite &amp; craving profile…',
+      'Analyzing behavioral &amp; commitment signals…',
+      'Building your personalized 90-day plan…'
+    ];
+    const steps = document.querySelectorAll('.trans-steps .item');
+    const msgEl = document.getElementById('transMsg');
+    let i = 0;
+
+    // activate first step
+    steps[0].classList.add('active');
+
+    const iv = setInterval(() => {
+      i++;
+
+      // Mark current step done, next step active
+      if(i <= steps.length){
+        if(steps[i-1]) { steps[i-1].classList.remove('active'); steps[i-1].classList.add('done'); }
+        if(steps[i])   { steps[i].classList.add('active'); }
+      }
+
+      // Update message
+      if(msgs[i]){
+        msgEl.style.opacity = 0;
+        setTimeout(()=>{ msgEl.innerHTML = msgs[i]; msgEl.style.opacity = 1; }, 180);
+      }
+
+      if(i >= msgs.length){
+        clearInterval(iv);
+
+        // ============================
+        // RECOMMENDATION LOGIC
+        // ============================
+        // Default = 2 bottles
+        // If high commitment OR low/varies consistency OR persistent hunger/cravings
+        // → recommend 3 bottles (they need more support + higher LTV)
+        let recommended = 2;
+        const q6 = answers.q6;  // consistency
+        const q8 = answers.q8;  // commitment
+        const q4 = answers.q4;  // hunger
+        const q2 = answers.q2;  // struggle
+
+        if(
+          q8 === 'very' ||
+          q6 === 'low' || q6 === 'varies' ||
+          q4 === 'allday' ||
+          (q2 === 'consistency' && q6 !== 'high')
+        ){
+          recommended = 3;
+        }
+
+        answers.recommended = recommended;
+
+        // Build URL and redirect to result — merging incoming params (clickid/utm_*)
+        const incoming = new URLSearchParams(window.location.search);
+        const out = new URLSearchParams();
+        // Preserve tracking/ad params first
+        incoming.forEach((v,k) => { if(!(k in answers)) out.set(k, v); });
+        // Then merge quiz answers (takes priority)
+        Object.entries(answers).forEach(([k,v]) => out.set(k, v));
+        setTimeout(() => { window.location.href = 'result.html?' + out.toString(); }, 700);
+      }
+    }, 1000);
+  }
+
+  // ======================================
+  // EXIT-INTENT POPUP (quiz abandonment)
+  // ======================================
+  (function(){
+    var shown = false;
+    var modal = document.getElementById('exitOverlay');
+    if(!modal) return;
+
+    function show(){
+      if(shown) return;
+      // Don't show if user hasn't started the quiz OR is on transition screen
+      if(!document.getElementById('intro').classList.contains('hidden')) return;
+      if(document.getElementById('transition').classList.contains('show')) return;
+      shown = true;
+      modal.classList.add('show');
+      try{ sessionStorage.setItem('co_exit_qz','1'); }catch(e){}
+    }
+    function hide(){ modal.classList.remove('show'); }
+
+    try{ if(sessionStorage.getItem('co_exit_qz') === '1') shown = true; }catch(e){}
+
+    // Desktop trigger
+    document.addEventListener('mouseout', function(e){
+      if(!e.relatedTarget && e.clientY < 10) show();
+    });
+
+    // Mobile: fast upward scroll or back navigation
+    if(!shown){
+      history.pushState({exit:true}, '');
+      window.addEventListener('popstate', function(){ if(!shown){ show(); history.pushState({exit:true}, ''); } });
+    }
+
+    document.getElementById('exitClose').addEventListener('click', hide);
+    document.getElementById('exitNo').addEventListener('click', hide);
+    document.getElementById('exitResume').addEventListener('click', hide);
+    modal.addEventListener('click', function(e){ if(e.target === modal) hide(); });
+  })();
+</script>
+
+<!-- EXIT-INTENT POPUP -->
+<div class="exit-overlay" id="exitOverlay">
+  <div class="exit-modal">
+    <button class="exit-close" id="exitClose" aria-label="Close">×</button>
+    <div class="exit-badge">⚠ Wait — you're almost done</div>
+    <h2>Don't lose the <span>questions you already answered</span>.</h2>
+    <p>You're just a few questions away from your personalized profile match. Leave now and all your answers reset — you'd have to start from question one.</p>
+    <button class="exit-cta" id="exitResume">Continue My Assessment →</button>
+    <button class="exit-no" id="exitNo">No thanks, leave this page</button>
+  </div>
+</div>
+
+
+<!-- === REDTRACK: preserve click ID across funnel === -->
+<script>
+(function(){
+  var p = new URLSearchParams(window.location.search);
+  var rtkcid = p.get('rtkcid');
+  if(rtkcid){ try { sessionStorage.setItem('rtkcid', rtkcid); } catch(e){} }
+  else { try { rtkcid = sessionStorage.getItem('rtkcid'); } catch(e){} }
+  if(!rtkcid) return;
+
+  function rewriteLinks(){
+    document.querySelectorAll('a[href]').forEach(function(a){
+      try {
+        var href = a.getAttribute('href');
+        if(!href || /^(mailto:|tel:|#)/i.test(href)) return;
+        if(/^https?:\/\//i.test(href) && !href.includes(window.location.host)) return;
+        var u = new URL(a.href, window.location.href);
+        u.searchParams.set('rtkcid', rtkcid);
+        a.href = u.toString();
+      } catch(e) {}
+    });
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', rewriteLinks);
+  } else { rewriteLinks(); }
+})();
+</script>
+
+</body>
+</html>
