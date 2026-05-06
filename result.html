@@ -363,6 +363,19 @@
 
   /* === END MERGED OFFER CSS === */
 
+
+  /* === LIVE PURCHASE TOAST (mirror bumbum) === */
+  .lp-toast{position:fixed;left:14px;bottom:80px;z-index:9998;background:#fff;border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,.18);padding:12px 14px 12px 12px;display:flex;gap:10px;align-items:center;max-width:300px;border:1px solid #e8e0d0;transform:translateX(-120%);transition:transform .45s cubic-bezier(.2,.8,.2,1.05);font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif}
+  .lp-toast.show{transform:translateX(0)}
+  .lp-toast .lp-avatar{flex-shrink:0;width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#cc5500,#a33c00);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;letter-spacing:-.5px}
+  .lp-toast .lp-body{flex:1;min-width:0}
+  .lp-toast .lp-line1{font-size:12.5px;color:#111;font-weight:700;line-height:1.3}
+  .lp-toast .lp-line1 strong{color:#a33c00}
+  .lp-toast .lp-line2{font-size:11px;color:#888;margin-top:2px;display:flex;align-items:center;gap:5px}
+  .lp-toast .lp-dot{display:inline-block;width:6px;height:6px;background:#2e7d32;border-radius:50%;animation:lvBlink 1.2s infinite}
+  @keyframes lvBlink{0%,100%{opacity:1}50%{opacity:.3}}
+  .lp-toast .lp-close{position:absolute;top:4px;right:6px;background:none;border:none;color:#bbb;font-size:14px;cursor:pointer;padding:2px 6px;line-height:1}
+  @media(max-width:520px){.lp-toast{bottom:90px;max-width:calc(100vw - 28px)}}
 </style>
 
 <!-- Newsbreak Pixel -->
@@ -1442,6 +1455,77 @@ document.querySelectorAll('a.buy-btn').forEach(function(btn){
 <!-- /viewed_offer + dead-click + retry -->
 
 <!-- === END MERGED OFFER SCRIPTS === -->
+
+
+<!-- === LIVE PURCHASE TOAST CONTAINER === -->
+<div class="lp-toast" id="lpToast" role="status" aria-live="polite">
+  <div class="lp-avatar" id="lpAvatar">SM</div>
+  <div class="lp-body">
+    <div class="lp-line1" id="lpLine1">Sarah M. from Austin, TX just bought <strong>2 bottles</strong></div>
+    <div class="lp-line2"><span class="lp-dot"></span><span id="lpLine2">Verified purchase · just now</span></div>
+  </div>
+  <button class="lp-close" id="lpClose" aria-label="Close">×</button>
+</div>
+
+<script>
+/* LIVE PURCHASE TOAST — fake-real recent buyer cycler */
+(function(){
+  var toast = document.getElementById('lpToast');
+  var avatarEl = document.getElementById('lpAvatar');
+  var line1El = document.getElementById('lpLine1');
+  var line2El = document.getElementById('lpLine2');
+  var closeBtn = document.getElementById('lpClose');
+  if(!toast) return;
+
+  var names = [
+    ['Sarah M.','Austin, TX'],['Jennifer L.','San Diego, CA'],['Amanda K.','Orlando, FL'],
+    ['Maria S.','Miami, FL'],['Linda D.','Cincinnati, OH'],['Diana R.','Phoenix, AZ'],
+    ['Michelle T.','Savannah, GA'],['Karen B.','Denver, CO'],['Patricia W.','Boston, MA'],
+    ['Rachel N.','Nashville, TN'],['Lisa H.','Portland, OR'],['Nicole F.','Charlotte, NC'],
+    ['Stephanie G.','Dallas, TX'],['Heather J.','Seattle, WA'],['Christina P.','Atlanta, GA'],
+    ['Jessica V.','Pittsburgh, PA'],['Melissa C.','Tampa, FL'],['Angela O.','Minneapolis, MN'],
+    ['Tara E.','Las Vegas, NV'],['Crystal A.','Indianapolis, IN'],['Brenda Y.','Columbus, OH'],
+    ['Vanessa Q.','Sacramento, CA'],['Rebecca U.','Salt Lake City, UT'],['Tiffany Z.','Kansas City, MO'],
+    ['Margaret O.','Buffalo, NY'],['Patricia W.','Phoenix, AZ'],['Linda H.','Toledo, OH']
+  ];
+  var packs = [
+    {label:'<span style="color:#a33c00">2 bottles (Recommended)</span>',weight:5},
+    {label:'<span style="color:#2e7d32">3 bottles (Best Value)</span>',weight:3}
+  ];
+  function pickWeighted(arr){
+    var total = arr.reduce(function(s,x){return s+x.weight;},0);
+    var r = Math.random()*total;
+    for(var i=0;i<arr.length;i++){ r -= arr[i].weight; if(r <= 0) return arr[i]; }
+    return arr[0];
+  }
+  function getInitials(name){
+    return name.split(' ').map(function(p){return p[0];}).join('').slice(0,2).toUpperCase();
+  }
+  function getTimeAgo(){
+    var t = Math.floor(Math.random()*180);
+    if(t < 8) return 'just now';
+    if(t < 60) return t + ' seconds ago';
+    return Math.floor(t/60) + ' minutes ago';
+  }
+  function showNext(){
+    var person = names[Math.floor(Math.random()*names.length)];
+    var pack = pickWeighted(packs);
+    avatarEl.textContent = getInitials(person[0]);
+    line1El.innerHTML = person[0] + ' from ' + person[1] + ' just bought ' + pack.label;
+    line2El.textContent = 'Verified purchase · ' + getTimeAgo();
+    toast.classList.add('show');
+    setTimeout(function(){ toast.classList.remove('show'); }, 5500);
+  }
+  // First toast after 18s, then every 28-45s
+  setTimeout(function(){
+    showNext();
+    setInterval(showNext, 28000 + Math.floor(Math.random()*17000));
+  }, 18000);
+
+  if(closeBtn){ closeBtn.addEventListener('click', function(){ toast.classList.remove('show'); }); }
+})();
+</script>
+<!-- === END LIVE PURCHASE TOAST === -->
 
 </body>
 </html>
