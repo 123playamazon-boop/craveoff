@@ -419,8 +419,8 @@ clarity("set","funnel_step","advertorial_view");
     <div class="date">April 20, 2026<br><span>· 7 min read</span></div>
   </div>
 
-  <div class="hero"><img src="img/hero_acai_amazon.jpg" alt="Indigenous women harvesting wild açaí in the Brazilian Amazon" loading="eager" fetchpriority="high"></div>
-  <div class="caption"><b>Editor's note</b> — Ribeirinho women harvesting wild açaí in Pará, northern Brazil. The fruit has been part of indigenous weight and hunger management for over 400 years. <b style="float:right">Credit: REUTERS / ARCHIVE</b></div>
+  <div class="hero" data-clickable="quiz" style="cursor:pointer;background:#000;padding:4px 0"><img src="img/couple_ba_hero.jpg" alt="Mark and Patricia, Phoenix AZ — 9-month protocol, 96 lbs combined lost without Ozempic or surgery" loading="eager" fetchpriority="high" decoding="async" width="1400" height="788" style="width:100%;height:auto;display:block;border-radius:6px;aspect-ratio:16/9"></div>
+  <div class="caption"><b>Mark, 58, and Patricia, 54</b> — Phoenix, AZ. 9-month protocol. <b>96 lbs lost between them.</b> Zero Ozempic. Zero surgery. <b style="float:right">✓ Verified reader submission · Individual results vary</b></div>
 
 
   <div class="status-proof" style="margin:22px 0 14px;padding:18px 20px;background:#fff8e8;border-left:4px solid #cc5500;border-radius:0 12px 12px 0;font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif">
@@ -443,6 +443,14 @@ clarity("set","funnel_step","advertorial_view");
       <div class="persona-foot">→ Take the 30-second test, see your taper-friendly protocol match</div>
     </div>
   </div>
+
+  <!-- READER FAT-REPLICA PROOF — visualizes mass of fat lost on the protocol -->
+  <figure class="fat-proof" data-clickable="quiz" style="margin:26px 0 10px;cursor:pointer;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.08);border:1px solid #eee">
+    <img src="img/fat_replica_proof.jpg" alt="Two readers holding fat-mass replicas — 59.6 lbs and 48.4 lbs lost on the Crave-Off protocol" loading="lazy" decoding="async" width="1400" height="788" style="width:100%;height:auto;display:block">
+    <figcaption style="padding:14px 18px;font-size:13.5px;color:#333;background:#fafafa;border-top:1px solid #eee;line-height:1.5">
+      <b>Two reader submissions</b> — 108 lbs of body fat removed between them, <em>visualized at scale</em>. The yellow blocks represent the actual mass each woman lost over a 90-day protocol. <span style="display:block;margin-top:6px;font-size:12px;color:#666"><b>Linda H.</b>, 62, Toledo OH — <b>59.6 lbs</b> · <b>Margaret O.</b>, 58, Buffalo NY — <b>48.4 lbs</b>. ✓ Verified · Individual results vary</span>
+    </figcaption>
+  </figure>
 
   <div class="cta-wrap">
     <a href="quiz.html" class="cta">Take The FREE 30-Second Test →</a>
@@ -1201,6 +1209,7 @@ clarity("set","funnel_step","advertorial_view");
       '.body h2', '.body h3', '.body strong', '.body em',
       '.status-proof', '.status-proof p',
       '.dual-personas', '.persona-card', '.persona-card h4', '.persona-card p', '.persona-tag', '.persona-foot',
+      '.fat-proof', '.fat-proof img', '.fat-proof figcaption',
       '.fr-warn', '.fr-stock', '.fr-sub'
     ];
 
