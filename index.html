@@ -1098,14 +1098,14 @@ clarity("set","funnel_step","advertorial_view");
     setTimeout(forwardAll, 500);
   })();
 
-  // Live reader count (header)
+  // Live reader count (header) — believable weekly number for "dropped Ozempic" claim
   (function(){
     const el = document.getElementById('liveCount');
-    let n = 14287;
+    let n = 1287;
     setInterval(() => {
-      n += Math.floor(Math.random()*9) - 2;
-      if(n < 13800) n = 13820;
-      if(n > 18500) n = 18480;
+      n += Math.floor(Math.random()*5) - 1;
+      if(n < 1240) n = 1245;
+      if(n > 1410) n = 1408;
       el.textContent = n.toLocaleString();
     }, 2800);
   })();
@@ -1136,8 +1136,8 @@ clarity("set","funnel_step","advertorial_view");
 <!-- STICKY MOBILE CTA BAR                          -->
 <!-- ============================================= -->
 <div class="sticky-mobile-cta">
-  <a href="quiz.html">Take The FREE 30-Second Test →</a>
-  <div class="tiny">41,000+ women · personalized result in 30 seconds</div>
+  <a href="quiz.html">Take The FREE Sugar Spike Test →</a>
+  <div class="tiny">41,000+ women · personalized spike profile in 30 seconds</div>
 </div>
 
 <!-- === REDTRACK: preserve click ID across funnel === -->

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Personalized Appetite & Metabolism Assessment — Crave-Off</title>
+<title>Your Sugar Spike Diagnostic — Crave-Off</title>
 <meta name="description" content="Discover what may be affecting your appetite control in under 30 seconds. Personalized diagnostic-style assessment.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -203,15 +203,15 @@ clarity("set","funnel_step","quiz_started");
   <!-- TRANSITION / ANALYZING                              -->
   <!-- ================================================== -->
   <div id="transition" class="transition">
-    <div class="trans-title">Analyzing your personalized results…</div>
+    <div class="trans-title">Analyzing your blood sugar profile…</div>
     <div class="spinner"></div>
-    <div class="trans-msg" id="transMsg">Matching your answers to the Amazonian field-study dataset…</div>
+    <div class="trans-msg" id="transMsg">Matching your spike pattern to the 41,000-woman CGM responder dataset…</div>
 
     <div class="trans-steps" id="transSteps">
-      <div class="item" data-step="1"><div class="check">✓</div><div>Mapping your appetite &amp; craving pattern</div></div>
-      <div class="item" data-step="2"><div class="check">✓</div><div>Analyzing your hunger &amp; energy profile</div></div>
-      <div class="item" data-step="3"><div class="check">✓</div><div>Matching your behavioral &amp; commitment cluster</div></div>
-      <div class="item" data-step="4"><div class="check">✓</div><div>Selecting your personalized 90-day support plan</div></div>
+      <div class="item" data-step="1"><div class="check">✓</div><div>Mapping your sugar spike pattern</div></div>
+      <div class="item" data-step="2"><div class="check">✓</div><div>Analyzing your post-meal glucose response</div></div>
+      <div class="item" data-step="3"><div class="check">✓</div><div>Matching your GLP-1 responder cluster</div></div>
+      <div class="item" data-step="4"><div class="check">✓</div><div>Selecting your personalized blood sugar protocol</div></div>
     </div>
   </div>
 
@@ -296,10 +296,10 @@ clarity("set","funnel_step","quiz_started");
   // ==================================================
   function runTransition(){
     const msgs = [
-      'Matching your answers to the Amazonian field-study dataset…',
-      'Cross-referencing your appetite &amp; craving profile…',
-      'Analyzing behavioral &amp; commitment signals…',
-      'Building your personalized 90-day plan…'
+      'Matching your spike pattern to the 41,000-woman CGM responder dataset…',
+      'Cross-referencing your glucose response &amp; craving timeline…',
+      'Analyzing your GLP-1 mimetic responder signals…',
+      'Building your personalized blood sugar protocol…'
     ];
     const steps = document.querySelectorAll('.trans-steps .item');
     const msgEl = document.getElementById('transMsg');
