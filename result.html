@@ -445,12 +445,12 @@ clarity("set","funnel_step","quiz_completed");
 
   <!-- SECTION 1 & 2: HEADLINE + SUBHEADLINE -->
   <header class="hero-head">
-    <div class="match-badge">✓ 94% Profile Match</div>
+    <div class="match-badge">✓ 94% Blood Sugar Match</div>
     <h1 class="headline" id="dynamic-h1">
-      Your results indicate a pattern commonly seen in <span id="h1-span">appetite regulation imbalance after 35</span>
+      Your profile shows a pattern of <span id="h1-span">post-meal glucose spikes driving 3 PM cravings</span>
     </h1>
     <p class="subhead">
-      Based on behavioral and metabolic pattern data observed across <strong>41,000+</strong> U.S. women who completed this assessment. Your profile has been matched to the nearest responder cluster identified in the underlying research.
+      Based on continuous glucose monitor (CGM) patterns observed across <strong>41,000+</strong> U.S. women in the responder dataset. Your profile matches the <strong>cluster most responsive to natural GLP-1 mimetics</strong> — the women in our data who flatten their spike within 14 days and lose belly fat without injections.
     </p>
   </header>
 
@@ -1023,63 +1023,63 @@ clarity("set","funnel_step","quiz_completed");
   (function(){
     const params = new URLSearchParams(window.location.search);
     const a = {
-      q1: params.get('q1') || 'lose_weight',       // main goal
-      q2: params.get('q2') || 'cravings',           // biggest struggle
-      q3: params.get('q3') || 'multiple_diets',     // past experience
-      q4: params.get('q4') || 'afternoon',          // hunger pattern
-      q5: params.get('q5') || 'somewhat',           // commitment (renumbered from q8)
+      q1: params.get('q1') || 'afternoon_spike',     // sugar spike pattern (NEW Q1)
+      q2: params.get('q2') || 'belly',                // target fat zone (NEW Q2)
+      q3: params.get('q3') || 'never_tried',          // GLP-1 history (NEW Q3)
+      q4: params.get('q4') || '15to30',               // weight goal (NEW Q4)
+      q5: params.get('q5') || 'somewhat',             // urgency timeline
       recommended: params.get('recommended') || '2'
     };
 
     // ==========================================================
-    // HEADLINE — based on biggest struggle (q2)
+    // HEADLINE — based on sugar spike pattern (q1)
     // ==========================================================
     const h1Variants = {
-      cravings: 'appetite-signaling &amp; craving dysregulation',
-      consistency: 'appetite-signaling &amp; consistency-barrier profile',
-      hunger: 'persistent hunger &amp; satiety-response pattern',
-      energy: 'energy-driven eating &amp; metabolic slowdown pattern'
+      afternoon_spike: 'post-meal glucose spikes driving 3 PM cravings',
+      evening_spike:   'evening insulin response &amp; late-night snacking pattern',
+      postmeal_spike:  'rapid post-meal glucose rebound &amp; satiety dysregulation',
+      allday_spike:    'sustained blood-sugar instability throughout the day'
     };
-    document.getElementById('h1-span').innerHTML = h1Variants[a.q2] || h1Variants.cravings;
+    document.getElementById('h1-span').innerHTML = h1Variants[a.q1] || h1Variants.afternoon_spike;
 
     // ==========================================================
-    // CARD 1 — PRIMARY GOAL (q1)
+    // CARD 1 — SUGAR SPIKE PATTERN (q1)
     // ==========================================================
     const goalMap = {
-      lose_weight:      ['Sustainable weight loss',       'Most achievable when paired with appetite-signaling support.'],
-      appetite_control: ['Control cravings & emotional eating', 'A profile that responds well to satiety-signaling support.'],
-      energy_boost:     ['Energy, lightness & vitality',   'Linked to blood-sugar stability and metabolic balance.'],
-      overall_wellness: ['Overall wellness & balance',     'Whole-system approach indicated — supports metabolism, appetite, and energy together.']
+      afternoon_spike: ['3 PM glucose crash pattern',           'Most responsive to natural GLP-1 mimetic — flattens the post-lunch spike that drives the afternoon crash.'],
+      evening_spike:   ['Evening insulin resistance pattern',   'Cluster typically responds to satiety-signaling within 7-10 days of consistent use.'],
+      postmeal_spike:  ['Rapid post-meal glucose rebound',      'Linked to delayed GLP-1 release — the exact mechanism this protocol restores naturally.'],
+      allday_spike:    ['Sustained glucose instability',        'Priority cluster — most dramatic responder profile in the 41,000-woman dataset.']
     };
-    const goal = goalMap[a.q1] || goalMap.lose_weight;
+    const goal = goalMap[a.q1] || goalMap.afternoon_spike;
     document.getElementById('p-goal').textContent = goal[0];
     document.getElementById('n-goal').textContent = goal[1];
 
     // ==========================================================
-    // CARD 2 — APPETITE PATTERN (q4)
+    // CARD 2 — TARGET FAT ZONE (q2)
     // ==========================================================
     const appetiteMap = {
-      stable:    ['Generally stable hunger signals',    'Supportive factor — indicates satiety hormones are partially responsive.'],
-      afternoon: ['Peak hunger between 2–5 PM',         'Most commonly associated with late-day cortisol and insulin fluctuations.'],
-      evening:   ['Strongest hunger after dinner',      'Often reflects post-meal leptin response and habit-driven snacking patterns.'],
-      allday:    ['Persistent hunger throughout the day', 'Typical of sustained appetite-signaling dysregulation — flagged as priority pattern.']
+      belly:        ['Visceral belly fat — insulin-driven',   'Most responsive zone to GLP-1 pathway support — typically first to respond within 14-21 days.'],
+      hips_thighs:  ['Hips &amp; thighs — estrogen-pattern fat',   'Slower to release than belly fat — full protocol (90 days) recommended for this profile.'],
+      all_over:     ['Generalized fat gain pattern',          'Systemic insulin signaling indicated — protocol targets full-body glucose response.'],
+      face_arms:    ['Upper-body fat (face, arms, upper back)', 'Often the first visible loss area — readers report changes within 10-14 days.']
     };
-    const appetite = appetiteMap[a.q4] || appetiteMap.afternoon;
+    const appetite = appetiteMap[a.q2] || appetiteMap.belly;
     document.getElementById('p-appetite').textContent = appetite[0];
     document.getElementById('n-appetite').textContent = appetite[1];
 
-    // CARD 3 (ENERGY) removed — quiz reduced from 8 → 5 questions, q7 no longer exists
+    // CARD 3 (ENERGY) removed — quiz reduced from 8 → 5 questions
 
     // ==========================================================
-    // CARD 4 — BEHAVIORAL HISTORY (q3)
+    // CARD 4 — GLP-1 HISTORY (q3)
     // ==========================================================
     const priorMap = {
-      multiple_diets: ['Multiple diet attempts, limited sustained results', 'Typical for responder-group profiles — indicates the issue is signaling, not willpower.'],
-      some_attempts:  ['A few attempts, then plateau',                      'Suggests the profile hasn\'t been properly matched to approach before.'],
-      pharma:         ['Including pharmaceutical interventions',           'Common trigger for seeking natural, food-based alternatives.'],
-      first_time:     ['First structured approach',                        'Advantage: you\'re starting with a profile-matched protocol from day one.']
+      never_tried:    ['Never used GLP-1 injections',                 'Advantageous starting profile — no rebound risk, no taper protocol needed.'],
+      curious:        ['Considering GLP-1 but hesitant',              'You\'re in the largest responder cluster — natural alternative is the recommended first step.'],
+      currently_on:   ['Currently on Ozempic / Wegovy / Mounjaro',    'Taper-friendly profile — natural protocol can run alongside, then take over after weaning.'],
+      rebound:        ['Tried GLP-1, quit, regained the weight',     'Rebound profile — most aggressive responder cluster. Priority protocol indicated.']
     };
-    const prior = priorMap[a.q3] || priorMap.multiple_diets;
+    const prior = priorMap[a.q3] || priorMap.never_tried;
     document.getElementById('p-prior').textContent = prior[0];
     document.getElementById('n-prior').textContent = prior[1];
 

@@ -126,8 +126,8 @@ clarity("set","funnel_step","quiz_started");
   <div id="quizWrap">
 
     <div class="quiz-header">
-      <div class="mini-badge">Personalized Assessment</div>
-      <h2>Find Your Appetite &amp; Metabolism Profile</h2>
+      <div class="mini-badge">Sugar Spike Diagnostic</div>
+      <h2>Find Your Blood Sugar &amp; Craving Profile</h2>
     </div>
 
     <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
@@ -135,64 +135,64 @@ clarity("set","funnel_step","quiz_started");
 
     <div id="quiz">
 
-      <!-- Q1: Main goal -->
+      <!-- Q1: Sugar spike pattern (entry diagnostic — matches ad promise) -->
       <div class="card q" data-q="1">
-        <div class="q-label">Your Goal</div>
-        <div class="question">What is your main goal right now?</div>
+        <div class="q-label">Your Spike Pattern</div>
+        <div class="question">When does your craving hit hardest?</div>
         <div class="options">
-          <button class="option" data-v="lose_weight"><span class="emoji">⚖️</span>Lose weight in a healthy, sustainable way</button>
-          <button class="option" data-v="appetite_control"><span class="emoji">🧠</span>Control cravings and stop emotional eating</button>
-          <button class="option" data-v="energy_boost"><span class="emoji">⚡</span>Boost my energy and feel lighter</button>
-          <button class="option" data-v="overall_wellness"><span class="emoji">🌿</span>Improve overall wellness and balance</button>
+          <button class="option" data-v="afternoon_spike"><span class="emoji">🕒</span>3 PM crash — cookies, chips, anything sweet</button>
+          <button class="option" data-v="evening_spike"><span class="emoji">🌙</span>9 PM — after dinner, in front of the TV</button>
+          <button class="option" data-v="postmeal_spike"><span class="emoji">🍽️</span>Right after meals — still hungry 20 min later</button>
+          <button class="option" data-v="allday_spike"><span class="emoji">🔥</span>All day — I feel hungry constantly</button>
         </div>
       </div>
 
-      <!-- Q2: Biggest struggle -->
+      <!-- Q2: Belly fat target zone -->
       <div class="card q hidden" data-q="2">
-        <div class="q-label">Your Struggle</div>
-        <div class="question">What's your biggest struggle with weight or food?</div>
+        <div class="q-label">Your Target Zone</div>
+        <div class="question">Where is your weight sticking the most? <span style="display:block;font-size:13px;font-weight:500;color:#888;margin-top:4px">(Be honest — no one sees this)</span></div>
         <div class="options">
-          <button class="option" data-v="cravings"><span class="emoji">🍫</span>Uncontrollable cravings (sweets, carbs, snacks)</button>
-          <button class="option" data-v="consistency"><span class="emoji">🔁</span>Staying consistent — I start strong, then stop</button>
-          <button class="option" data-v="hunger"><span class="emoji">🍽️</span>Constant hunger — I never feel full</button>
-          <button class="option" data-v="energy"><span class="emoji">🔋</span>Low energy that leads me to eat more</button>
+          <button class="option" data-v="belly"><span class="emoji">⭕</span>Belly — visceral fat that won't budge</button>
+          <button class="option" data-v="hips_thighs"><span class="emoji">🍐</span>Hips &amp; thighs — pear shape getting wider</button>
+          <button class="option" data-v="all_over"><span class="emoji">⚖️</span>All over — I'm gaining everywhere</button>
+          <button class="option" data-v="face_arms"><span class="emoji">👤</span>Face &amp; arms — first place I notice it</button>
         </div>
       </div>
 
-      <!-- Q3: Past experience -->
+      <!-- Q3: Ozempic history -->
       <div class="card q hidden" data-q="3">
-        <div class="q-label">Your History</div>
-        <div class="question">Have you tried losing weight before?</div>
+        <div class="q-label">Your GLP-1 History</div>
+        <div class="question">Where are you with Ozempic / Wegovy / Mounjaro?</div>
         <div class="options">
-          <button class="option" data-v="multiple_diets"><span class="emoji">📉</span>Yes — multiple diets, nothing lasted</button>
-          <button class="option" data-v="some_attempts"><span class="emoji">🤷‍♀️</span>A few attempts — some results, then plateau</button>
-          <button class="option" data-v="pharma"><span class="emoji">💊</span>Yes — including medications or injectables</button>
-          <button class="option" data-v="first_time"><span class="emoji">🌱</span>This is my first real structured attempt</button>
+          <button class="option" data-v="never_tried"><span class="emoji">🚫</span>Never tried it — and never want to inject</button>
+          <button class="option" data-v="curious"><span class="emoji">🤔</span>Curious, but the side effects scare me</button>
+          <button class="option" data-v="currently_on"><span class="emoji">💉</span>On it now — looking for a natural off-ramp</button>
+          <button class="option" data-v="rebound"><span class="emoji">📈</span>Tried it — quit — gained the weight back faster</button>
         </div>
       </div>
 
-      <!-- Q4: Hunger pattern -->
+      <!-- Q4: Goal weight loss target -->
       <div class="card q hidden" data-q="4">
-        <div class="q-label">Hunger Pattern</div>
-        <div class="question">How would you describe your hunger during the day?</div>
+        <div class="q-label">Your Goal</div>
+        <div class="question">How much weight do you want to release?</div>
         <div class="options">
-          <button class="option" data-v="stable"><span class="emoji">😊</span>Stable — I feel satisfied between meals</button>
-          <button class="option" data-v="afternoon"><span class="emoji">🕒</span>Spikes in the afternoon (2–5 p.m.)</button>
-          <button class="option" data-v="evening"><span class="emoji">🌙</span>Strongest at night / after dinner</button>
-          <button class="option" data-v="allday"><span class="emoji">🔥</span>I feel hungry almost all day</button>
+          <button class="option" data-v="under15"><span class="emoji">✨</span>Less than 15 lbs — last stubborn pounds</button>
+          <button class="option" data-v="15to30"><span class="emoji">⚖️</span>15 to 30 lbs — the "after-40" gain</button>
+          <button class="option" data-v="30to50"><span class="emoji">🎯</span>30 to 50 lbs — feeling like a different woman</button>
+          <button class="option" data-v="over50"><span class="emoji">🔥</span>50+ lbs — a full life reset</button>
         </div>
       </div>
 
 
-      <!-- Q5: Commitment -->
+      <!-- Q5: Urgency / event -->
       <div class="card q hidden" data-q="5">
-        <div class="q-label">Your Commitment</div>
-        <div class="question">How serious are you about reaching your goal in the next 90 days?</div>
+        <div class="q-label">Your Timeline</div>
+        <div class="question">When do you want your blood sugar &amp; cravings under control?</div>
         <div class="options">
-          <button class="option" data-v="very"><span class="emoji">🔥</span>Very serious — I'm ready to commit fully</button>
-          <button class="option" data-v="somewhat"><span class="emoji">✨</span>Somewhat — I want real results, not extreme effort</button>
-          <button class="option" data-v="exploring"><span class="emoji">🔍</span>Exploring — I want to see what actually works for me</button>
-          <button class="option" data-v="unsure"><span class="emoji">🤔</span>Not sure yet — still thinking about it</button>
+          <button class="option" data-v="very"><span class="emoji">🔥</span>Yesterday — I'm done with the 3 PM crashes</button>
+          <button class="option" data-v="somewhat"><span class="emoji">📅</span>Within 30 days — there's an event I care about</button>
+          <button class="option" data-v="exploring"><span class="emoji">🌿</span>Next 90 days — I want lasting results</button>
+          <button class="option" data-v="unsure"><span class="emoji">💭</span>Still researching — I want to know more first</button>
         </div>
       </div>
 
