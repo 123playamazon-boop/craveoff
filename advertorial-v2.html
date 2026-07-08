@@ -249,6 +249,12 @@
     .stickybar{padding:8px 10px;}
     .stickybar .inner{padding:11px 14px;}
     .stickybar .btn{font-size:16px;letter-spacing:.5px;}
+    .cmp{table-layout:fixed;width:100%;font-size:10.5px;margin:10px auto 8px;}
+    .cmp th,.cmp td{padding:6px 5px;word-break:break-word;line-height:1.28;vertical-align:top;}
+    .cmp thead th{font-size:9.5px;letter-spacing:0;}
+    .cmp thead th span{font-size:9px;}
+    .cmp tbody th{font-size:9.5px;}
+    .cmp th:first-child,.cmp td:first-child{width:50px;}
     .livetoast{font-size:13px;padding:10px 13px;}
   }
 </style>
@@ -398,8 +404,7 @@
 
         <!-- COMPARISON TABLE -->
         <h2>Crave Off vs. Ozempic vs. the berberine everyone's trying</h2>
-        <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
-        <table class="cmp" style="min-width:540px;">
+        <table class="cmp">
           <thead>
             <tr><th>&nbsp;</th><th>GLP-1 injections<br><span style="font-weight:400;text-transform:none;letter-spacing:0;">(Ozempic / Wegovy)</span></th><th>Berberine<br><span style="font-weight:400;text-transform:none;letter-spacing:0;">("nature's Ozempic")</span></th><th class="col-best head">Crave Off<br><span style="font-weight:400;text-transform:none;letter-spacing:0;">(wild Amazonian a&ccedil;a&iacute;)</span></th></tr>
           </thead>
@@ -412,7 +417,6 @@
             <tr><th>Monthly cost</th><td>$850&ndash;$1,400</td><td>$20&ndash;$40</td><td class="col-best">$33&ndash;$39 / bottle</td></tr>
           </tbody>
         </table>
-        </div>
 
         <!-- TIMELINE -->
         <h2>Watch the cravings fade &mdash; week by week</h2>
