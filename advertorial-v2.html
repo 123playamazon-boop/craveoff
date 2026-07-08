@@ -160,18 +160,96 @@
 
   @media(max-width:900px){
     body{font-size:17px;}
-    .layout{flex-direction:column;padding:24px 0 40px;}
+    .wrap{padding:0 16px;}
+    .layout{flex-direction:column;gap:0;padding:20px 0 44px;}
     .aside{display:none;}
-    h1.headline{font-size:34px;}
-    .eyebrow{font-size:19px;}
-    h2{font-size:24px;}
+    .eyebrow{font-size:18px;}
+    h1.headline{font-size:32px;letter-spacing:-.5px;}
+    .subhead{font-size:18px;}
+    h2{font-size:23px;margin:34px 0 14px;}
     .tl .pill{position:static;display:inline-block;margin-bottom:8px;}
-    .timeline{padding-left:18px;}
+    .timeline{padding-left:16px;}
     .spec{flex-direction:column;gap:2px;}
     .spec .k{flex:none;}
     .price .money .big{font-size:28px;}
     .cmp{font-size:13px;}
     .cmp th,.cmp td{padding:8px;}
+  }
+  @media(max-width:560px){
+    body{font-size:16px;line-height:1.55;}
+    .wrap{padding:0 14px;}
+    .masthead{padding:16px 14px 12px;}
+    .masthead .brand{font-size:22px;}
+    .masthead .tagline{font-size:10px;letter-spacing:2px;}
+    .layout{padding:16px 0 44px;}
+    .eyebrow{font-size:16px;margin-bottom:4px;}
+    h1.headline{font-size:26px;line-height:1.15;margin:0 0 12px;}
+    .subhead{font-size:16px;margin:0 0 12px;}
+    .byline{font-size:13px;margin-bottom:16px;}
+    .herofig{margin:4px 0 6px;}
+    h2{font-size:20px;line-height:1.2;margin:28px 0 12px;letter-spacing:-.3px;}
+    .main p{font-size:16px;margin:0 0 14px;}
+    .xlist li{font-size:16px;gap:10px;}
+    .lead-list li{font-size:16px;}
+    .villain{padding:15px;font-size:15.5px;margin:18px 0;}
+    .quizcard{padding:20px 15px;margin:22px 0;border-radius:14px;}
+    .quizcard h3{font-size:21px;}
+    .quizcard .qsub{font-size:15px;}
+    .catlabel{font-size:12px;margin:18px 0 10px;}
+    .checkrow{padding:12px 13px;gap:11px;}
+    .checkrow .lbl{font-size:15px;}
+    .gauge .gstate{font-size:19px;}
+    .cgmcard{padding:16px 14px;margin:20px 0;}
+    .cgm-title{font-size:18px;}
+    .ing{padding:14px;gap:13px;border-radius:12px;}
+    .ing .ic{flex:0 0 58px;width:58px;height:58px;font-size:30px;border-radius:10px;}
+    .ing h4{font-size:17px;}
+    .ing p{font-size:15px;}
+    .ing h4 .star{display:inline-block;margin-left:0;margin-top:4px;}
+    .tl h4{font-size:19px;}
+    .tl p{font-size:15px;}
+    .proofstrip{grid-template-columns:1fr 1fr;gap:8px;}
+    .proofstrip figcaption{font-size:11px;}
+    .benefit b{font-size:17px;}
+    .benefit span{font-size:15px;}
+    .prodcard{border-radius:14px;}
+    .prodcard .pname{padding:16px 16px 4px;}
+    .prodcard .pname .t{font-size:21px;}
+    .spec{padding:12px 16px;}
+    .spec .v{font-size:15.5px;}
+    .refnote{font-size:15px;padding:13px 14px;}
+    .scarcity{font-size:12.5px;padding:10px 12px;gap:6px 12px;}
+    .pricing{margin:12px 0 8px;}
+    .price{padding:15px 14px;gap:10px;}
+    .price .qty .q{font-size:18px;}
+    .price .qty .sub{font-size:12px;}
+    .price .off{font-size:11px;}
+    .price .money .big{font-size:25px;}
+    .price .money .was{font-size:13px;}
+    .price .money .per{font-size:12px;}
+    .price .badge{font-size:10px;padding:3px 8px;top:-10px;right:10px;}
+    .cta{font-size:17px;padding:16px;letter-spacing:.5px;}
+    .deliver,.subcta{font-size:13px;}
+    .guarantee{padding:18px 15px;}
+    .sealrow{flex-direction:column;text-align:center;gap:12px;}
+    .sealrow img{flex:none;width:96px;margin:0 auto;}
+    .authorbox{padding:15px;gap:12px;}
+    .authorbox .av-lg{flex:0 0 46px;width:46px;height:46px;font-size:16px;}
+    .authorbox .au-name{font-size:16px;}
+    .authorbox .au-bio{font-size:14px;}
+    .faq details{padding:0 15px;}
+    .faq summary{font-size:15px;padding:14px 0;}
+    .faq details > p{font-size:15px;}
+    .comments h2{font-size:20px;}
+    .comment{gap:10px;padding:12px 0;}
+    .comment .av{flex:0 0 36px;width:36px;height:36px;font-size:13px;}
+    .comment .ctext{font-size:15px;}
+    .comment.reply{margin-left:20px;}
+    .disc-note{margin:28px 0 96px;font-size:11px;}
+    .stickybar{padding:8px 10px;}
+    .stickybar .inner{padding:11px 14px;}
+    .stickybar .btn{font-size:16px;letter-spacing:.5px;}
+    .livetoast{font-size:13px;padding:10px 13px;}
   }
 </style>
 </head>
