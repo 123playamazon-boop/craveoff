@@ -281,6 +281,25 @@
         <figure class="herofig" style="cursor:pointer" onclick="document.getElementById('offer').scrollIntoView({behavior:'smooth'})"><img src="img/couple_ba_hero.jpg" alt="Verified reader before and after"></figure>
         <p class="figcap">Verified reader submission &middot; individual results vary.</p>
 
+        <!-- TRUST + PRESS -->
+        <style>
+          .trustbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;justify-content:center;text-align:center;background:#f6faf6;border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:14px 0 12px;}
+          .trustbar .tb-stars{color:var(--gold);font-size:20px;letter-spacing:2px;}
+          .trustbar .tb-txt{font-size:14px;color:#3a3a3a;}
+          .pressbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;justify-content:center;text-align:center;margin:0 0 24px;padding:10px 0 14px;border-bottom:1px solid var(--line);}
+          .pressbar .pb-label{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);}
+          .pressbar .pb-outlets{font-family:Georgia,serif;font-size:14px;color:#555;font-style:italic;}
+          @media(max-width:560px){.trustbar{padding:11px 12px;} .trustbar .tb-txt{font-size:12.5px;} .pressbar .pb-outlets{font-size:12.5px;}}
+        </style>
+        <div class="trustbar">
+          <span class="tb-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="tb-txt"><b>4.8/5</b> &middot; <b>13,428</b> verified reviews &middot; <b>41,000+</b> women assessed &middot; <b>194</b> orders in the last 24h</span>
+        </div>
+        <div class="pressbar">
+          <span class="pb-label">As reported in</span>
+          <span class="pb-outlets">Natural Living &middot; Metabolic Journal &middot; Wellness.net &middot; Nutrition Daily &middot; Health Insider</span>
+        </div>
+
         <!-- MISTAKES -->
         <h2>Do you make these weight-loss mistakes?</h2>
         <ul class="xlist">
@@ -450,6 +469,25 @@
         <div class="benefit"><b>A flatter belly</b><span>Less snacking, less bloat &mdash; waistbands loosen and clothes fit the way they used to.</span></div>
         <div class="benefit"><b>Better sleep</b><span>No late-night eating means deeper, less interrupted rest.</span></div>
 
+        <!-- WRITTEN REVIEWS -->
+        <h2>What women are saying</h2>
+        <style>
+          .reviewgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:6px 0 10px;}
+          .rv{border:1px solid var(--line);border-radius:14px;padding:18px;background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.03);}
+          .rv-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;gap:8px;}
+          .rv-stars{color:var(--gold);font-size:16px;letter-spacing:1px;}
+          .rv-badge{font-size:11px;font-weight:800;color:var(--green);white-space:nowrap;}
+          .rv p{margin:0 0 10px;color:#222;font-size:15px;}
+          .rv-who{font-size:13px;color:var(--muted);font-weight:700;}
+          @media(max-width:560px){.reviewgrid{grid-template-columns:1fr;gap:12px;} .rv{padding:15px;}}
+        </style>
+        <div class="reviewgrid">
+          <div class="rv"><div class="rv-top"><span class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rv-badge">&#10003; Verified buyer</span></div><p>"The 3 PM crash was the first thing to go. By week two I stopped grazing at night without even thinking about it. First thing that's ever worked for me."</p><div class="rv-who">Jessica P. &middot; 41, Tampa FL</div></div>
+          <div class="rv"><div class="rv-top"><span class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rv-badge">&#10003; Verified buyer</span></div><p>"After menopause nothing moved. This is the first thing that actually matched my body. My doctor asked what I changed."</p><div class="rv-who">Karen M. &middot; 54, Dallas TX</div></div>
+          <div class="rv"><div class="rv-top"><span class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rv-badge">&#10003; Verified buyer</span></div><p>"I'd tried the injections &mdash; they made me sick. This was the opposite. Steady, clear, no nausea, and I still have my energy."</p><div class="rv-who">Sharon R. &middot; 52, Knoxville TN</div></div>
+          <div class="rv"><div class="rv-top"><span class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rv-badge">&#10003; Verified buyer</span></div><p>"I stopped thinking about food every 20 minutes. That quiet in my head was the biggest change &mdash; the scale just followed."</p><div class="rv-who">Michelle A. &middot; 47, Savannah GA</div></div>
+        </div>
+
         <!-- WHERE TO GET IT -->
         <h2>Where you can get Crave Off today</h2>
         <p>Real wild-harvested Amazonian a&ccedil;a&iacute; &mdash; concentrated to this potency &mdash; is hard to source. Most "a&ccedil;a&iacute;" supplements are filler with a berry on the label.</p>
@@ -566,6 +604,10 @@
           <div class="comment"><div class="av">DK</div><div><div class="cname">Diana K. &#10003;</div><div class="ctext">Skeptic here. My husband bought it as a joke about my late-night snacking. By week 3 the 9 PM kitchen runs completely stopped. Ordered 3 bottles to lock in the price.</div><div class="cmeta">Like &middot; Reply &middot; &#128077; 247 &middot; 4 days</div></div></div>
           <div class="comment"><div class="av">PB</div><div><div class="cname">Pat B. &#10003;</div><div class="ctext">Tried keto, fasting, MyFitnessPal for 18 months. This is the only thing that changed how my brain thinks about food. I eat less because I want less. &minus;16 lbs in 12 weeks.</div><div class="cmeta">Like &middot; Reply &middot; &#128077; 198 &middot; 5 days</div></div></div>
           <div class="comment"><div class="av">SC</div><div><div class="cname">Stephanie C. &#10003;</div><div class="ctext">3 weeks in and my husband asked what I was doing &mdash; down a dress size. No needles, thank god &#128522;</div><div class="cmeta">Like &middot; Reply &middot; &#128077; 174 &middot; 1 week</div></div></div>
+          <div class="comment"><div class="av">RH</div><div><div class="cname">Rebecca H. &#10003;</div><div class="ctext">I was booked for a $22k procedure &mdash; gave this 90 days first because skipping it felt insane. Cancelled the consult. My doctor keeps asking what I did.</div><div class="cmeta">Like &middot; Reply &middot; &#128077; 231 &middot; 5 days</div></div></div>
+          <div class="comment"><div class="av">TB</div><div><div class="cname">Tammy B. &#10003;</div><div class="ctext">The afternoon crash is just&hellip; gone. I don't raid the candy drawer at work anymore. Three months in and I actually want to be in family photos again.</div><div class="cmeta">Like &middot; Reply &middot; &#128077; 149 &middot; 1 week</div></div></div>
+          <div class="comment reply"><div class="av">GM</div><div><div class="cname">Gina M.</div><div class="ctext">Tammy same!! The candy-drawer thing is so real. Haven't touched mine in weeks.</div><div class="cmeta">Like &middot; Reply &middot; &#128077; 22 &middot; 3 days</div></div></div>
+          <div class="comment"><div class="av">CL</div><div><div class="cname">Cynthia L. &#10003;</div><div class="ctext">54 and honestly gave up on this stuff. Took a chance on the 6-bottle plan. Week 3 my jeans buttoned without a fight. That was the moment for me.</div><div class="cmeta">Like &middot; Reply &middot; &#128077; 187 &middot; 6 days</div></div></div>
         </div>
 
         <!-- AUTHOR -->
