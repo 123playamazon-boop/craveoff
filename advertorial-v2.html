@@ -189,12 +189,12 @@
 
         <!-- HERO -->
         <p class="eyebrow">Before you try berberine or another "nature's Ozempic" &mdash;</p>
-        <h1 class="headline">If You Think About Food All Day And Crash Every Afternoon, It's Not Willpower &mdash; It's Your <span class="hl">Blood Sugar</span></h1>
+        <h1 class="headline" style="cursor:pointer" onclick="document.getElementById('offer').scrollIntoView({behavior:'smooth'})">If You Think About Food All Day And Crash Every Afternoon, It's Not Willpower &mdash; It's Your <span class="hl">Blood Sugar</span></h1>
         <p class="subhead">Everyone's calling berberine "nature's Ozempic." But berberine barely absorbs &mdash; and it does nothing for the 3 PM spike that actually fires your cravings. One Amazon berry the Ribeirinho women have eaten for 400 years flattens that spike at the source. No needle, no nausea, no $1,400 a month.</p>
         <p class="subhead" style="font-weight:600;border-left:4px solid var(--green);padding-left:16px;">Quiet the afternoon cravings in about 7 days &mdash; <b>even if</b> you've quit 3 diets this year, <b>even if</b> Ozempic made you sick, <b>even if</b> you "love food too much."</p>
         <p class="byline">By <b>Dr. Camila Vasconcelos, M.D.</b> &middot; Board-Certified Internal Medicine &middot; June 30, 2026 &middot; 7 min read</p>
 
-        <figure class="herofig"><img src="img/couple_ba_hero.jpg" alt="Verified reader before and after"></figure>
+        <figure class="herofig" style="cursor:pointer" onclick="document.getElementById('offer').scrollIntoView({behavior:'smooth'})"><img src="img/couple_ba_hero.jpg" alt="Verified reader before and after"></figure>
         <p class="figcap">Verified reader submission &middot; individual results vary.</p>
 
         <!-- MISTAKES -->
@@ -228,6 +228,42 @@
         <div class="villain">
           <p style="margin:0 0 10px;">So why hasn't your doctor told you your body can flatten that spike on its own?</p>
           <p style="margin:0;"><b>Because you can't patent a jungle berry.</b> There's no $1,400-a-month profit in a fruit that grows wild in the Amazon &mdash; so they hand you the needle instead.</p>
+        </div>
+
+        <!-- CGM PROOF CHART -->
+        <style>
+          .cgmcard{border:1px solid var(--line);border-radius:16px;padding:24px;margin:26px 0;box-shadow:0 1px 6px rgba(0,0,0,.03);}
+          .cgm-eyebrow{font-size:12px;font-weight:800;letter-spacing:1.2px;color:var(--muted);text-transform:uppercase;}
+          .cgm-title{font-size:22px;font-weight:800;margin:4px 0 14px;}
+          .cgm-legend{display:flex;gap:18px;justify-content:center;margin:8px 0 6px;font-size:13px;font-weight:700;}
+          .cgm-legend .lg::before{content:'';display:inline-block;width:14px;height:4px;border-radius:2px;margin-right:6px;vertical-align:middle;}
+          .cgm-legend .lg-red::before{background:var(--red);} .cgm-legend .lg-green::before{background:var(--green);}
+          .cgm-cap{font-size:14px;color:var(--muted);text-align:center;margin:6px 0 0;}
+        </style>
+        <div class="cgmcard">
+          <div class="cgm-eyebrow">Reader-submitted CGM data &middot; 14 days apart</div>
+          <div class="cgm-title">Same reader. Same lunch. Two very different blood-sugar responses.</div>
+          <svg viewBox="0 0 640 270" width="100%" role="img" aria-label="Glucose response before and after 14 days">
+            <rect x="46" y="150" width="559" height="70" fill="#eaf3ec"></rect>
+            <text x="600" y="192" text-anchor="end" font-size="10" fill="#8aa88f">HEALTHY ZONE</text>
+            <line x1="46" y1="20" x2="46" y2="235" stroke="#e0e0e0"></line>
+            <line x1="46" y1="235" x2="605" y2="235" stroke="#e0e0e0"></line>
+            <text x="40" y="74" text-anchor="end" font-size="11" fill="#aaa">180</text>
+            <text x="40" y="154" text-anchor="end" font-size="11" fill="#aaa">120</text>
+            <text x="40" y="222" text-anchor="end" font-size="11" fill="#aaa">70</text>
+            <polyline fill="none" stroke="var(--red)" stroke-width="3" points="60,188 190,60 320,118 450,230 580,204"></polyline>
+            <polyline fill="none" stroke="var(--green)" stroke-width="3" points="60,196 190,168 320,180 450,190 580,195"></polyline>
+            <circle cx="190" cy="60" r="4" fill="var(--red)"></circle>
+            <circle cx="450" cy="230" r="4" fill="var(--red)"></circle>
+            <text x="196" y="52" font-size="12" font-weight="700" fill="var(--red)">Spike</text>
+            <text x="450" y="252" text-anchor="middle" font-size="11" font-weight="700" fill="var(--red)">3 PM crash</text>
+            <text x="60" y="253" text-anchor="middle" font-size="11" fill="#888">Meal</text>
+            <text x="190" y="253" text-anchor="middle" font-size="11" fill="#888">+30m</text>
+            <text x="320" y="253" text-anchor="middle" font-size="11" fill="#888">+60m</text>
+            <text x="580" y="253" text-anchor="middle" font-size="11" fill="#888">+120m</text>
+          </svg>
+          <div class="cgm-legend"><span class="lg lg-red">Before &mdash; day 1</span><span class="lg lg-green">After &mdash; day 14</span></div>
+          <p class="cgm-cap">Day 1: the spike triggers the 3 PM crash that sends her to the pantry. Day 14: the same lunch barely moves her glucose &mdash; and the crash never comes.</p>
         </div>
 
         <!-- SYMPTOM CHECKER -->
@@ -284,7 +320,8 @@
 
         <!-- COMPARISON TABLE -->
         <h2>Crave Off vs. Ozempic vs. the berberine everyone's trying</h2>
-        <table class="cmp">
+        <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+        <table class="cmp" style="min-width:540px;">
           <thead>
             <tr><th>&nbsp;</th><th>GLP-1 injections<br><span style="font-weight:400;text-transform:none;letter-spacing:0;">(Ozempic / Wegovy)</span></th><th>Berberine<br><span style="font-weight:400;text-transform:none;letter-spacing:0;">("nature's Ozempic")</span></th><th class="col-best head">Crave Off<br><span style="font-weight:400;text-transform:none;letter-spacing:0;">(wild Amazonian a&ccedil;a&iacute;)</span></th></tr>
           </thead>
@@ -297,6 +334,7 @@
             <tr><th>Monthly cost</th><td>$850&ndash;$1,400</td><td>$20&ndash;$40</td><td class="col-best">$33&ndash;$39 / bottle</td></tr>
           </tbody>
         </table>
+        </div>
 
         <!-- TIMELINE -->
         <h2>Watch the cravings fade &mdash; week by week</h2>
@@ -351,29 +389,40 @@
 
         <p>It's easy to order &mdash; just pick your Crave Off supply below and tap ADD TO CART.</p>
 
-        <!-- PRICING (matches live funnel: 1/3/6/12) -->
+        <!-- SCARCITY -->
+        <style>
+          .scarcity{display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:center;align-items:center;background:#fff8f4;border:1px solid #f4d4be;border-radius:12px;padding:12px 16px;margin:14px 0 12px;font-size:14px;color:#7a4a2a;}
+          .scarcity b{color:#a6231f;}
+        </style>
+        <div class="scarcity">
+          <span>&#9203; Your discount is held for <b id="cdtimer">14:59</b></span>
+          <span>&middot;</span>
+          <span><b id="viewers">31</b> people viewing this page right now</span>
+        </div>
+
+        <!-- PRICING (direct Stripe checkout: 1/3/6/12) -->
         <div class="pricing" id="offer">
-          <div class="price">
+          <a class="price" href="https://buy.stripe.com/8x2cN57dR9mRcXJcEJfMA0s" style="text-decoration:none;color:inherit;">
             <div class="qty"><div class="q">1 Bottle</div><div class="sub">30-day supply</div><span class="off">50% OFF</span></div>
             <div class="money"><div class="was">$39.99</div><div class="big"><small>$</small>19<small>.99</small></div></div>
-          </div>
-          <div class="price">
+          </a>
+          <a class="price" href="https://buy.stripe.com/aFa00jaq3eHbg9VdINfMA0t" style="text-decoration:none;color:inherit;">
             <div class="qty"><div class="q">3 Bottles</div><div class="sub">90-day supply &middot; Free shipping</div><span class="off">55% OFF</span></div>
             <div class="money"><div class="was">$119.97</div><div class="big"><small>$</small>53<small>.97</small></div><div class="per">$17.99 / bottle</div></div>
-          </div>
-          <div class="price best">
+          </a>
+          <a class="price best" href="https://buy.stripe.com/4gM28r41F2Ytf5ReMRfMA0u" style="text-decoration:none;color:inherit;">
             <span class="badge">Most popular</span>
             <div class="qty"><div class="q">6 Bottles</div><div class="sub">180-day supply &middot; Free shipping</div><span class="off">58% OFF</span></div>
             <div class="money"><div class="was">$239.94</div><div class="big"><small>$</small>99<small>.90</small></div><div class="per">$16.65 / bottle</div></div>
-          </div>
-          <div class="price">
+          </a>
+          <a class="price" href="https://buy.stripe.com/bJe6oHfKn8iN4rd0W1fMA0v" style="text-decoration:none;color:inherit;">
             <span class="badge">Best value</span>
             <div class="qty"><div class="q">12 Bottles</div><div class="sub">360-day supply &middot; Priority shipping</div><span class="off">60% OFF</span></div>
             <div class="money"><div class="was">$479.88</div><div class="big"><small>$</small>191<small>.88</small></div><div class="per">$15.99 / bottle</div></div>
-          </div>
+          </a>
         </div>
         <p class="deliver">Ships from the U.S. within 24&ndash;48 hours</p>
-        <a class="cta" href="quiz.html">Add to cart</a>
+        <a class="cta" href="https://buy.stripe.com/4gM28r41F2Ytf5ReMRfMA0u">Get my Crave Off &rarr;</a>
         <p class="subcta">One payment &middot; no subscription &middot; 60-day money-back guarantee</p>
 
         <!-- GUARANTEE -->
@@ -394,7 +443,7 @@
         <p>That's it. No diet. No meal plan. No needle. No giving up the foods you love.</p>
         <p>And it keeps working: the more consistently you flatten the spike, the further the cravings fade. Most responders find 60&ndash;90 days lets the appetite system fully reset &mdash; which is why the 2- and 3-bottle plans are the ones women stick with.</p>
         <p><span class="underline">Two capsules a day. The same pathway as the injections &mdash; from a Brazilian berry.</span></p>
-        <a class="cta" href="quiz.html" style="margin-top:8px;">See if your profile matches</a>
+        <a class="cta" href="#offer" style="margin-top:8px;">See your options &rarr;</a>
 
         <!-- MORE PROOF -->
         <h2>More reader submissions</h2>
@@ -403,6 +452,27 @@
           <figure><img src="img/ba_4.jpg" alt="Reader before and after"><figcaption>&#10003; Verified submission</figcaption></figure>
           <figure><img src="img/before_after_2.jpg" alt="Reader before and after"><figcaption>&#10003; Verified submission</figcaption></figure>
           <figure><img src="img/checkout_ba_2.jpg" alt="Reader before and after"><figcaption>&#10003; Verified submission</figcaption></figure>
+        </div>
+
+        <!-- FAQ -->
+        <h2>Still have questions?</h2>
+        <style>
+          .faq details{border:1px solid var(--line);border-radius:12px;margin:0 0 10px;padding:0 18px;background:#fff;}
+          .faq summary{list-style:none;cursor:pointer;font-weight:700;font-size:17px;padding:16px 0;display:flex;justify-content:space-between;gap:14px;align-items:center;}
+          .faq summary::-webkit-details-marker{display:none;}
+          .faq summary::after{content:'+';color:var(--green);font-weight:800;font-size:22px;line-height:1;}
+          .faq details[open] summary::after{content:'\2013';}
+          .faq details > p{margin:0 0 16px;color:#3a3a3a;font-size:16px;}
+        </style>
+        <div class="faq">
+          <details><summary>Does this actually work, or is it another supplement I'll toss in two weeks?</summary><p>Crave Off targets the blood-sugar spike behind the 3 PM crash &mdash; not "willpower." Most women feel the afternoon pull ease within 7&ndash;14 days. And you're covered by a 60-day money-back guarantee, so you test it on your own body before committing.</p></details>
+          <details><summary>Are there any side effects?</summary><p>It's a plant-based capsule &mdash; wild a&ccedil;a&iacute;, green tea, garcinia and apple cider vinegar. No needle, no harsh stimulants. Most report none. As with any supplement, check with your doctor if you're pregnant, nursing, or taking medication.</p></details>
+          <details><summary>How fast will I notice something?</summary><p>Most report quieter cravings and no 3 PM crash in the first 7&ndash;14 days. Waistline and scale changes usually show up around weeks 3&ndash;5. The full reset is a 60&ndash;90 day process.</p></details>
+          <details><summary>I've tried everything. Why would this be different?</summary><p>Because the problem was never willpower &mdash; it's the spike. Diets fight the symptom; Crave Off flattens the spike at the source, so the craving doesn't fire in the first place.</p></details>
+          <details><summary>Do I have to diet or hit the gym?</summary><p>No. Take 2 capsules before your biggest meal. No meal plans, no giving up the foods you love. Basic walking and whole foods speed it up, but nothing extreme is required.</p></details>
+          <details><summary>What if it doesn't work for me?</summary><p>You get every penny back within 60 days &mdash; even on opened, empty bottles. No questions. The risk sits with us, not you.</p></details>
+          <details><summary>Can I take it with my medications?</summary><p>The ingredients are food-based and generally well tolerated, but always check with your doctor first &mdash; especially if you take blood-sugar medication or blood thinners.</p></details>
+          <details><summary>How fast does it ship?</summary><p>Orders ship from the U.S. within 24&ndash;48 hours with tracking by email. Free shipping on the 3, 6 and 12-bottle plans.</p></details>
         </div>
 
         <!-- COMMENTS -->
@@ -414,6 +484,23 @@
           <div class="comment"><div class="av">DK</div><div><div class="cname">Diana K. &#10003;</div><div class="ctext">Skeptic here. My husband bought it as a joke about my late-night snacking. By week 3 the 9 PM kitchen runs completely stopped. Ordered 3 bottles to lock in the price.</div><div class="cmeta">Like &middot; Reply &middot; &#128077; 247 &middot; 4 days</div></div></div>
           <div class="comment"><div class="av">PB</div><div><div class="cname">Pat B. &#10003;</div><div class="ctext">Tried keto, fasting, MyFitnessPal for 18 months. This is the only thing that changed how my brain thinks about food. I eat less because I want less. &minus;16 lbs in 12 weeks.</div><div class="cmeta">Like &middot; Reply &middot; &#128077; 198 &middot; 5 days</div></div></div>
           <div class="comment"><div class="av">SC</div><div><div class="cname">Stephanie C. &#10003;</div><div class="ctext">3 weeks in and my husband asked what I was doing &mdash; down a dress size. No needles, thank god &#128522;</div><div class="cmeta">Like &middot; Reply &middot; &#128077; 174 &middot; 1 week</div></div></div>
+        </div>
+
+        <!-- AUTHOR -->
+        <style>
+          .authorbox{display:flex;gap:16px;align-items:flex-start;border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:30px 0 18px;background:#fafcfa;}
+          .authorbox .av-lg{flex:0 0 54px;width:54px;height:54px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;}
+          .authorbox .au-name{font-weight:800;font-size:18px;}
+          .authorbox .au-role{font-size:13px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin:2px 0 8px;}
+          .authorbox .au-bio{margin:0;color:#3a3a3a;font-size:15px;}
+        </style>
+        <div class="authorbox">
+          <div class="av-lg">CV</div>
+          <div>
+            <div class="au-name">Dr. Camila Vasconcelos, M.D.</div>
+            <div class="au-role">Board-Certified Internal Medicine &middot; Metabolic Health</div>
+            <p class="au-bio">Dr. Vasconcelos has spent 14+ years working with women over 35 on blood-sugar and appetite regulation. She writes for Health &amp; Wellness Daily on natural, food-based approaches to metabolic health.</p>
+          </div>
         </div>
 
         <p class="disc-note">These statements have not been evaluated by the Food and Drug Administration. Crave Off is a dietary supplement; it is not a drug and is not intended to diagnose, treat, cure, or prevent any disease, including diabetes, and is not a substitute for any prescription medication. GLP-1 references describe a natural hormone pathway, not a drug. Results vary from person to person. Testimonials and before/after images reflect voluntary individual reports and do not represent typical results.</p>
@@ -474,5 +561,36 @@
   })();
 </script>
 
+  <div id="toast" class="livetoast">
+    <div class="lt-dot"></div>
+    <div><b id="toast-name">Sarah from Austin, TX</b><span id="toast-plan"> just ordered the 6-bottle plan</span><div class="lt-time">Verified purchase &middot; just now</div></div>
+  </div>
+  <style>
+    .livetoast{position:fixed;left:16px;bottom:16px;z-index:60;display:none;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px;box-shadow:0 8px 28px rgba(0,0,0,.16);max-width:300px;font-size:14px;transition:opacity .4s;}
+    .livetoast .lt-dot{width:10px;height:10px;border-radius:50%;background:var(--green);flex:0 0 10px;}
+    .livetoast .lt-time{font-size:12px;color:var(--muted);margin-top:2px;}
+    @media(max-width:560px){ .livetoast{left:10px;right:10px;bottom:78px;max-width:none;} }
+  </style>
+  <script>
+  (function(){
+    var t=15*60-1, el=document.getElementById('cdtimer');
+    if(el){ setInterval(function(){ if(t>0)t--; var m=Math.floor(t/60), sc=t%60; el.textContent=m+':'+(sc<10?'0':'')+sc; },1000); }
+    var vEl=document.getElementById('viewers');
+    if(vEl){ setInterval(function(){ vEl.textContent=28+Math.floor(Math.random()*9); }, 4500); }
+    var toast=document.getElementById('toast');
+    if(toast){
+      var names=['Sarah from Austin, TX','Maria from Miami, FL','Jennifer from Dallas, TX','Linda from Phoenix, AZ','Karen from Columbus, OH','Patricia from Tampa, FL','Amanda from Denver, CO'];
+      var plans=['the 6-bottle plan','the 3-bottle plan','the 12-bottle plan'];
+      var nm=document.getElementById('toast-name'), pl=document.getElementById('toast-plan');
+      function show(){
+        nm.textContent=names[Math.floor(Math.random()*names.length)];
+        pl.textContent=' just ordered '+plans[Math.floor(Math.random()*plans.length)];
+        toast.style.display='flex'; toast.style.opacity='1';
+        setTimeout(function(){ toast.style.opacity='0'; setTimeout(function(){toast.style.display='none';},420); },5000);
+      }
+      setTimeout(show,6000); setInterval(show,24000);
+    }
+  })();
+  </script>
 </body>
 </html>
