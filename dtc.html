@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crave Off — Flatten the 3 PM Spike & Kill Cravings Naturally</title>
+<style>
+  :root{
+    --green:#2e5e3e;--green-2:#3f7d52;--green-soft:#eef6ef;--green-soft2:#f4faf5;
+    --gold:#f5b301;--red:#c0392b;--ink:#1c2a20;--muted:#5f6b62;--line:#e3e8e3;--maxw:1180px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.55;font-size:16px;-webkit-font-smoothing:antialiased;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px;}
+  h2{font-size:32px;font-weight:800;line-height:1.15;letter-spacing:-.5px;margin:0 0 8px;text-align:center;}
+  .sub-c{text-align:center;color:var(--muted);max-width:640px;margin:0 auto 26px;}
+
+  /* announcement */
+  .announce{background:var(--green);color:#fff;text-align:center;font-size:14px;font-weight:700;padding:9px 12px;display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;}
+  .announce .cd{display:inline-flex;gap:6px;}
+  .announce .cd b{background:rgba(255,255,255,.16);border-radius:6px;padding:3px 7px;font-variant-numeric:tabular-nums;}
+  .announce .cd small{opacity:.8;font-weight:600;}
+
+  /* header */
+  .head{border-bottom:1px solid var(--line);}
+  .head .wrap{display:flex;align-items:center;justify-content:center;position:relative;padding-top:16px;padding-bottom:16px;}
+  .logo{font-family:Georgia,serif;font-weight:700;font-size:26px;color:var(--green);letter-spacing:.5px;}
+  .logo small{display:block;font-family:-apple-system,sans-serif;font-size:9px;letter-spacing:3px;color:var(--muted);text-align:center;font-weight:700;}
+  .cart{position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:22px;}
+  .cart .dot{position:absolute;top:-6px;right:-8px;background:var(--green);color:#fff;font-size:11px;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-weight:800;}
+
+  /* marquee */
+  .marquee{background:#fff;border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;}
+  .marquee .track{display:inline-flex;gap:34px;padding:12px 0;animation:scroll 26s linear infinite;}
+  .marquee .m{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--green);}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* hero */
+  .hero{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:34px 0 20px;}
+  .gallery .main{border-radius:16px;overflow:hidden;background:var(--green-soft2);border:1px solid var(--line);position:relative;}
+  .gallery .badge{position:absolute;top:14px;right:14px;background:var(--green);color:#fff;font-size:11px;font-weight:800;border-radius:50%;width:66px;height:66px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.1;padding:6px;}
+  .tiles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px;}
+  .tile{background:var(--green-soft);border-radius:12px;padding:14px 10px;text-align:center;font-size:13px;font-weight:700;color:var(--green);}
+  .tile .ic{font-size:24px;display:block;margin-bottom:4px;}
+  .seeinfo{display:block;width:100%;background:var(--green);color:#fff;text-align:center;font-weight:800;padding:15px;border-radius:12px;margin:14px 0 12px;letter-spacing:.3px;}
+  details.acc{border:1px solid var(--line);border-radius:12px;margin:0 0 10px;padding:0 16px;}
+  details.acc summary{list-style:none;cursor:pointer;font-weight:700;padding:15px 0;display:flex;justify-content:space-between;align-items:center;}
+  details.acc summary::-webkit-details-marker{display:none;}
+  details.acc summary::after{content:'›';color:var(--green);font-size:22px;font-weight:800;}
+  details.acc[open] summary::after{transform:rotate(90deg);}
+  details.acc p{margin:0 0 15px;color:#3a463d;font-size:15px;}
+
+  /* offer col */
+  .rating{display:flex;align-items:center;gap:8px;font-size:15px;}
+  .rating .stars{color:var(--gold);letter-spacing:1px;}
+  .rating b{color:var(--green);}
+  .hero h1{font-size:34px;font-weight:800;line-height:1.12;letter-spacing:-.5px;margin:8px 0 6px;}
+  .hero .pre{color:var(--muted);font-size:16px;margin:16px 0 2px;}
+  .stockbar{background:#f0efe9;border-radius:20px;height:26px;position:relative;overflow:hidden;margin:14px 0 6px;}
+  .stockbar .fill{position:absolute;left:0;top:0;bottom:0;width:93%;background:linear-gradient(90deg,#d64848,#c0392b);border-radius:20px;}
+  .stockbar span{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:12px;font-weight:800;color:#a12b20;}
+  .checks{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;margin:16px 0;}
+  .checks div{display:flex;gap:8px;align-items:center;font-weight:600;font-size:15px;}
+  .checks .ck{color:var(--green-2);font-weight:900;}
+  .anniv{border-top:1px solid var(--line);padding-top:16px;color:#3a463d;font-size:15px;}
+  .orderbox{background:var(--green-soft);border-radius:12px;padding:14px 16px;font-size:14px;margin:16px 0;}
+  .orderbox b{color:var(--green);}
+
+  /* pricing */
+  .plans{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin:12px 0 6px;}
+  .plan{position:relative;border:2px solid var(--line);border-radius:14px;padding:16px 10px 14px;text-align:center;background:#fff;transition:.15s;}
+  .plan:hover{border-color:var(--green-2);}
+  .plan.pop{border-color:var(--green);background:var(--green-soft2);}
+  .plan .off{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:11px;font-weight:800;border-radius:20px;padding:3px 10px;white-space:nowrap;}
+  .plan .q{font-weight:800;font-size:16px;}
+  .plan .ship{font-size:11px;color:var(--green);font-weight:700;}
+  .plan .jar{height:96px;display:flex;align-items:center;justify-content:center;margin:6px 0;}
+  .plan .jar img{height:100%;width:auto;object-fit:contain;}
+  .plan .price{font-size:26px;font-weight:900;}
+  .plan .price small{font-size:13px;font-weight:700;}
+  .plan .per{font-size:12px;color:var(--muted);font-weight:700;}
+  .plan .was{font-size:12px;color:#a9a9a9;text-decoration:line-through;}
+  .deliver{text-align:center;background:var(--green-soft2);border-radius:10px;padding:10px;font-size:14px;margin:10px 0;}
+  .addcart{display:block;width:100%;background:var(--green);color:#fff;text-align:center;font-weight:900;font-size:19px;letter-spacing:1px;padding:19px;border-radius:40px;box-shadow:0 8px 20px rgba(46,94,62,.28);margin:6px 0 12px;}
+  .addcart:hover{background:#264e34;}
+  .subline{display:flex;justify-content:center;gap:26px;color:var(--muted);font-size:14px;margin-bottom:10px;flex-wrap:wrap;}
+  .securebar{background:#f5f6f4;border-radius:10px;text-align:center;padding:10px;font-size:13px;color:#3a463d;font-weight:600;}
+  .pays{display:flex;gap:8px;justify-content:center;margin-top:8px;font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.5px;}
+
+  /* section */
+  section{padding:50px 0;}
+  section.soft{background:var(--green-soft);}
+  .benlist{display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;max-width:620px;margin:0 auto;}
+  .benlist div{display:flex;gap:10px;align-items:center;font-weight:700;}
+  .benlist .ck{color:var(--green-2);font-weight:900;font-size:18px;}
+
+  /* 3-step */
+  .steps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:14px;}
+  .step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;text-align:center;}
+  .step .n{width:44px;height:44px;border-radius:50%;background:var(--green);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:18px;}
+  .step h4{margin:0 0 6px;font-size:19px;}
+  .step p{margin:0;color:#3a463d;font-size:15px;}
+
+  /* reviews */
+  .rev-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+  .rev{border:1px solid var(--line);border-radius:16px;padding:20px;background:#fff;}
+  .rev .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+  .rev .stars{color:var(--gold);}
+  .rev .sc{font-weight:800;font-size:13px;}
+  .rev p{margin:0 0 14px;font-style:italic;color:#2c352d;}
+  .rev .who{display:flex;align-items:center;gap:10px;}
+  .rev .who img{width:38px;height:38px;border-radius:50%;object-fit:cover;}
+  .rev .who .nm{font-weight:800;font-size:14px;}
+  .rev .who .vb{color:var(--green-2);font-size:12px;font-weight:700;}
+
+  /* trust badges */
+  .badges{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:900px;margin:0 auto;}
+  .badge2{text-align:center;font-size:13px;font-weight:700;color:#2c352d;}
+  .badge2 .ic{font-size:26px;display:block;margin-bottom:5px;}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;text-align:center;margin-bottom:24px;}
+  .stat .big{font-size:46px;font-weight:900;color:var(--green);line-height:1;}
+  .stat p{margin:8px 0 0;color:#3a463d;}
+  .pullquote{text-align:center;font-size:20px;font-weight:700;font-style:italic;max-width:640px;margin:0 auto;}
+  .pullquote span{display:block;font-size:14px;font-style:normal;color:var(--muted);margin-top:8px;}
+
+  /* before/after */
+  .ba-comp{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:760px;margin:0 auto;}
+  .ba-col{border-radius:16px;padding:22px;}
+  .ba-col.before{background:#fbeeee;border:1px solid #f0d5d3;}
+  .ba-col.after{background:var(--green-soft);border:1px solid #cfe6d4;}
+  .ba-col h4{margin:0 0 12px;text-align:center;font-size:16px;text-transform:uppercase;letter-spacing:1px;}
+  .ba-col.before h4{color:#b03a2e;} .ba-col.after h4{color:var(--green);}
+  .ba-col ul{list-style:none;margin:0;padding:0;}
+  .ba-col li{padding:7px 0;font-weight:600;display:flex;gap:8px;align-items:center;}
+
+  /* journey */
+  .journey{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .wk{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;}
+  .wk .tag{display:inline-block;background:var(--green);color:#fff;font-size:12px;font-weight:800;border-radius:20px;padding:4px 12px;margin-bottom:10px;}
+  .wk h4{margin:0 0 8px;font-size:17px;}
+  .wk p{margin:0 0 10px;color:#3a463d;font-size:14px;}
+  .wk .pct{font-size:12px;color:var(--green-2);font-weight:800;border-top:1px solid var(--line);padding-top:8px;}
+
+  /* reasons */
+  .reasons{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:900px;margin:0 auto;}
+  .reason{display:flex;gap:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;}
+  .reason .rn{flex:0 0 40px;width:40px;height:40px;border-radius:10px;background:var(--green-soft);color:var(--green);font-weight:900;display:flex;align-items:center;justify-content:center;}
+  .reason h4{margin:0 0 4px;font-size:17px;} .reason p{margin:0;color:#3a463d;font-size:14px;}
+
+  /* compare */
+  .compare{max-width:680px;margin:0 auto;border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+  .compare .row{display:grid;grid-template-columns:1fr 120px 120px;align-items:center;border-top:1px solid var(--line);}
+  .compare .row:first-child{border-top:none;}
+  .compare .row>div{padding:14px 16px;font-size:15px;}
+  .compare .h{background:#f5f6f4;font-weight:800;font-size:13px;text-align:center;text-transform:uppercase;letter-spacing:.5px;}
+  .compare .h.us{background:var(--green);color:#fff;}
+  .compare .c{text-align:center;font-weight:800;}
+  .compare .c.y{color:var(--green-2);} .compare .c.n{color:#c0392b;}
+
+  /* faq */
+  .faq{max-width:760px;margin:0 auto;}
+  .faq details{border:1px solid var(--line);border-radius:12px;margin:0 0 10px;padding:0 18px;background:#fff;}
+  .faq summary{list-style:none;cursor:pointer;font-weight:700;padding:16px 0;display:flex;justify-content:space-between;gap:14px;align-items:center;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{content:'+';color:var(--green);font-weight:800;font-size:22px;}
+  .faq details[open] summary::after{content:'\2013';}
+  .faq details>p{margin:0 0 16px;color:#3a463d;font-size:15px;}
+
+  /* guarantee */
+  .guar{max-width:620px;margin:0 auto;text-align:center;border:2px solid var(--green);border-radius:20px;padding:30px 24px;background:var(--green-soft2);}
+  .guar .seal{width:110px;margin:0 auto 12px;}
+
+  /* sticky */
+  .sticky{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);box-shadow:0 -4px 20px rgba(0,0,0,.08);z-index:60;padding:8px 0;}
+  .sticky .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  .sticky .info{display:flex;align-items:center;gap:10px;}
+  .sticky .info img{width:44px;height:44px;object-fit:contain;background:var(--green-soft2);border-radius:8px;}
+  .sticky .info b{font-size:15px;} .sticky .info .st{font-size:12px;color:var(--muted);}
+  .sticky a.shop{background:var(--green);color:#fff;font-weight:800;padding:13px 28px;border-radius:40px;white-space:nowrap;}
+
+  @media(max-width:860px){
+    .hero{grid-template-columns:1fr;gap:22px;}
+    h2{font-size:25px;}
+    .steps,.rev-grid,.journey,.reasons,.stats{grid-template-columns:1fr;}
+    .badges{grid-template-columns:repeat(3,1fr);}
+    .plans{grid-template-columns:1fr 1fr;}
+    .ba-comp{grid-template-columns:1fr;}
+    .hero h1{font-size:27px;}
+    .sticky .info .st{display:none;}
+    .compare .row{grid-template-columns:1fr 76px 76px;}
+    .subline{gap:16px;}
+  }
+  @media(max-width:480px){
+    .tiles{grid-template-columns:1fr 1fr 1fr;}
+    .badges{grid-template-columns:1fr 1fr;}
+    body{font-size:15px;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="announce">
+    <span>&#127793; 58% Off Launch Sale &mdash; ends in</span>
+    <span class="cd"><b id="cd-h">01</b><small>HRS</small> <b id="cd-m">59</b><small>MIN</small> <b id="cd-s">53</b><small>SEC</small></span>
+  </div>
+
+  <header class="head"><div class="wrap">
+    <div class="logo">Crave Off<small>IT'S BRAZILIAN</small></div>
+    <div class="cart">&#128722;<span class="dot">1</span></div>
+  </div></header>
+
+  <div class="marquee"><div class="track">
+    <span class="m">&#129744; Wild Amazonian Açaí</span><span class="m">&#128293; Kills 3 PM Cravings</span><span class="m">&#128138; No Needle, No Jitters</span><span class="m">&#127793; Nature's GLP-1</span><span class="m">&#9989; GMP-Certified USA</span>
+    <span class="m">&#129744; Wild Amazonian Açaí</span><span class="m">&#128293; Kills 3 PM Cravings</span><span class="m">&#128138; No Needle, No Jitters</span><span class="m">&#127793; Nature's GLP-1</span><span class="m">&#9989; GMP-Certified USA</span>
+  </div></div>
+
+  <div class="wrap">
+    <div class="hero">
+
+      <!-- LEFT: gallery -->
+      <div class="gallery">
+        <div class="main"><img src="img/product_jar.jpg" alt="Crave Off bottle"><div class="badge">CAPSULES · 60ct</div></div>
+        <div class="tiles">
+          <div class="tile"><span class="ic">&#128293;</span>Kills the 3 PM crave</div>
+          <div class="tile"><span class="ic">&#129744;</span>Wild Amazonian açaí</div>
+          <div class="tile"><span class="ic">&#9889;</span>Steady energy, no crash</div>
+        </div>
+        <a class="seeinfo" href="#offer">&#127793; See Ingredients &amp; Offer</a>
+        <details class="acc"><summary>Product Description</summary><p>Crave Off is a plant-based capsule built around wild-harvested Brazilian açaí, stacked with green tea, garcinia and apple cider vinegar &mdash; formulated to flatten the post-meal blood-sugar spike that drives your afternoon cravings.</p></details>
+        <details class="acc"><summary>How to Use</summary><p>Take 2 capsules with water before your biggest meal &mdash; the one that usually sets off the afternoon crash. No diet or gym required.</p></details>
+        <details class="acc"><summary>Why you need Crave Off</summary><p>The 3 PM crash isn't willpower &mdash; it's a blood-sugar spike followed by a crash that hijacks your cravings. Crave Off calms that spike at the source, so the craving never fires.</p></details>
+        <details class="acc"><summary>Ingredients &amp; Benefits</summary><p>Wild Açaí (polyphenols + fiber), Green Tea Extract (steady energy), Garcinia Cambogia (appetite), Apple Cider Vinegar (blunts the spike). Non-GMO · plant-based · made in a GMP-certified U.S. facility.</p></details>
+        <details class="acc"><summary>Shipping, Returns &amp; Guarantee</summary><p>Ships from the U.S. within 24&ndash;48 hours with tracking. Free shipping on the 6 &amp; 12-bottle plans. 60-day money-back guarantee &mdash; even on opened bottles.</p></details>
+      </div>
+
+      <!-- RIGHT: offer -->
+      <div class="offer">
+        <div class="rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> Rated <b>4.8 'Excellent'</b> | 13,428 Reviews</div>
+        <p class="pre">89% of customers report:</p>
+        <h1>Quieter cravings and no 3 PM crash in 14 days or less</h1>
+        <div class="stockbar"><div class="fill"></div><span>93% Claimed</span></div>
+        <div class="checks">
+          <div><span class="ck">&#10003;</span> Flattens the spike</div>
+          <div><span class="ck">&#10003;</span> Kills cravings</div>
+          <div><span class="ck">&#10003;</span> No needle, no jitters</div>
+          <div><span class="ck">&#10003;</span> Steady energy</div>
+        </div>
+        <p class="anniv">To celebrate the launch, we're giving readers an <b>exclusive discount of up to 60% until Sunday</b>.</p>
+        <div class="orderbox">It's easy to order &mdash; just pick your Crave Off supply below and tap <b>ADD TO CART</b>.</div>
+
+        <div class="plans" id="offer">
+          <a class="plan" href="https://buy.stripe.com/8x2cN57dR9mRcXJcEJfMA0s">
+            <span class="off">50% OFF</span>
+            <div class="q">1 Bottle</div><div class="ship">&nbsp;</div>
+            <div class="jar"><img src="img/product_jar.jpg" alt=""></div>
+            <div class="price"><small>$</small>19<small>.99</small></div>
+            <div class="was">$39.99</div>
+          </a>
+          <a class="plan" href="https://buy.stripe.com/aFa00jaq3eHbg9VdINfMA0t">
+            <span class="off">55% OFF</span>
+            <div class="q">3 Bottles</div><div class="ship">&nbsp;</div>
+            <div class="jar"><img src="img/pack_3.jpg" alt=""></div>
+            <div class="price"><small>$</small>17<small>.99</small></div>
+            <div class="per">each</div><div class="was">$119.97</div>
+          </a>
+          <a class="plan pop" href="https://buy.stripe.com/4gM28r41F2Ytf5ReMRfMA0u">
+            <span class="off">58% OFF</span>
+            <div class="q">6 Bottles</div><div class="ship">+ Free Shipping</div>
+            <div class="jar"><img src="img/pack_2.jpg" alt=""></div>
+            <div class="price"><small>$</small>16<small>.65</small></div>
+            <div class="per">each</div><div class="was">$239.94</div>
+          </a>
+          <a class="plan" href="https://buy.stripe.com/bJe6oHfKn8iN4rd0W1fMA0v">
+            <span class="off">60% OFF</span>
+            <div class="q">12 Bottles</div><div class="ship">+ Free Shipping</div>
+            <div class="jar"><img src="img/pack_3.jpg" alt=""></div>
+            <div class="price"><small>$</small>15<small>.99</small></div>
+            <div class="per">each</div><div class="was">$479.88</div>
+          </a>
+        </div>
+
+        <div class="deliver">&#128230; Order now &amp; receive by <b>Mon, July 13</b></div>
+        <a class="addcart" href="https://buy.stripe.com/4gM28r41F2Ytf5ReMRfMA0u">ADD TO CART</a>
+        <div class="subline"><span>&#10003; One payment</span><span>&#10003; No subscription</span></div>
+        <div class="securebar">&#128274; 60-Day Guarantee &nbsp;•&nbsp; Secure Checkout</div>
+        <div class="pays">VISA · MASTERCARD · AMEX · PAYPAL · APPLE PAY · G PAY</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SEE THE DIFFERENCE -->
+  <section class="soft"><div class="wrap">
+    <h2>See the difference in how you feel</h2>
+    <p class="sub-c">Calm the spike behind your cravings, so you feel light, in control, and steady all afternoon.</p>
+    <div class="benlist">
+      <div><span class="ck">&#10003;</span> Quiet the 3 PM crash</div>
+      <div><span class="ck">&#10003;</span> Stop the after-dinner raids</div>
+      <div><span class="ck">&#10003;</span> Feel full on less</div>
+      <div><span class="ck">&#10003;</span> Steady, all-day energy</div>
+    </div>
+  </div></section>
+
+  <!-- 3-STEP MECHANISM -->
+  <section><div class="wrap">
+    <h2>The natural way to flatten the spike</h2>
+    <p class="sub-c">One Amazonian berry, three things it does &mdash; we call it flipping the <b>3 PM Switch</b>.</p>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h4>Flatten</h4><p>Wild açaí's polyphenols and fiber blunt the post-meal blood-sugar spike at the source &mdash; before it can trigger the crash.</p></div>
+      <div class="step"><div class="n">2</div><h4>Calm</h4><p>No spike means no 90-minute crash. The afternoon "I need something" pull quiets down on its own &mdash; not willpower, absence.</p></div>
+      <div class="step"><div class="n">3</div><h4>Reset</h4><p>Used daily, your appetite signaling recalibrates over 60&ndash;90 days, so eating feels normal again instead of a fight.</p></div>
+    </div>
+  </div></section>
+
+  <!-- TESTIMONIALS -->
+  <section class="soft"><div class="wrap">
+    <div style="text-align:center;color:var(--gold);font-size:18px;">&#9733;&#9733;&#9733;&#9733;&#9733; <span style="color:var(--ink);font-weight:700;font-size:15px;">Trusted by thousands of women</span></div>
+    <h2>Results you can feel by the afternoon</h2>
+    <div class="rev-grid">
+      <div class="rev"><div class="top"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="sc">5/5</span></div><p>"The 3 PM crash was the first thing to go. By week two I stopped grazing at night without even trying. First thing that's ever worked for me."</p><div class="who"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt=""><div><div class="nm">Jessica P., 41</div><div class="vb">&#10003; Verified Buyer</div></div></div></div>
+      <div class="rev"><div class="top"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="sc">5/5</span></div><p>"After menopause nothing moved. This is the first thing that actually matched my body. My doctor asked what I changed."</p><div class="who"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt=""><div><div class="nm">Karen M., 54</div><div class="vb">&#10003; Verified Buyer</div></div></div></div>
+      <div class="rev"><div class="top"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="sc">5/5</span></div><p>"I'd tried the injections &mdash; they made me sick. This was the opposite. Steady, clear, no nausea, and I still have my energy."</p><div class="who"><img src="https://randomuser.me/api/portraits/women/52.jpg" alt=""><div><div class="nm">Sharon R., 52</div><div class="vb">&#10003; Verified Buyer</div></div></div></div>
+    </div>
+  </div></section>
+
+  <!-- PROBLEM -->
+  <section><div class="wrap" style="max-width:760px;">
+    <h2 style="text-align:left;">When the spike hits, cravings win</h2>
+    <p style="color:#3a463d;">A normal meal spikes your glucose, then it crashes 30&ndash;40 points below normal. Your brain reads the crash as an emergency and hijacks your hands &mdash; the cookie is gone before you finished the fight. Crave Off flattens the spike so the craving never fires.</p>
+    <div class="benlist" style="margin-top:16px;">
+      <div><span class="ck">&#10003;</span> Calms the blood-sugar spike</div>
+      <div><span class="ck">&#10003;</span> Ends the afternoon crash</div>
+      <div><span class="ck">&#10003;</span> Quiets food noise</div>
+      <div><span class="ck">&#10003;</span> Supports steady energy</div>
+    </div>
+  </div></section>
+
+  <!-- TRUST BADGES -->
+  <section class="soft"><div class="wrap">
+    <h2>Why trust Crave Off?</h2>
+    <div class="badges">
+      <div class="badge2"><span class="ic">&#127807;</span>100% Plant-Based</div>
+      <div class="badge2"><span class="ic">&#128300;</span>Third-Party Tested</div>
+      <div class="badge2"><span class="ic">&#127482;&#127480;</span>Made in USA</div>
+      <div class="badge2"><span class="ic">&#9989;</span>GMP-Certified</div>
+      <div class="badge2"><span class="ic">&#127793;</span>Non-GMO</div>
+      <div class="badge2"><span class="ic">&#128138;</span>No Needle</div>
+      <div class="badge2"><span class="ic">&#127838;</span>Gluten-Free</div>
+      <div class="badge2"><span class="ic">&#128137;</span>No Prescription</div>
+      <div class="badge2"><span class="ic">&#127853;</span>No Added Sugar</div>
+      <div class="badge2"><span class="ic">&#128153;</span>Vegan-Friendly</div>
+    </div>
+  </div></section>
+
+  <!-- STATS -->
+  <section><div class="wrap">
+    <h2>Proven benefits. Backed by results.</h2>
+    <div class="stats" style="margin-top:20px;">
+      <div class="stat"><div class="big">89%</div><p>reported quieter cravings within 14 days</p></div>
+      <div class="stat"><div class="big">94%</div><p>said the 3 PM crash faded or disappeared</p></div>
+      <div class="stat"><div class="big">92%</div><p>felt steadier energy without the afternoon slump</p></div>
+    </div>
+    <p class="pullquote">"By the end of week one the afternoon crash was just gone &mdash; and so was the pantry habit."<span>&mdash; Lily K., 43 · Verified Buyer</span></p>
+  </div></section>
+
+  <!-- BEFORE / AFTER -->
+  <section class="soft"><div class="wrap">
+    <h2>When the spike runs your day, you feel it</h2>
+    <p class="sub-c">See the difference between a day ruled by the spike and one where it's finally flat.</p>
+    <div class="ba-comp">
+      <div class="ba-col before"><h4>Before</h4><ul>
+        <li>&#10007; 3 PM energy crash</li><li>&#10007; Pantry raids by 9 PM</li><li>&#10007; Hungry an hour after eating</li><li>&#10007; Food on your mind all day</li></ul></div>
+      <div class="ba-col after"><h4>With Crave Off</h4><ul>
+        <li>&#10003; Steady afternoon energy</li><li>&#10003; Nights without the snack detour</li><li>&#10003; Full on less</li><li>&#10003; Quiet, in control</li></ul></div>
+    </div>
+  </div></section>
+
+  <!-- JOURNEY -->
+  <section><div class="wrap">
+    <h2>Your craving-reset journey</h2>
+    <p class="sub-c">Real, gentle progress &mdash; not a crash diet.</p>
+    <div class="journey">
+      <div class="wk"><span class="tag">Week 1</span><h4>The edge comes off</h4><p>The 3 PM crash is the first thing to fade &mdash; you look up and it's 4:45.</p><div class="pct">89% noticed quieter cravings in week 1</div></div>
+      <div class="wk"><span class="tag">Week 2</span><h4>Night raids stop</h4><p>The after-dinner pull just doesn't show up. You go to bed without the detour.</p><div class="pct">94% said the crash faded by week 2</div></div>
+      <div class="wk"><span class="tag">Week 3</span><h4>Clothes feel looser</h4><p>Less snacking, less bloat &mdash; waistbands ease and the scale starts moving.</p><div class="pct">Most see the first real change here</div></div>
+      <div class="wk"><span class="tag">Week 4+</span><h4>Steady, in control</h4><p>Appetite recalibrates. Energy stays level and eating feels normal again.</p><div class="pct">92% felt steadier all-day energy</div></div>
+    </div>
+  </div></section>
+
+  <!-- 5 REASONS -->
+  <section class="soft"><div class="wrap">
+    <h2>5 reasons women choose Crave Off</h2>
+    <p class="sub-c">Real results. Clean ingredients. No needle.</p>
+    <div class="reasons">
+      <div class="reason"><div class="rn">1</div><div><h4>Targets the real cause</h4><p>It flattens the blood-sugar spike behind the craving &mdash; instead of fighting the symptom with willpower.</p></div></div>
+      <div class="reason"><div class="rn">2</div><div><h4>Nature's GLP-1, no needle</h4><p>Wild açaí supports the same fullness pathway the injections target &mdash; without the shot, the nausea, or the $1,000 a month.</p></div></div>
+      <div class="reason"><div class="rn">3</div><div><h4>Absorbs, unlike berberine</h4><p>Açaí's compounds ride in on the fruit's own fiber, so they actually reach your bloodstream.</p></div></div>
+      <div class="reason"><div class="rn">4</div><div><h4>Clean, verified ingredients</h4><p>100% plant-based, non-GMO, third-party tested in a GMP-certified U.S. facility.</p></div></div>
+      <div class="reason"><div class="rn">5</div><div><h4>Results you feel fast</h4><p>Most notice quieter cravings and no afternoon crash in 7&ndash;14 days, backed by a 60-day guarantee.</p></div></div>
+    </div>
+  </div></section>
+
+  <!-- COMPARE -->
+  <section><div class="wrap">
+    <h2>See the difference for yourself</h2>
+    <div class="compare" style="margin-top:18px;">
+      <div class="row"><div class="h">&nbsp;</div><div class="h us">Crave Off</div><div class="h">Other brands</div></div>
+      <div class="row"><div>Targets the blood-sugar spike</div><div class="c y">&#10003;</div><div class="c n">&#10007;</div></div>
+      <div class="row"><div>Wild Amazonian açaí</div><div class="c y">&#10003;</div><div class="c n">&#10007;</div></div>
+      <div class="row"><div>No needle, no prescription</div><div class="c y">&#10003;</div><div class="c y">&#10003;</div></div>
+      <div class="row"><div>Third-party tested (USA)</div><div class="c y">&#10003;</div><div class="c n">&#10007;</div></div>
+      <div class="row"><div>No added sugar or stimulant crash</div><div class="c y">&#10003;</div><div class="c n">&#10007;</div></div>
+      <div class="row"><div>60-day money-back guarantee</div><div class="c y">&#10003;</div><div class="c n">&#10007;</div></div>
+    </div>
+    <div style="text-align:center;margin-top:26px;"><a class="addcart" style="max-width:420px;margin:0 auto;" href="https://buy.stripe.com/4gM28r41F2Ytf5ReMRfMA0u">GET MY CRAVE OFF &rarr;</a></div>
+  </div></section>
+
+  <!-- FAQ -->
+  <section class="soft"><div class="wrap">
+    <h2>Frequently asked questions</h2>
+    <div class="faq" style="margin-top:20px;">
+      <details><summary>What exactly does Crave Off do?</summary><p>It flattens the post-meal blood-sugar spike that drives your 3 PM crash and cravings, using wild açaí plus green tea, garcinia and apple cider vinegar.</p></details>
+      <details><summary>How fast will I see results?</summary><p>Most report quieter cravings and no afternoon crash in 7&ndash;14 days. Waistline changes usually show up around weeks 3&ndash;5.</p></details>
+      <details><summary>How do I take it?</summary><p>Two capsules with water before your biggest meal. No diet or gym required.</p></details>
+      <details><summary>Are there side effects?</summary><p>It's a plant-based capsule &mdash; no needle, no harsh stimulants. Most report none. Check with your doctor if pregnant, nursing, or on medication.</p></details>
+      <details><summary>Is it safe for daily use?</summary><p>Yes &mdash; it's a food-based supplement made in a GMP-certified U.S. facility, designed for daily use.</p></details>
+      <details><summary>Can I take it with other supplements or medication?</summary><p>Generally well tolerated, but always check with your doctor first &mdash; especially if you take blood-sugar medication or blood thinners.</p></details>
+      <details><summary>Where is it made?</summary><p>In the U.S.A. in a GMP-certified facility, with wild-harvested Brazilian açaí.</p></details>
+      <details><summary>What if it doesn't work for me?</summary><p>You get every penny back within 60 days &mdash; even on opened bottles. No questions.</p></details>
+    </div>
+  </div></section>
+
+  <!-- GUARANTEE -->
+  <section><div class="wrap">
+    <div class="guar">
+      <img class="seal" src="img/guarantee_seal.jpg" alt="60-day guarantee">
+      <h2 style="font-size:24px;">60-day money-back guarantee</h2>
+      <p style="color:#3a463d;margin:6px 0 0;">Try Crave Off for 60 full days. If your cravings aren't quieter &mdash; for any reason &mdash; you get every penny back, even on opened bottles. The risk sits with us, not you.</p>
+    </div>
+  </div></section>
+
+  <!-- STICKY -->
+  <div class="sticky"><div class="wrap">
+    <div class="info"><img src="img/product_jar.jpg" alt=""><div><b>Crave Off</b><div class="st">&#9733;&#9733;&#9733;&#9733;&#9733; 4.8 · up to 60% off</div></div></div>
+    <a class="shop" href="#offer">Get Crave Off &rarr;</a>
+  </div></div>
+
+<script>
+  (function(){
+    var end=Date.now()+ (1*3600+59*60+53)*1000;
+    var h=document.getElementById('cd-h'),m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
+    function p(n){return (n<10?'0':'')+n;}
+    function tick(){
+      var d=Math.max(0,end-Date.now()),t=Math.floor(d/1000);
+      h.textContent=p(Math.floor(t/3600)); m.textContent=p(Math.floor(t%3600/60)); s.textContent=p(t%60);
+    }
+    tick(); setInterval(tick,1000);
+  })();
+</script>
+
+</body>
+</html>
