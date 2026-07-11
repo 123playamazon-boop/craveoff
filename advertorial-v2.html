@@ -795,9 +795,12 @@ clarity("set","funnel_step","advertorial_view");
     'bJe6oHfKn8iN4rd0W1fMA0v': {pack:'12', value:191.88}
   };
   var P = new URLSearchParams(window.location.search);
-  var rtkcid = P.get('rtkcid');
+  var CID_PARAMS = ['rtkcid','clickid','rtkclickid','cid','rtk_cid','click_id','sub1','sub2'];
+  var rtkcid = '';
+  for (var _i=0; _i<CID_PARAMS.length; _i++){ var _v=P.get(CID_PARAMS[_i]); if(_v){ rtkcid=_v; break; } }
   if (rtkcid) { try{ sessionStorage.setItem('rtkcid', rtkcid); }catch(e){} }
-  else { try{ rtkcid = sessionStorage.getItem('rtkcid'); }catch(e){} }
+  else { try{ rtkcid = sessionStorage.getItem('rtkcid') || ''; }catch(e){} }
+  if (!rtkcid) { try{ var _ck=document.cookie.match(/(?:^|;\s*)(?:rtkclickid|rtkcid|_rtk)=([^;]+)/); if(_ck) rtkcid=decodeURIComponent(_ck[1]); }catch(e){} }
   var CARRY = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid','ttclid'];
   function stripeId(h){ var m=(h||'').match(/buy\.stripe\.com\/([A-Za-z0-9]+)/); return m?m[1]:''; }
   function decorate(){
