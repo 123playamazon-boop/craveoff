@@ -3,6 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','YOUR_META_PIXEL_ID');   /* <-- dev: coloque o Pixel ID real aqui */
+fbq('track','PageView');
+</script>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","xhdeu5qf2q");
+clarity("event","advertorial_view");
+clarity("set","funnel_step","advertorial_view");
+</script>
 <title>Health &amp; Wellness Daily | Crave Off | Why the 3 PM Crash Isn't Willpower</title>
 <style>
   :root{
@@ -765,5 +784,55 @@
     }
   })();
   </script>
+<!-- === RedTrack: preserve rtkcid, pass to Stripe (client_reference_id) + InitiateCheckout postback === -->
+<script>
+(function(){
+  var RTK_DOMAIN = '5fxrt.ttrk.io';
+  var STRIPE_PACK = {
+    '8x2cN57dR9mRcXJcEJfMA0s': {pack:'1',  value:19.99},
+    'aFa00jaq3eHbg9VdINfMA0t': {pack:'3',  value:53.97},
+    '4gM28r41F2Ytf5ReMRfMA0u': {pack:'6',  value:99.90},
+    'bJe6oHfKn8iN4rd0W1fMA0v': {pack:'12', value:191.88}
+  };
+  var P = new URLSearchParams(window.location.search);
+  var rtkcid = P.get('rtkcid');
+  if (rtkcid) { try{ sessionStorage.setItem('rtkcid', rtkcid); }catch(e){} }
+  else { try{ rtkcid = sessionStorage.getItem('rtkcid'); }catch(e){} }
+  var CARRY = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid','ttclid'];
+  function stripeId(h){ var m=(h||'').match(/buy\.stripe\.com\/([A-Za-z0-9]+)/); return m?m[1]:''; }
+  function decorate(){
+    document.querySelectorAll('a[href]').forEach(function(a){
+      var raw=a.getAttribute('href');
+      if(!raw||/^(mailto:|tel:|#|javascript:)/i.test(raw)) return;
+      try{
+        var u=new URL(a.href, window.location.href);
+        var isStripe=/buy\.stripe\.com/i.test(a.href);
+        var isInternal=(u.hostname===window.location.host);
+        if(rtkcid){
+          if(isStripe) u.searchParams.set('client_reference_id', rtkcid);
+          if(isStripe||isInternal) u.searchParams.set('rtkcid', rtkcid);
+        }
+        if(isInternal) CARRY.forEach(function(k){ var v=P.get(k); if(v) u.searchParams.set(k,v); });
+        a.href=u.toString();
+      }catch(e){}
+    });
+    if(!rtkcid) return;
+    document.querySelectorAll('a[href*="buy.stripe.com"]').forEach(function(a){
+      a.addEventListener('click', function(){
+        var info=STRIPE_PACK[stripeId(a.href)]||{pack:'',value:''};
+        var pb='https://'+RTK_DOMAIN+'/postback?clickid='+encodeURIComponent(rtkcid)
+              +'&type=InitiateCheckout&status=approved'
+              +(info.pack?('&pack='+info.pack):'')
+              +(info.value?('&value='+info.value):'');
+        try{ navigator.sendBeacon ? navigator.sendBeacon(pb) : (new Image().src=pb); }catch(e){}
+      });
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', decorate);
+  else decorate();
+})();
+</script>
+<!-- === END RedTrack === -->
+<script>try{if(window.clarity)clarity('event','adv_offer_seen');}catch(e){}</script>
 </body>
 </html>

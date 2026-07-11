@@ -3,6 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','YOUR_META_PIXEL_ID');   /* <-- dev: coloque o Pixel ID real aqui */
+fbq('track','PageView');
+</script>
+<!-- Meta Purchase (reads ?value= & ?pack= from the Stripe success URL) -->
+<script>
+(function(){try{
+  var p=new URLSearchParams(location.search);
+  var v=parseFloat(p.get('value')); var pk=p.get('pack')||'';
+  var o={currency:'USD'};
+  if(!isNaN(v)) o.value=v;
+  if(pk){ o.content_type='product'; o.contents=[{id:'craveoff_'+pk,quantity:parseInt(pk)||1}]; }
+  if(window.fbq) fbq('track','Purchase',o);
+}catch(e){}})();
+</script>
 <title>Thank You — Crave-Off</title>
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
