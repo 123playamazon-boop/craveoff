@@ -320,6 +320,50 @@ clarity("set","funnel_step","dtc_view");
     </div>
   </div>
 
+  <!-- STORY CAROUSEL (Amanda slides) -->
+  <style>
+    .cxw{max-width:560px;margin:26px auto 6px;padding:0 16px;}
+    .cxw .cxh{text-align:center;font-size:13px;font-weight:800;letter-spacing:.6px;color:var(--muted);text-transform:uppercase;margin:0 0 12px;}
+    .cx{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;border-radius:16px;}
+    .cx::-webkit-scrollbar{display:none;}
+    .cx img{flex:0 0 100%;scroll-snap-align:start;width:100%;display:block;border-radius:16px;}
+    .cx-dots{display:flex;justify-content:center;gap:7px;margin-top:12px;}
+    .cx-dots i{width:8px;height:8px;border-radius:50%;background:#cdd8cd;cursor:pointer;transition:.2s;}
+    .cx-dots i.on{background:var(--green);width:20px;border-radius:5px;}
+    .cx-cta{display:block;max-width:440px;margin:16px auto 0;text-align:center;background:var(--green);color:#fff;font-weight:900;font-size:17px;letter-spacing:.5px;padding:16px;border-radius:40px;box-shadow:0 8px 20px rgba(46,94,62,.28);}
+  </style>
+  <section class="cxw">
+    <div class="cxh">&#128072; Swipe the Crave Off story</div>
+    <div class="cx" id="cx">
+      <img src="img/carousel_1.jpg" alt="It's not willpower &mdash; it's your blood sugar">
+      <img src="img/carousel_2.jpg" alt="The $1,400 needle vs. one Amazon berry">
+      <img src="img/carousel_3.jpg" alt="Meet the 3 PM Switch">
+      <img src="img/carousel_4.jpg" alt="4 Amazonian actives, one job: kill the crave">
+      <img src="img/carousel_5.jpg" alt="Real reader before and after">
+      <img src="img/carousel_6.jpg" alt="No 2 AM cravings, no 3 PM crash, no $1,400 needle">
+      <img src="img/carousel_7.jpg" alt="Quiet the cravings in 7 days &mdash; up to 60% off">
+    </div>
+    <div class="cx-dots" id="cxDots"></div>
+    <a class="cx-cta" href="#offer">&#128071; See today's price &mdash; up to 60% off</a>
+  </section>
+  <script>
+  (function(){
+    var cx=document.getElementById('cx'), dw=document.getElementById('cxDots');
+    if(!cx||!dw) return;
+    var n=cx.children.length,i;
+    for(i=0;i<n;i++){var d=document.createElement('i');d.setAttribute('data-i',i);if(i===0)d.className='on';dw.appendChild(d);}
+    var dots=dw.children;
+    cx.addEventListener('scroll',function(){
+      var idx=Math.round(cx.scrollLeft/cx.clientWidth);
+      for(var j=0;j<dots.length;j++) dots[j].className=(j===idx?'on':'');
+    },{passive:true});
+    dw.addEventListener('click',function(e){
+      var t=e.target.getAttribute('data-i');
+      if(t!==null) cx.scrollTo({left:t*cx.clientWidth,behavior:'smooth'});
+    });
+  })();
+  </script>
+
   <div class="wrap"><div class="details-block">
         <details class="acc"><summary>Product Description</summary><p>Crave Off is a plant-based capsule built around wild-harvested Brazilian açaí, stacked with green tea, garcinia and apple cider vinegar &mdash; formulated to flatten the post-meal blood-sugar spike that drives your afternoon cravings.</p></details>
         <details class="acc"><summary>How to Use</summary><p>Take 2 capsules with water before your biggest meal &mdash; the one that usually sets off the afternoon crash. No diet or gym required.</p></details>
